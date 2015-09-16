@@ -24,10 +24,10 @@
                         templateUrl: "app/partials/news.html"
                     });
                     $routeProvider.when("/news/:id", {
-                        templateUrl: "app/partials/template/news-details.html"
+                        templateUrl: "app/partials/news-details.html"
                     });
                     $routeProvider.when("/about-us", {
-                        templateUrl: "app/partials/tamplate/about-us.html"
+                        templateUrl: "app/partials/about-us.html"
                     });
                     $routeProvider.when("/login", {
                         templateUrl: "app/partials/login.html"
@@ -75,6 +75,7 @@
             <ul class="nav navbar-nav">
                 <li ng-class="getClass('/index')"><a href="#/index">首页</a></li>
                 <li ng-class="getClass('/news')"><a href="#/news">新闻</a></li>
+                <li ng-class="getClass('/about-us')"><a href="#/about-us">关于我们</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/login">登录</a></li>
