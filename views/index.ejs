@@ -65,7 +65,7 @@
     <script src="/app/controller/message.js"></script>
 </head>
 <body ng-controller="indicatorsCtrl">
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navCtrl">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -78,7 +78,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#/index">首页</a></li>
+                <li ng-class="getClass('/index')"><a href="#/index">首页</a></li>
+                <li ng-class="getClass('/news')"><a href="#/news">新闻</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/login">登录</a></li>

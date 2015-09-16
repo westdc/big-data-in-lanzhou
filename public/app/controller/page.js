@@ -1,4 +1,4 @@
-angular.module('technicalSalon').controller('testController', function($scope){
+angular.module('technicalSalon').controller('pageCtrl', function($scope){
 
     $scope.paginationConf = {
         currentPage: 1,
