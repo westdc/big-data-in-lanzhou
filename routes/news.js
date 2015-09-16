@@ -3,7 +3,7 @@ var router = express.Router();
 var News = require('../models/news')
 
 /* GET users listing. */
-router.get('/', function(req, res) {
+router.get('/last', function(req, res) {
   News.getAll(null,function(err, news) {
     if (err) {
       console.log('error');
