@@ -62,6 +62,7 @@
     <script src="/app/controller/publish.js"></script>
     <script src="/app/controller/page.js"></script>
     <script src="/app/directive/paging.js"></script>
+    <script src="/app/controller/messageBoard.js"></script>
 </head>
 <body ng-controller="indicatorsCtrl">
 <div class="container" id="containerChecked">
@@ -79,8 +80,8 @@
         <img class="imgSize containerCheck" src="/images/avatar.png">&nbsp;&nbsp;&nbsp;
         <span class="text-muted fontStype containerCheck">technicalSalon</span>
     </div>
-    <div class="text-right">
-        <button type="button" class="btn btn-default" role="presentation" data-toggle="modal" data-target="#myModal">
+    <div class="text-right" ng-controller="metadataToolbarCtrl">
+        <button ng-click="open({id:1,name:'基本类型'},'editorCtrl','lg')" id="split-button" type="button" class="btn btn-default">
             留言给我们
         </button>
     </div>
@@ -90,8 +91,6 @@
         <div ng-view></div>
     </div>
 </div>
-
-<div ng-include="'/app/partials/tamplate/message.html'"></div>
 <div class="indicator-container">
     <div id="indicator" class="alert animated" ng-if="indicator" ng-class="getClass()">
         {{message}}

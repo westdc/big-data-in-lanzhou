@@ -1,14 +1,12 @@
 
 angular.module("technicalSalon")
     .constant("schemaUrl", "/schema/index.json")
-    .controller("metadataCtrl",function($scope) {
-    })
     .controller("metadataToolbarCtrl",function($scope,$http,schemaUrl,$modal) {
 
         $scope.items = [];
         $scope.open = function(item,modalCtrl,size) {
             var modalInstance = $modal.open({
-                templateUrl: 'app/partials/tamplate/messageBoard.html',
+                templateUrl: 'app/partials/tamplate/message.html',
                 controller: modalCtrl,
                 size:size
             });

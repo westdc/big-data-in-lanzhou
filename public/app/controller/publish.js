@@ -1,8 +1,6 @@
 
 angular.module("technicalSalon")
     .constant("schemaUrl", "/schema/index.json")
-    .controller("metadataCtrl",function($scope) {
-    })
     .controller("metadataToolbarCtrl",function($scope,$http,schemaUrl,$modal) {
 
         $scope.items = [];
