@@ -1,40 +1,27 @@
 
 <div ng-include="'/app/partials/tamplate/carousel.html'"></div>
-<div class="container rowModel">
-    <h1>
-        <a href="#"> TechParty-广州8月微信开发专题沙龙回顾</a>
-    </h1>
-    <p>
-        August 30, 2015
-    </p>
-    <p>
-        <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
-    </p>
-    <br>
-    <button class="btn btn-default btn-lg">
-        <a href="#">
-            查看全文
-        </a>
-    </button>
+<div class="container rowModel" ng-controller="newsCtrl">
+    {{news.status}}
 
-    <hr>
-    <h1>
-        <a href="#"> TechParty-广州8月微信开发专题沙龙回顾</a>
-    </h1>
-    <p>
-        August 30, 2015
-    </p>
-    <p>
-        <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
-    </p>
-    <br>
-    <button class="btn btn-default btn-lg">
-        <a href="#">
-            查看全文
-        </a>
-    </button>
-    <hr>
-    <h1>
+    <div ng-repeat="n in news">
+        <h1>
+            <a href="#"> {{n.title}}</a>
+        </h1>
+        <p>
+            August 30, 2015
+        </p>
+        <p>
+            <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
+        </p>
+        <br>
+        <button class="btn btn-default btn-lg">
+            <a href="#">
+                查看全文
+            </a>
+        </button>
+        <hr>
+
+    </div>
         <a href="#"> TechParty-广州8月微信开发专题沙龙回顾</a>
     </h1>
     <p>
