@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="1m">
+<head>
+    <title> technicalSalon</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="/javascripts/jquery.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.3.9/angular.min.js"></script>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/paging.css" rel="stylesheet">
+    <link href="/stylesheets/animate.css" rel="stylesheet">
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/angular-route.js"></script>
+    <script src="/javascripts/angular-resource.js"></script>
+    <script src="/javascripts/angular-animate.js"></script>
+    <script src="/javascripts/ui-bootstrap.min.js"></script>
+    <script src="/javascripts/ui-bootstrap-tpls.min.js"></script>
+
+    <script>
+        angular.module("1m", ["ngRoute", "ngResource", "tm.pagination", "infinite-scroll", "mp.escAction", "ngAnimate","ui.bootstrap"])
+                .config(function ($routeProvider) {
+                    $routeProvider.when("/index", {
+                        templateUrl: "app/partials/index.html"
+                    });
+                    $routeProvider.when("/news", {
+                        templateUrl: "app/partials/news.html"
+                    });
+                    $routeProvider.when("/page2", {
+                        templateUrl: "app/partials/tamplate/page2.html"
+                    });
+                    $routeProvider.when("/aboutUs", {
+                        templateUrl: "app/partials/tamplate/aboutUs.html"
+                    });
+                    $routeProvider.when("/login", {
+                        templateUrl: "app/partials/login.html"
+                    });
+                    $routeProvider.when("/register", {
+                        templateUrl: "app/partials/register.html"
+                    });
+                    $routeProvider.when("/users", {
+                        templateUrl: "app/partials/users.html"
+                    });
+                    $routeProvider.when("/department", {
+                        templateUrl: "app/partials/department.html"
+                    });
+                    $routeProvider.when("/picture", {
+                        templateUrl: "app/partials/picture.html"
+                    });
+                    $routeProvider.when("/insideLetter", {
+                        templateUrl: "app/partials/insideLetter.html"
+                    });
+                    $routeProvider.otherwise({
+                        redirectTo: "/index"
+                    });
+                })
+    </script>
+    <script src="/app/controller/common.js"></script>
+    <script src="/app/directive/breadcrumbs.js"></script>
+    <script src="/app/directive/ng-infinite-scroll.js"></script>
+    <script src="/app/directive/angular-esc-action.js"></script>
+    <script src="/app/controller/data_Plug.js"></script>
+   <!-- <script src="/app/controller/carousel.js"></script>-->
+    <script src="/app/controller/register.js"></script>
+    <script src="/app/controller/publish.js"></script>
+    <script src="/app/controller/page.js"></script>
+    <script src="/app/directive/paging.js"></script>
+</head>
+<body ng-controller="indicatorsCtrl">
+<div class="container" id="containerChecked">
+    <div class="header clearfix">
+        <nav class="containerCheck">
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active" ng-class="getClass('/index')"><a href="#/index">首页</a></li>
+                <li role="presentation" ng-class="getClass('/login')"><a href="#/login">登录</a></li>
+                <li role="presentation" ng-class="getClass('/register')"><a href="#/register">注册</a></li>
+                <li role="presentation" ng-class="getClass('/users')"><a href="#/users">后台管理</a></li>
+                <li role="presentation" ng-class="getClass('/aboutUs')"><a href="#/aboutUs"><span
+                                class="glyphicon glyphicon-heart">关于我们</span></a></li>
+            </ul>
+        </nav>
+        <img class="imgSize containerCheck" src="/images/avatar.png">&nbsp;&nbsp;&nbsp;
+        <span class="text-muted fontStype containerCheck">technicalSalon</span>
+    </div>
+
+    <div class="text-right">
+        <button type="button" class="btn btn-default" role="presentation" data-toggle="modal" data-target="#myModal">
+            留言给我们
+        </button>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div ng-view></div>
+    </div>
+</div>
+
+<div ng-include="'/app/partials/tamplate/message.html'"></div>
+<div class="indicator-container">
+    <div id="indicator" class="alert animated" ng-if="indicator" ng-class="getClass()">
+        {{message}}
+        <button ng-click="erase()" type="button" class="close" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<div class="col-sm-3 col-md-2">
+    <div ng-include="'/app/partials/tamplate/nav.html'"></div>
+</div>
+<div class="col-lg-10 col-md-10 col-sm-12" id="userCtainer">
+    <p>
+
+    <div class="row" ng-controller="metadataCtrl">
+        <div class="col-lg-12" ng-controller="metadataToolbarCtrl">
+            <div class="form-inline">
+                <div class="form-group ">
+                    <input type="text" name="title" ng-model="selects" class="col-lg-2 form-control" placeholder="关键字"
+                           value="">
+                </div>
+                <button type="submit" class="btn btn-success">搜索</button>
+                <button ng-click="open({id:1,name:'基本类型'},'editorCtrl','lg')" id="split-button" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-comment"></span>发表信息
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+    </p>
+    <table class="table table-bordered table-hover table-condensed table-comparison text-center">
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>姓名</td>
+            <td>所在部门</td>
+            <td>性别</td>
+            <td>出生日期</td>
+            <td>发表内容</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <!--  <tr ng-repeat="d in poje | filter:selects | orderBy:'country'" ng-controller="deleteCtrl">
+              <td>{{d.Id}}</td>
+              <td>{{d.title}}</td>
+              <td>{{d.CreateTime}}</td>
+              <td>{{d.size}}</td>
+              <td>{{d.SpaceRange}}</td>
+              <td>{{d.type}}</td>
+              <td>
+                  <button class="btn btn-default btn-success">{{d.operation}}</button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-default btn-warning">{{d.delete}}</button>
+              </td>
+          </tr>-->
+        </tbody>
+    </table>
+
+
+    <div id="page" ng-controller="testController">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+
+</div>
+</div>
+
+<hr/>
+<footer class="footer-logo">
+    <p class="text-center text-success"><strong>站内信@</strong></p>
+</footer>

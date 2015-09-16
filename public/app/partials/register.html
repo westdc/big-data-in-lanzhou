@@ -1,0 +1,85 @@
+<div class="registerContainer container">
+    <div class="col-sm-3 col-md-3 col-md-offset-4 containerMagins">
+        <form name="registerForm" novalidate>
+            <h2 class="orm-signin-heading">欢迎您注册</h2>
+
+            <p>
+                <input type="text" id="inputUser" name="inputUser" ng-maxlength="10" ng-minlength="2"
+                       class="form-control" ng-model="user.userName" placeholder="请输入用户名2-10个字符" required>
+            <span class="error" ng-show="(registerForm.inputUser.$dirty) && registerForm.inputUser.$error.required">
+            用户名不能为空
+            </span>
+            <span class="error" ng-show="(registerForm.inputUser.$dirty) && registerForm.inputUser.$error.maxlength">
+            长度不能大于10
+            </span>
+             <span class="error" ng-show="(registerForm.inputUser.$dirty) && registerForm.inputUser.$error.minlength">
+            长度不能小于２
+            </span>
+            </p>
+            <p>
+                <label class="sr-only"></label>
+
+            <div ng-controller="DatepickerDemoCtrl">
+
+                <p class="input-group">
+                    <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened"
+                           min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>-->
+              </span>
+                </p>
+                <p class="text-success">选择注册日期</p>
+            </div>
+            </p>
+            <p>
+                <input type="password" name="user_password" ng-model="vm.user.password"
+                       required="" ng-maxlength="20" ng-minlength="6" class="form-control"
+                       placeholder="请输入密码6-20个字符">
+                <span class="error"
+                      ng-show="(registerForm.user_password.$dirty) && registerForm.user_password.$error.required">密码不能为空！</span>
+                <span class="error"
+                      ng-show="(registerForm.user_password.$dirty) && registerForm.user_password.$error.maxlength">密码长度不能大于20个字符！</span>
+                <span class="error"
+                      ng-show="(registerForm.user_password.$dirty) && registerForm.user_password.$error.minlength">密码长度不能小于6个字符！</span>
+            </p>
+
+            <p ng-controller="ctrl.form.dependency">
+                <input type="password" name="user_repeat_password" ng-model="vm.user.repeat_password"
+                       required="" ng-maxlength="20" ng-minlength="6" repeat="user_password" class="form-control"
+                       placeholder="再次输入密码">
+                <span class="error"
+                      ng-show="(registerForm.user_repeat_password.$dirty) && registerForm.user_repeat_password.$error.required">密码不能为空！</span>
+                <span class="error"
+                      ng-show="(registerForm.user_repeat_password.$dirty) && registerForm.user_repeat_password.$error.maxlength">密码长度不能大于20个字符！</span>
+                <span class="error"
+                      ng-show="(registerForm.user_repeat_password.$dirty) && registerForm.user_repeat_password.$error.minlength">密码长度不能小于6个字符！</span>
+                <span class="error"
+                      ng-show="(registerForm.user_repeat_password.$dirty) && registerForm.user_repeat_password.$error.repeat">两次密码输入不一致！</span>
+            </p>
+
+            <p>
+                <input type="email" id="email" ng-model="email" name="email" class="form-control"
+                       placeholder="请输入您的email" required>
+            <span class="error" ng-show="registerForm.email.$invalid && registerForm.email.$dirty">
+            <span ng-show="registerForm.email.$error.required">
+               请输入您的Email
+            </span>
+            <span ng-show="registerForm.email.$error.email">非法的邮箱地址。</span>
+            </span>
+            </p>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"><span class="text-primary">记住我</span>
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" ng-click="register()" ng-disabled="registerForm.$invalid">
+                注册
+            </button>
+        </form>
+    </div>
+</div>
+
+<footer class="text-center footerWidth text-info"><a href="">Powered by Jekyll with Type Theme</a></footer>
