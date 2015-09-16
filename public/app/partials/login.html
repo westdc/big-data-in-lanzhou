@@ -1,9 +1,7 @@
 <div class="loginContainar container">
     <div class="col-sm-3 col-md-3 col-md-offset-4 containerMagin">
-
         <form name="signinForm" novalidate>
             <h2 class="form-signin-heading">登录</h2>
-
             <p class="form-group">
                 <input type="text" id="inputUser" name="inputUser" ng-maxlength="10" ng-minlength="2"
                        class="form-control" ng-model="user.userName" placeholder="请输入用户名2-10个字符" required>
@@ -17,7 +15,6 @@
             长度不能小于2个字符
             </span>
             </p>
-
             <p>
                 <input type="password" name="user_password" ng-model="vm.user.password"
                        required="" ng-maxlength="20" ng-minlength="6" class="form-control"
@@ -29,7 +26,6 @@
                 <span class="error"
                       ng-show="(signinForm.user_password.$dirty) && signinForm.user_password.$error.minlength">密码长度不能小于6个字符！</span>
             </p>
-
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me">记住密码

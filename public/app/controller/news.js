@@ -4,28 +4,24 @@
 
 angular.module("technicalSalon")
     .constant("lastNewsUrl", "/news/last")
-    .constant("newsUrl","/news")
+    .constant("newsUrl","/news/")
     .controller("newsCtrl",function($scope,$http,lastNewsUrl) {
         $scope.news = {};
         $http.get(lastNewsUrl)
-            .success(function(data) {
+            .success(function(data){
                 $scope.news = data;
             })
             .error(function(error) {
                 $scope.error = error;
             });
-
-
     })
     .controller("newsDetailCtrl",function($scope, $routeParams, $http, newsUrl){
          var id=$routeParams.id;
-        $http.get(newsUrl, {id:id})
+            $http.get(newsUrl + id)
             .success(function(data) {
-                $scope.news = data;
+                $scope.n = data;
             })
             .error(function(error) {
-                $scope.error = error;
+                $scope.n = error;
             });
-
-
     });
