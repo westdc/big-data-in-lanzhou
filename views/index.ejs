@@ -62,10 +62,10 @@
     <script src="/app/controller/publish.js"></script>
     <script src="/app/controller/page.js"></script>
     <script src="/app/directive/paging.js"></script>
-    <script src="/app/controller/messageBoard.js"></script>
+    <script src="/app/controller/message.js"></script>
 </head>
 <body ng-controller="indicatorsCtrl">
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navCtrl">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -78,12 +78,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#/index">首页</a></li>
+                <li ng-class="getClass('/index')"><a href="#/index">首页</a></li>
+                <li ng-class="getClass('/news')"><a href="#/news">新闻</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/login">登录</a></li>
                 <li><a href="#/register">注册</a></li>
-                <li ng-controller="metadataToolbarCtrl"><a href="#" ng-click="open({id:1,name:'基本类型'},'editorCtrl','sm')" >给我们留言</a></li>
+                <li ng-controller="messageCtrl"><a href="" ng-click="open('submitMessageCtrl','lg')" >给我们留言</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -98,7 +99,7 @@
                     aria-hidden="true">&times;</span></button>
     </div>
 </div>
-<footer class="navbar navbar-default navbar-fixed-bottom">
+<footer class="footer">
     <div class="container">
         <p class="pull-right text-muted"><a href="#">Back to top</a></p>
         <p class="text-muted">&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
