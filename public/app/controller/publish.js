@@ -1,8 +1,5 @@
-/**
- * Created by paul on 15-8-12.
- */
-//发表信息
-angular.module("1m")
+
+angular.module("technicalSalon")
     .constant("schemaUrl", "/schema/index.json")
     .controller("metadataCtrl",function($scope) {
     })

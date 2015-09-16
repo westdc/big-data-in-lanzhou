@@ -1,8 +1,4 @@
-/**
- * Created by nober on 15-9-7.
- */
-//注册密码验证
-angular.module('1m')
+angular.module('technicalSalon')
     .controller('ctrl.form.dependency', function ($scope) {
         var vm = $scope.vm = {
             show_error: false,

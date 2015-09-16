@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="1m">
+<html ng-app="technicalSalon">
 <head>
     <title> technicalSalon</title>
-    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="/javascripts/jquery.js"></script>
-    <script src="http://apps.bdimg.com/libs/angular.js/1.3.9/angular.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
     <link href="/stylesheets/style.css" rel="stylesheet">
     <link href="/stylesheets/paging.css" rel="stylesheet">
     <link href="/stylesheets/animate.css" rel="stylesheet">
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/angular.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
     <script src="/javascripts/angular-route.js"></script>
     <script src="/javascripts/angular-resource.js"></script>
     <script src="/javascripts/angular-animate.js"></script>
     <script src="/javascripts/ui-bootstrap.min.js"></script>
     <script src="/javascripts/ui-bootstrap-tpls.min.js"></script>
-
     <script>
-        angular.module("1m", ["ngRoute", "ngResource", "tm.pagination", "infinite-scroll", "mp.escAction", "ngAnimate","ui.bootstrap"])
+        angular.module("technicalSalon", ["ngRoute", "ngResource", "tm.pagination", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
                     $routeProvider.when("/index", {
                         templateUrl: "app/partials/index.html"
@@ -57,8 +59,7 @@
     <script src="/app/directive/breadcrumbs.js"></script>
     <script src="/app/directive/ng-infinite-scroll.js"></script>
     <script src="/app/directive/angular-esc-action.js"></script>
-    <script src="/app/controller/data_Plug.js"></script>
-   <!-- <script src="/app/controller/carousel.js"></script>-->
+    <script src="/app/controller/data-plug.js"></script>
     <script src="/app/controller/register.js"></script>
     <script src="/app/controller/publish.js"></script>
     <script src="/app/controller/page.js"></script>
@@ -80,14 +81,12 @@
         <img class="imgSize containerCheck" src="/images/avatar.png">&nbsp;&nbsp;&nbsp;
         <span class="text-muted fontStype containerCheck">technicalSalon</span>
     </div>
-
     <div class="text-right">
         <button type="button" class="btn btn-default" role="presentation" data-toggle="modal" data-target="#myModal">
             留言给我们
         </button>
     </div>
 </div>
-
 <div class="container-fluid">
     <div class="row">
         <div ng-view></div>

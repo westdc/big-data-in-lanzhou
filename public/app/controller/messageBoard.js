@@ -1,11 +1,5 @@
-/**
- * Created by nober on 15-9-10.
- */
-/**
- * Created by paul on 15-8-12.
- */
-//留言板
-angular.module("1m")
+
+angular.module("technicalSalon")
     .constant("schemaUrl", "/schema/index.json")
     .controller("metadataCtrl",function($scope) {
     })
