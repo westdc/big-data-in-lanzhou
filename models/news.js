@@ -23,6 +23,7 @@ function News(news) {
 
 module.exports = News;
 
+//页面显示数据
 News.getAll = function (name, callback) {
     newsModel.find('news',function(err,newss){
             if (err) {
@@ -30,4 +31,14 @@ News.getAll = function (name, callback) {
             }
             callback(null,newss);//成功！以数组形式返回查询的结果
         });
+};
+
+//根据Id查看内容
+News.get=function(_id,callback){
+  newsModel.findOne({_id:_id},function(err,news){
+      if(err){
+          return callback(err);
+      }
+      callback(null,news);
+  });
 };
