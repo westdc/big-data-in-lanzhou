@@ -20,6 +20,7 @@ function News(news) {
     this.content = news.content;
 };
 
+
 module.exports = News;
 
 News.getAll = function (name, callback) {
