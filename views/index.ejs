@@ -15,22 +15,19 @@
     <script src="/javascripts/angular-route.js"></script>
     <script src="/javascripts/angular-resource.js"></script>
     <script src="/javascripts/angular-animate.js"></script>
-    <script src="/javascripts/ui-bootstrap.min.js"></script>
-    <script src="/javascripts/ui-bootstrap-tpls.min.js"></script>
+    <script src="/javascripts/ui-bootstrap.js"></script>
+    <script src="/javascripts/ui-bootstrap-tpls.js"></script>
     <script>
         angular.module("technicalSalon", ["ngRoute", "ngResource", "tm.pagination", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
-                    $routeProvider.when("/index", {
-                        templateUrl: "app/partials/index.html"
-                    });
                     $routeProvider.when("/news", {
                         templateUrl: "app/partials/news.html"
                     });
-                    $routeProvider.when("/page2", {
-                        templateUrl: "app/partials/tamplate/page2.html"
+                    $routeProvider.when("/news/:id", {
+                        templateUrl: "app/partials/template/news-details.html"
                     });
-                    $routeProvider.when("/aboutUs", {
-                        templateUrl: "app/partials/tamplate/aboutUs.html"
+                    $routeProvider.when("/about-us", {
+                        templateUrl: "app/partials/tamplate/about-us.html"
                     });
                     $routeProvider.when("/login", {
                         templateUrl: "app/partials/login.html"
@@ -41,14 +38,12 @@
                     $routeProvider.when("/users", {
                         templateUrl: "app/partials/users.html"
                     });
-                    $routeProvider.when("/department", {
-                        templateUrl: "app/partials/department.html"
-                    });
                     $routeProvider.when("/picture", {
                         templateUrl: "app/partials/picture.html"
                     });
-                    $routeProvider.when("/insideLetter", {
-                        templateUrl: "app/partials/insideLetter.html"
+
+                    $routeProvider.when("/index", {
+                        templateUrl: "app/partials/index.html"
                     });
                     $routeProvider.otherwise({
                         redirectTo: "/index"
@@ -84,7 +79,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/login">登录</a></li>
                 <li><a href="#/register">注册</a></li>
-                <li ng-controller="messageCtrl"><a href="" ng-click="open('submitMessageCtrl','lg')" >给我们留言</a></li>
+                <li ng-controller="messageCtrl"><a href="" ng-click="open('submitMessageCtrl','md')" >给我们留言</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

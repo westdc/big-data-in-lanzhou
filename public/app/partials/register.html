@@ -17,23 +17,6 @@
             </span>
             </p>
             <p>
-                <label class="sr-only"></label>
-
-            <div ng-controller="DatepickerDemoCtrl">
-
-                <p class="input-group">
-                    <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="status.opened"
-                           min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"
-                           date-disabled="disabled(date, mode)" close-text="Close"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i
-                        class="glyphicon glyphicon-calendar"></i></button>-->
-              </span>
-                </p>
-                <p class="text-success">选择注册日期</p>
-            </div>
-            </p>
-            <p>
                 <input type="password" name="user_password" ng-model="vm.user.password"
                        required="" ng-maxlength="20" ng-minlength="6" class="form-control"
                        placeholder="请输入密码6-20个字符">
@@ -75,7 +58,7 @@
                     <input type="checkbox" value="remember-me"><span class="text-primary">记住我</span>
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" ng-click="register()" ng-disabled="registerForm.$invalid">
+            <button class="btn btn-lg btn-primary btn-block" ng-click="" ng-disabled="registerForm.$invalid">
                 注册
             </button>
         </form>

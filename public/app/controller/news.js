@@ -3,7 +3,7 @@
  */
 
 angular.module("technicalSalon")
-    .constant("dataUrl", "/news")
+    .constant("dataUrl", "/news/last")
     .controller("newsCtrl",function($scope,$http,dataUrl) {
         $scope.news = {};
         $http.get(dataUrl)
