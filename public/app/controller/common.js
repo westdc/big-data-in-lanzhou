@@ -1,7 +1,3 @@
-/**
- * Created by paul on 15-8-12.
- */
-
 angular.module("technicalSalon")
     .controller("indicatorsCtrl",function($scope) {
         $scope.indicator = false;

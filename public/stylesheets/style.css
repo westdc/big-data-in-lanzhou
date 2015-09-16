@@ -4,342 +4,47 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-top: 50px;
+    font-family: "微软雅黑", Arial;
+    font-size: 18px;
+    padding-top: 70px;
+    min-height: 800px;
 }
 
 a:hover {
     text-decoration: none;
 }
 
-/*
- * Global add-ons
- */
-
-.sub-header {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-/*
- * Top navigation
- * Hide default border to remove 1px line.
- */
-.navbar-fixed-top {
-    border: 0;
-}
-
-/*
- * Sidebar
- */
-
-/* Hide for mobile, show later */
-.sidebar {
-    display: none;
-}
-
-@media (min-width: 768px) {
-    .sidebar {
-        position: fixed;
-        top: 51px;
-        bottom: 0;
-        left: 0;
-        z-index: 1000;
-        display: block;
-        padding: 15px;
-        overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #f5f5f5;
-        border-right: 1px solid #ddd;
-    }
-}
-
-/* Sidebar navigation */
-.nav-sidebar {
-    margin-right: -21px; /* 20px padding + 1px border */
-    margin-bottom: 20px;
-    margin-left: -20px;
-}
-
-.nav-sidebar > li > a {
-    padding-right: 20px;
-    padding-left: 20px;
-}
-
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-    color: #fff;
-    background-color: #428bca;
-}
-
-/*
- * Main content
- */
-
-#sidebar {
-    margin-top: 100px;
-    width: 250px;
-}
-
-.toolbar {
-    height: 71px;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
-    padding: 18px;
-}
-
-.main .breadcrumb {
-    margin-bottom: 0;
-    border-radius: 0;
-}
-
-.main .breadcrumb a {
-    cursor: pointer;
-}
-
-.main-content {
-    padding: 10px;
-}
-
-.main-content .list-group-item:first-child {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.main-content .list-group-item:last-child {
-    margin-bottom: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.grid-group {
-    list-style: none;
-}
-
-.main-content .grid-group-item {
-    width: 120px;
-    height: 100px;
-    margin: 5px 0 5px 5px;
-}
-
-.main-content .grid-group-item {
-    cursor: pointer;
-}
-
-.main-content .grid-group-item .thumb {
-    position: relative;
-    text-align: center;
-}
-
-.main-content .grid-group-item .thumb .ui-checkbox {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    left: -1px;
-    top: -1px;
-    cursor: default;
-    display: none;
-}
-
-.main-content .grid-group-item div.ui-selected .ui-checkbox, .main-content .grid-group-item div.ui-mouseover .ui-checkbox {
-    display: inline-block;
-}
-
-.main-content .grid-group-item .thumb .ui-checked {
-    background-position: 0px -420px;
-}
-
-.main-content .grid-group-item .thumb .caption {
-    padding: 0 2px;
-    text-overflow: ellipsis;
-    width: 120px;
-    height: 20px;
-    overflow: hidden;
-}
-
-.fontStype {
-    font-size: 25px;
-}
-
-.file-type {
-    display: inline-block;
-    width: 64px;
-    height: 64px;
-    overflow: hidden;
-    background-image: url(../images/mime.png);
-}
-
-.icon-folder {
-    background-position: 0px 2px;
-}
-
-.icon-file {
-    background-position: -228px -1254px;
-}
-
-.ui-selected, .ui-mouseover {
-    background: #e9f3fd;
-    border: solid 1px #c3d8f0;
-}
-
-.inline-input {
-    display: block;
-    width: 115px;
-    height: 20px;
-    padding: 1px;
-    font-size: 14px;
-    line-height: 18px;
-    color: #555;
-    background-color: #fff;
-    border: 1px solid #ccc;
-}
-
 .indicator-container {
     text-align: center;
     z-index: 9999;
-    width: 100%;
-    top: 0;
+    width:100%;
+    top:0;
     position: absolute;
 
-}
-
-.containerCheck {
-    margin-top: 0px;
-
-}
-
-#containerChecked {
-    height: 30px;
 }
 
 #indicator {
     position: relative;
     width: 400px;
     height: 50px;
-    top: 20px;
-    z-index: 9999;
+    top:20px;
+    z-index:9999;
     margin: 0 auto;
     right: 0;
     left: 0;
 }
 
-.rowModel {
-    margin-top: 100px;
-}
-
-#containerId {
-    height: 700px
-}
-
-input.ng-invalid {
-    background-color: #f2dede;
-}
-
-/*input.ng-valid {
-    background-color: lightgreen;
-}*/
-
-span.error {
-    color: red;
-    font-weight: bold;
-}
-
-
-
-thead td {
-    font-weight: bold;
-}
-
-.imgSize {
-    width: 45px;
-    height: 45px;
-}
-
-#myCarousel {
+.footer {
+    background-color: #f5f5f5;
+    bottom: 0;
+    height: 60px;
+    position: absolute;
     width: 100%;
-    margin-top: 50px;
 }
 
-#myCarousel img {
-    width: 1900px;
+.container .text-muted {
+    margin: 20px 0;
 }
-
-.footerWidth {
-    height: 70px;
-    margin-top: 50px;
-}
-
-.containerMagin {
-    margin-top: 100px;
-    width: 500px;
-    height: 300px;
-    display: block;
-    background-image: url("/images/Screenshot from 2015-09-08 14:36:48.png");
-    border-radius: 20px
-
-}
-
-.loginContainar {
-    filter: alpha(opacity=50);
-    -moz-opacity: 1;
-    -khtml-opacity: 1;
-    opacity: 3;
-    margin-top: 100px;
-    width: 80%;
-    height: 600px;
-    /*    background-image: url("/images/67d58PICkMZ_1024.jpg");background-position: 50% 30%; background-repeat:no-repeat;*/
-}
-
-.containerMagins {
-    filter: alpha(opacity=50);
-    -moz-opacity: 1;
-    -khtml-opacity: 100;
-    opacity: 0.9;
-    margin-top: 50px;
-    width: 500px;
-    height: 500px;
-    background-image: url("/images/240373-130G40JH565.jpg");
-    background-position: 50% 30%;
-    background-repeat: no-repeat;
-    border-radius: 20px
-
-}
-
-.registerContainer {
-    margin-top: 80px;
-    width: 80%;
-    height: 600px;
-    /*  background-image: url("/images/67d58PICkMZ_1024.jpg");
-      background-position: 50% 30%; background-repeat:no-repeat;*/
-}
-
-.inputWidth {
-    width: 10px;
-}
-
-.navCtainer {
-    margin-top: 100px;
-}
-
-#userCtainer {
-    margin-top: 100px;
-    height: 600px;
-}
-
-#aboutUs {
-    height: 1000px;
-}
-
-#page {
-    margin-top: 400px;
-}
-
-body {
-  /*  background:#3f3f3f;*/
-    font-family: "微软雅黑", Arial;
-    font-size: 17px;
-}
-#navCtainer{
-    margin-top: 200px;
+.text-muted {
+    color: #777;
 }

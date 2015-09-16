@@ -1,90 +1,36 @@
 
-<div ng-include="'/app/partials/tamplate/carousel.html'"></div>
-<div class="container rowModel" ng-controller="newsCtrl">
-    {{news.status}}
+<div ng-include="'/app/partials/template/jumbotron.html'"></div>
+<div class="container" ng-controller="newsCtrl">
+    <div class="row">
+        <div class="col-sm-9 col-md-10">
+            <div ng-repeat="n in news">
+                <h1>
+                    <a href="#"> {{n.title}}</a>
+                </h1>
+                <p>
+                    August 30, 2015
+                </p>
+                <p>
+                    <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
+                </p>
+                <br>
+                <button class="btn btn-default btn-lg">
+                    <a href="#">
+                        查看全文
+                    </a>
+                </button>
+                <hr>
 
-    <div ng-repeat="n in news">
-        <h1>
-            <a href="#"> {{n.title}}</a>
-        </h1>
-        <p>
-            August 30, 2015
-        </p>
-        <p>
-            <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
-        </p>
-        <br>
-        <button class="btn btn-default btn-lg">
-            <a href="#">
-                查看全文
-            </a>
-        </button>
-        <hr>
+            </div>
+        </div>
+        <div class="clearfix"></div>
 
     </div>
-        <a href="#"> TechParty-广州8月微信开发专题沙龙回顾</a>
-    </h1>
-    <p>
-        August 30, 2015
-    </p>
-    <p>
-        <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
-    </p>
 
-    <button class="btn btn-default btn-lg">
-        <a href="#">
-            查看全文
-        </a>
-    </button>
-    <hr>
-    <h1>
-        <a href="#"> TechParty-广州8月微信开发专题沙龙回顾</a>
-    </h1>
-    <p>
-        August 30, 2015
-    </p>
-    <p>
-        <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
-    </p>
-
-    <button class="btn btn-default btn-lg">
-        <a href="#">
-            查看全文
-        </a>
-    </button>
-    <hr>
-    <h1>
-        <a href="#"> TechParty-广州8月微信开发专题沙龙回顾</a>
-    </h1>
-    <p>
-        August 30, 2015
-    </p>
-    <p>
-        <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
-    </p>
-
-    <button class="btn btn-default btn-lg">
-        <a href="#">
-            查看全文
-        </a>
-    </button>
-    <hr>
     <div class="text-center">
-        <ul>
-            <li class="btn  btn-lg btn-success"  ng-class="getClass('/page2')"><a href="#/page2">下一页</a></li>
-
-        </ul>
+        <a class="btn  btn-lg btn-success" href="#/page2">下一页</a>
     </div>
-
 </div>
-<footer class="text-center footerWidth">Powered by Jekyll with Type Theme</footer>
 
-<script>
-$(".carousel").carousel({
-interval: 2000
 
-})
-$("#myTab a:last").tab('show')
-
-</script>
 

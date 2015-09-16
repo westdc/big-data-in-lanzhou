@@ -65,32 +65,32 @@
     <script src="/app/controller/messageBoard.js"></script>
 </head>
 <body ng-controller="indicatorsCtrl">
-<div class="container" id="containerChecked">
-    <div class="header clearfix">
-        <nav class="containerCheck">
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active" ng-class="getClass('/index')"><a href="#/index">首页</a></li>
-                <li role="presentation" ng-class="getClass('/login')"><a href="#/login">登录</a></li>
-                <li role="presentation" ng-class="getClass('/register')"><a href="#/register">注册</a></li>
-                <li role="presentation" ng-class="getClass('/users')"><a href="#/users">后台管理</a></li>
-                <li role="presentation" ng-class="getClass('/aboutUs')"><a href="#/aboutUs"><span
-                                class="glyphicon glyphicon-heart">关于我们</span></a></li>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/index">兰州大数据沙龙</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#/index">首页</a></li>
             </ul>
-        </nav>
-        <img class="imgSize containerCheck" src="/images/avatar.png">&nbsp;&nbsp;&nbsp;
-        <span class="text-muted fontStype containerCheck">technicalSalon</span>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/login">登录</a></li>
+                <li><a href="#/register">注册</a></li>
+                <li ng-controller="metadataToolbarCtrl"><a href="#" ng-click="open({id:1,name:'基本类型'},'editorCtrl','sm')" >给我们留言</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
-    <div class="text-right" ng-controller="metadataToolbarCtrl">
-        <button ng-click="open({id:1,name:'基本类型'},'editorCtrl','lg')" id="split-button" type="button" class="btn btn-default">
-            留言给我们
-        </button>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div ng-view></div>
-    </div>
-</div>
+</nav>
+
+<ng-view></ng-view>
+
 <div class="indicator-container">
     <div id="indicator" class="alert animated" ng-if="indicator" ng-class="getClass()">
         {{message}}
@@ -98,6 +98,12 @@
                     aria-hidden="true">&times;</span></button>
     </div>
 </div>
+<footer class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <p class="pull-right text-muted"><a href="#">Back to top</a></p>
+        <p class="text-muted">&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </div>
+</footer>
 
 </body>
 </html>
