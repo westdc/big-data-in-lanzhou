@@ -13,4 +13,6 @@ angular.module("technicalSalon")
             .error(function(error) {
                 $scope.error = error;
             });
+
+
     });
