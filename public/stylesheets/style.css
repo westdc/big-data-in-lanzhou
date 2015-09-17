@@ -47,6 +47,5 @@ a:hover {
     color: #777;
 }
 span.error{
-    color: rosybrown;
-    font-weight: bold;
+    font-size: 14px;
 }
