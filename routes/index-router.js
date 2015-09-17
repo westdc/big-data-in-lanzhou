@@ -4,9 +4,20 @@ var News = require('../models/news-models'),
     User = require('../models/user-models');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
+
+router.get('/user',function(req, res){
+  User.getAll(function(err,users) {
+    if (err) {
+      console.log('error');
+    } else {
+      res.jsonp(users);
+    }
+  });
+});
+
 router.post('/user', function (req, res) {
   var newUser = new User({
     email: req.body.email,

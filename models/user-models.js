@@ -10,11 +10,9 @@ var userSchema = new mongoose.Schema({
     email: String,
     name:String,
     password: String
-},{
-    collection:'users'
 });
 
-var userModel = mongoose.model('User', userSchema);
+var UserModel = mongoose.model('User', userSchema);
 
 function User(user) {
     this.email = user.email;
@@ -33,7 +31,7 @@ User.prototype.save = function(callback) {
         password: md5.update(this.password).digest('hex')
     };
     //打开数据库
-    var newUser = new userModel(user);
+    var newUser = new UserModel(user);
 
     newUser.save(function(err, user){
         if(err){
@@ -49,12 +47,21 @@ User.authenticate = function(p,password) {
 
 //读取用户信息
 User.get = function(email, callback) {
-    userModel.findOne({email:email}, function (err, user)
+    UserModel.findOne({email:email}, function (err, user)
     {
         console.log(user);
         if(err){
             return callback(err);
         }
         callback(null, user);
+    });
+};
+
+User.getAll = function (callback) {
+    UserModel.find().exec(function(err,users){
+        if (err) {
+            return callback(err);
+        }
+        callback(null,users);
     });
 };
