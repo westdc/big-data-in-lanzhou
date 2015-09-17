@@ -7,6 +7,16 @@ angular.module("technicalSalon")
         $scope.news = NewsService.last({num:5});
     })
     .controller("newsCtrl",function($scope,$http,NewsService) {
+        $scope.totalItems = 64;
+        $scope.currentPage = 1;
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+        };
+
+        $scope.pageChanged = function() {
+            console.log('Page changed to: ' + $scope.currentPage);
+        };
         $scope.news = NewsService.query();
     })
     .controller("newsDetailCtrl",function($scope, $routeParams, $http, NewsService){

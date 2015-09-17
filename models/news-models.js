@@ -17,9 +17,8 @@ function News(news) {
     this.content = news.content;
 };
 
-News.getAll = function (page,pageSize,callback) {
-    var s = (page-1) * pageSize;
-    NewsModel.find().skip(s).limit(pageSize).exec(function(err,news){
+News.getAll = function (skip,pageSize,callback) {
+    NewsModel.find().skip(skip).limit(pageSize).exec(function(err,news){
         if (err) {
             return callback(err);
         }
