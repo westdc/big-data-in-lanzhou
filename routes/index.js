@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var crypto = require('crypto');
 var News = require('../models/news-models'),
     User = require('../models/user-models');
 
@@ -7,11 +8,37 @@ var News = require('../models/news-models'),
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+router.post('/register', function (req, res) {
+  var email = req.body.email,
+      password = req.body.password;
 
-router.get('/homepage', function(req, res, next) {
-  res.render('homepage', { title: 'Express' });
+  var md5 = crypto.createHash('md5'),
+      password = md5.update(req.body.password).digest('hex');
+  var newUser = new User({
+    email: email,
+    name: req.body.name,
+    password: password
+  });
+  User.get(newUser.email, function (err, user) {
+    if (err) {
+      req.flash('error', err);
+      return res.redirect('/');
+    }
+    if (user) {
+      req.flash('error', '邮箱以注册!');
+      return res.redirect('/reg');
+    }
+    newUser.save(function (err, user) {
+      if (err) {
+        req.flash('error', err);
+        return res.redirect('/register');
+      }
+      req.session.user = user;
+      req.flash('success', '注册成功!');
+      res.redirect('/');
+    });
+  });
 });
-
 
 router.get('/news/:id',function(req,res){
   News.get(req.params.id,function(err,news){
