@@ -4,31 +4,31 @@ angular.module('technicalSalon')
 
         $scope.user = {};
 
-        $scope.register = function(u) {
+        $scope.register = function (u) {
             var userService = new UserService(u);
-            userService.$save(function(data) {
-                if(data.result == 'error') {
-                    $scope.$emit(data.result,data.message);
+            userService.$save(function (data) {
+                if (data.result == 'error') {
+                    $scope.$emit(data.result, data.message);
                 } else {
-                    $scope.$emit(data.result,data.message);
+                    $scope.$emit(data.result, data.message);
                     $location.path('/index');
                 }
 
-            }, function(err) {
+            }, function (err) {
                 console.log(err);
             });
         }
 
     })
-    .controller('loginCtrl', function($scope, $http, $location, authUrl) {
+    .controller('loginCtrl', function ($scope, $http, $location, authUrl) {
         $scope.user = {};
-        $scope.login = function(u) {
+        $scope.login = function (u) {
             console.log('do login');
             $http.post(authUrl, u).success(function (data) {
-                if(data.result == 'error') {
-                    $scope.$emit(data.result,data.message);
+                if (data.result == 'error') {
+                    $scope.$emit(data.result, data.message);
                 } else {
-                    $scope.$emit(data.result,data.message);
+                    $scope.$emit(data.result, data.message);
                     $location.path('/index');
                 }
             }).error(function (err) {
@@ -37,7 +37,7 @@ angular.module('technicalSalon')
         }
     })
 
-    .controller("userManageCtrl",function($scope,$http,UserService) {
-        $scope.users= UserService.query();
-    })
+    .controller("userManageCtrl", function ($scope, $http, UserService) {
+        $scope.users = UserService.query();
+    });
 
