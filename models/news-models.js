@@ -18,11 +18,12 @@ function News(news) {
 };
 
 News.getAll = function (callback) {
-    NewsModel.find().exec(function(err,newss){
+    var s = (page-1) * pageSize;
+    NewsModel.find().skip(s).limit(pageSize).exec(function(err,total){
         if (err) {
             return callback(err);
         }
-        callback(null,newss);
+        callback(null,total);
     });
 };
 
