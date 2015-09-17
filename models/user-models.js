@@ -3,6 +3,8 @@
  */
 var crypto = require('crypto');
 var mongoose = require('./db');
+var md5 = crypto.createHash('md5');
+
 
 var userSchema = new mongoose.Schema({
     email: String,
@@ -24,10 +26,11 @@ module.exports = User;
 
 //存储用户信息
 User.prototype.save = function(callback) {
+
     var user = {
         email: this.email,
         name: this.name,
-        password: this.password
+        password: md5.update(this.password).digest('hex')
     };
     //打开数据库
     var newUser = new userModel(user);
@@ -40,10 +43,15 @@ User.prototype.save = function(callback) {
     });
 };
 
+User.authenticate = function(p,password) {
+    return p == md5.update(password).digest('hex');
+}
+
 //读取用户信息
 User.get = function(email, callback) {
     userModel.findOne({email:email}, function (err, user)
     {
+        console.log(user);
         if(err){
             return callback(err);
         }

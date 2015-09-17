@@ -1,5 +1,6 @@
 angular.module('technicalSalon')
-    .controller('userCtrl', function ($scope, $location, UserService) {
+    .constant('authUrl', '/login')
+    .controller('registerCtrl', function ($scope, $location, UserService) {
 
         $scope.user = {};
 
@@ -18,4 +19,20 @@ angular.module('technicalSalon')
             });
         }
 
+    })
+    .controller('loginCtrl', function($scope, $http, $location, authUrl) {
+        $scope.user = {};
+        $scope.login = function(u) {
+            console.log('do login');
+            $http.post(authUrl, u).success(function (data) {
+                if(data.result == 'error') {
+                    $scope.$emit(data.result,data.message);
+                } else {
+                    $scope.$emit(data.result,data.message);
+                    $location.path('/index');
+                }
+            }).error(function (err) {
+                console.log(err)
+            });
+        }
     });
