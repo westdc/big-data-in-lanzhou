@@ -1,0 +1,515 @@
+/*  =Reset
+--------------------------------*/
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, 
+form, fieldset, legend, input, textarea, p, blockquote, th, td, 
+article, aside, canvas, details, figcaption, figure, footer, header, 
+hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0; padding: 0; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+fieldset, img { border: 0; }
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section { display: block; }
+
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal; font-weight: normal; }
+
+ol, ul { list-style: none; }
+
+caption, th { text-align: left; }
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+
+q:before, q:after { content: ''; }
+
+abbr, acronym { border: 0; font-variant: normal; }
+
+sup { vertical-align: text-top; }
+
+sub { vertical-align: text-bottom; }
+
+input, textarea, select { font-family: inherit; 
+                          font-size: inherit; font-weight: inherit; }
+
+/*to enable resizing for IE*/
+input, textarea, select { *font-size: 100%; }
+   
+/*because legend doesn't inherit in IE */
+legend { color: #000; }
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border-color: transparent!important;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-width: 440px;
+    height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6,b,strong { color: #181818; }
+h4,h5,h6 { font-weight: bold; }
+h1 { font-size:2.5em;  margin:0.67em 0; }
+h2 { font-size:2em;    margin:0.83em 0; }
+h3 { font-size:1.5em;  margin:1em 0; }
+h4 { font-size:1.17em; margin:1.33em 0; }
+h5 { font-size:0.83em; margin:1.67em 0; }
+h6 { font-size:0.75em; margin:2.33em 0; }
+
+b, strong { font-weight: bold; }
+
+p { margin:1.4em 0; }
+p.last { margin-bottom: 0; }
+
+.amd-fmbox {
+    position: relative;
+    margin: 0 auto;
+    max-width: 740px;
+    min-width: 360px;
+    height: 100%;
+}
+
+.amd-shade {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.amd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgb(252,253,255);
+    overflow: hidden;
+}
+
+.amd-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 101;
+}
+
+.amd-grid { font-size: 0; }
+.amd-grid .amd-li { display: inline-block; width:33.333%; font-size: 13px; vertical-align: top; }
+
+
+.amd-col {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 102;
+    width: 50%;
+    overflow: hidden;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+
+.amd-col:first-child {
+    left: 0;
+    background-color: rgb(255,255,255);
+}
+
+.amd-col:last-child {
+    left: 50%;
+    border-left: 1px solid rgb(224,226,228);
+    background-color: rgb(252,253,255);
+}
+
+@media screen and (max-width: 880px) {
+    .amd-col {
+        width: 100%;
+    }
+
+    .amd-col:first-child {
+        left: 0;
+    }
+
+    .amd-col:last-child {
+        left: 100%;
+    }
+}
+
+.amd-input-wrapper,
+.amd-input-box {
+    position: relative;
+    height: 32px;
+}
+
+.amd-input-wrapper {
+    padding: 2px;
+}
+
+.amd-input-box {
+    padding: 2px 32px 2px 12px;
+}
+
+.amd-input-ico {
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    left: 10px;
+    color: rgb(102,102,102);
+}
+
+.amd-input-box input[type=text] {
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 28px;
+    font-size: 13px;
+    border-radius: 3px;
+    padding: 0 10px 0 30px;
+    margin: 0 -11px 0 -11px;
+    border: 1px solid rgb(226,226,226);
+    box-shadow: 0 0 1px rgba(0,0,0,0.1) inset;
+}
+
+.amd-input-box input[type=text]:focus {
+    border-color: rgb(0, 136, 204);
+    box-shadow: 0 1px 3px -1px rgba(0, 136, 204, 0.3);
+}
+
+.amd-input-box .amd-input-msg {
+    display: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    right: 10px;
+    color: rgb(250,60,136);
+}
+
+.amd-input-box input:focus ~ .amd-input-msg {
+    display: none!important;
+}
+
+.amd-input-align-body {
+    width: 100%;
+    height: 30px;
+    display: inline-block;
+    border: 1px solid rgb(226,226,226);
+    box-shadow: 0 0 1px rgba(0,0,0,0.1) inset;
+    border-radius: 3px;
+}
+.amd-input-align a {
+    display: block;
+    float: left;
+    text-align: center;
+    width: 33.333%;
+    line-height: 32px;
+    font-size: 16px;
+    color:rgb(153,153,153);
+}
+.amd-input-align a:hover {
+    cursor:pointer;
+}
+.amd-input-align a.amd-active {
+    color:rgb(0,0,0);
+}
+
+.amd-back {
+    position: absolute;
+    top: 12px;
+    left: 0px;
+    line-height: 28px;
+    width: 26px;
+    text-align: center;
+}
+
+.amd-back a {
+    display: block;
+    color: rgb(0,0,0);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.amd-back:hover a {
+    color: rgb(0,0,0);
+}
+
+.amd-pub > textarea[name=text] {
+    display: none;
+}
+
+.amd-input-title {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 26px;
+    padding: 0 10px;
+}
+
+.amd-input-title input {
+    width: 100%;
+    padding: 0 10px;
+    margin-left: -10px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid rgb(224,226,228);
+    border-bottom: 1px solid rgb(224,226,228);
+    background-color: rgb(255,255,255);
+    font-size: 13px;
+    height: 24px;
+    line-height: 26px;
+}
+
+.amd-pub > input[type=submit],
+.amd-pub ~ input[type=submit] {
+    position: absolute;
+    top: 12px;
+    left: 27px;
+    height: 28px;
+    padding: 2px 8px;
+    min-width: 40px;
+    border: none;
+    border-radius: 3px;
+    background-color: transparent;
+    color: rgb(0,136,204);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.amd-pub > input[type=submit]:hover,
+.amd-pub ~ input[type=submit]:hover {
+    cursor: pointer;
+    color: rgb(0,86,184);
+}
+
+.amd-edit-menu,
+.amd-user-menu {
+    position: absolute;
+    top: 7px;
+    right: 25px;
+    margin: 0!important;
+    padding: 0!important;
+    width: 360px;
+    height: 36px;
+    text-align: right;
+    font-size: 0;
+}
+
+.amd-edit-menu li {
+    display: inline-block;
+}
+
+.amd-edit-menu li a {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 34px;
+    width: 34px;
+    border-radius: 2px;
+    text-align: center;
+    border: 1px solid transparent;
+    color: rgb(153,153,153);
+}
+
+.amd-edit-menu li a:hover {
+    border-color: rgb(221,221,221 );
+    color: rgb(0,0,0);
+    background-color: rgb(241,241,241);
+    cursor: pointer;
+}
+
+.amd-edit-btn-save.saving:hover {
+    border-color: transparent;
+    color: rgb(153,153,153);
+    background-color: transparent;
+    cursor: default;
+}
+
+.amd-edit-btn-save .fa-spinner {
+    color: rgb(196,186,186);
+    display: none;
+}
+
+.amd-panel {
+    display: none;
+    position: absolute;
+    top: 51px;
+    left: 50%;
+    margin-left: -281px;
+    padding: 20px;
+    width: 520px;
+    border-radius: 3px;
+    font-size: 13px;
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(232,232,232);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+
+.amd-panel h2 {
+    font-size: 1.7em;
+    line-height: 2.4em;
+    padding: 0 20px;
+    margin: -20px -20px 20px;
+    border-bottom: 1px solid rgb(206,206,206);
+    color: rgb(102,102,102);
+}
+
+.amd-input-list {
+    margin: 0;
+    padding: 0;
+}
+
+.amd-input-list li {
+    margin-bottom: 5px;
+    list-style: none;
+}
+
+.amd-input-list li:last-child {
+    margin-bottom: 0px;
+}
+
+.amd-view {
+    position: relative;
+    padding: 2px;
+    margin-bottom: 10px;
+    height: 200px;
+    text-align: center;
+    color: rgb(201,201,201);
+    line-height: 200px;
+    font-size: 120px;
+    outline: 2px dashed rgb(216,216,216);
+}
+
+.amd-view form {
+    display: none;
+}
+
+.amd-view-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: 0 0 500px rgba(0,0,0,0.02) inset;
+}
+
+.amd-view-content:hover {
+    cursor: pointer;
+    box-shadow: 0 0 500px rgba(0,0,0,0.02) inset, 0 0 16px rgba(0,0,0,0.2) inset;
+}
+
+.amd-btn {
+    display: inline-block;
+    border: none;
+    background-color: rgb(255,255,255);
+    text-align: center;
+    min-width: 68px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    outline: 0;
+    border: 1px solid rgb(226,226,226);
+    background-color: rgb(245, 245, 245);
+    color: rgb(82,82,82);
+}
+
+.amd-btn:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+.amd-btn-ok {
+    width: 100%;
+    line-height: 32px;
+}
+
+.amd-btn-close {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    line-height: 100%;
+    color: rgb(153, 153, 153);
+}
+
+.amd-btn-close:hover {
+    color: rgb(102,102,102);
+    cursor: pointer;
+}
+
+.amd .CodeMirror {
+    position: absolute;
+    top: 76px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    height: auto;
+    background-color: transparent;
+}
+
+.amd .CodeMirror-gutters {
+    background-color: transparent;
+    border-right: none;
+}
+
+.amd .CodeMirror-lines {
+    padding: 10px 0;
+}
+
+.amd-arrow {
+    position: absolute;
+    top: 0;
+    z-index: 105;
+    width: 20px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    color: rgb(199, 199, 199);
+    cursor: pointer;
+}
+
+.amd-arrow:hover {
+    color: rgb(0,0,0);
+    font-weight: bold;
+}
+
+.amd-arrow-left {
+    left: 0;
+}
+
+.amd-arrow-right {
+    right: 0;
+}
+
+.amd-preview {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 40px;
+    padding: 20px 20px 20px 0;
+    height: auto;
+    overflow: auto;
+    word-wrap: break-word; /* 换行 */
+}
+
+.amd-invalid {
+    border-color: rgba(255,0,0,1)!important;
+    box-shadow: 0 0 2px rgba(255,0,0,1) inset!important;
+}
+
+

@@ -1,0 +1,284 @@
+/*  =preview
+--------------------------------*/
+
+pre, code {
+    color: #000;
+    font-family: Monaco,Menlo,Consolas,"Courier New",Courier,"Liberation Mono",文泉驿等宽微米黑,monospace;
+    font-size: 0.90em;
+    border-radius: 0 2px 2px 0;
+    background-color: rgb(250,250,250);
+    border: 1px solid rgb(226,231,236);
+}
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 6px;
+    border-left-width: 3px;
+    border-left-color: rgb(62, 182, 220);
+}
+
+code {
+    padding: 0 3px;
+}
+
+pre code {
+    display: block;
+    padding: 0.5em;
+    border: 0px !important;
+    background: transparent !important;
+    line-height: 1.3em;
+}
+
+pre code,
+pre .subst,
+pre .tag .title,
+pre .lisp .title,
+pre .clojure .built_in,
+pre .nginx .title {
+    color: black;
+}
+
+pre .string,
+pre .title,
+pre .constant,
+pre .parent,
+pre .tag .value,
+pre .rules .value,
+pre .rules .value .number,
+pre .preprocessor,
+pre .ruby .symbol,
+pre .ruby .symbol .string,
+pre .aggregate,
+pre .template_tag,
+pre .django .variable,
+pre .smalltalk .class,
+pre .addition,
+pre .flow,
+pre .stream,
+pre .bash .variable,
+pre .apache .tag,
+pre .apache .cbracket,
+pre .tex .command,
+pre .tex .special,
+pre .erlang_repl .function_or_atom,
+pre .markdown .header {
+    color: #800;
+}
+
+pre .comment,
+pre .annotation,
+pre .template_comment,
+pre .diff .header,
+pre .chunk,
+pre .markdown .blockquote {
+    color: #888;
+}
+
+pre .number,
+pre .date,
+pre .regexp,
+pre .literal,
+pre .smalltalk .symbol,
+pre .smalltalk .char,
+pre .go .constant,
+pre .change,
+pre .markdown .bullet,
+pre .markdown .link_url {
+    color: #080;
+}
+
+pre .label,
+pre .javadoc,
+pre .ruby .string,
+pre .decorator,
+pre .filter .argument,
+pre .localvars,
+pre .array,
+pre .attr_selector,
+pre .important,
+pre .pseudo,
+pre .pi,
+pre .doctype,
+pre .deletion,
+pre .envvar,
+pre .shebang,
+pre .apache .sqbracket,
+pre .nginx .built_in,
+pre .tex .formula,
+pre .erlang_repl .reserved,
+pre .prompt,
+pre .markdown .link_label,
+pre .vhdl .attribute,
+pre .clojure .attribute,
+pre .coffeescript .property {
+    color: #88F;
+}
+
+pre .keyword,
+pre .id,
+pre .phpdoc,
+pre .title,
+pre .built_in,
+pre .aggregate,
+pre .css .tag,
+pre .javadoctag,
+pre .phpdoc,
+pre .yardoctag,
+pre .smalltalk .class,
+pre .winutils,
+pre .bash .variable,
+pre .apache .tag,
+pre .go .typename,
+pre .tex .command,
+pre .markdown .strong,
+pre .request,
+pre .status {
+    font-weight: bold;
+}
+
+pre .markdown .emphasis,
+pre .comment {
+    font-style: italic;
+}
+
+pre .nginx .built_in {
+    font-weight: normal;
+}
+
+pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .xml .css,
+pre .xml .cdata {
+    opacity: 0.5;
+}
+
+em {
+    font-style: italic;
+}
+
+strong em {
+    font-weight: bold;
+}
+
+p {
+    font-size: 14px;
+}
+
+img {
+    max-width: 100%;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: top;
+}
+
+h2 {
+    border-bottom: 1px solid silver;
+    padding-bottom: 5px;
+}
+
+blockquote {
+    color: #666666;
+    margin: 0;
+    padding-left: 3em;
+    border-left: 0.5em #EEE solid;
+}
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+}
+
+ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+li p:last-child {
+    margin: 0;
+}
+
+dd {
+    margin: 0 0 0 2em;
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td, th {
+    vertical-align: top;
+    padding: 4px 10px;
+    border: 1px solid #bbb;
+}
+
+tr:nth-child(even) td, tr:nth-child(even) th {
+    background: #eee;
+}
+
+.amd-center, .amd-left, .amd-right {
+    display: block;
+}
+
+.amd-center {
+    margin: 20px auto;
+}
+
+.amd-left {
+    float: left;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.amd-right {
+    float: right;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.amd-tleft {
+    text-align: left;
+}
+
+.amd-tcenter {
+    text-align: center;
+}
+
+.amd-tright {
+    text-align: right;
+}
