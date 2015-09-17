@@ -22,8 +22,8 @@ router.get('/news/:id',function(req,res){
 });
 
 router.get('/news',function(req,res){
-  var last = req.params.last;
-  var num = req.params.num || 3;
+  var last = req.query.last || false;
+  var num = req.query.num || 3;
   console.log(last);
   console.log(num);
   if(last) {
