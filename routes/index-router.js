@@ -8,7 +8,7 @@ var News = require('../models/news-models'),
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.post('/register', function (req, res) {
+router.post('/user', function (req, res) {
   var email = req.body.email,
       password = req.body.password;
 
