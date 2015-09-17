@@ -46,3 +46,7 @@ a:hover {
 .text-muted {
     color: #777;
 }
+span.error{
+    color: rosybrown;
+    font-weight: bold;
+}
