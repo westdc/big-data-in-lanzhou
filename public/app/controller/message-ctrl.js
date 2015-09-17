@@ -1,6 +1,6 @@
 
 angular.module("technicalSalon")
-    .controller("messageCtrl",function($scope,$http,schemaUrl,$modal) {
+    .controller("messageCtrl",function($scope,$http,$modal) {
 
         $scope.items = [];
         $scope.open = function(modalCtrl,size) {
