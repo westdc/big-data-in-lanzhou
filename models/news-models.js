@@ -17,12 +17,13 @@ function News(news) {
     this.content = news.content;
 };
 
-News.getAll = function (callback) {
-    NewsModel.find().exec(function(err,newss){
+News.getAll = function (page,pageSize,callback) {
+    var s = (page-1) * pageSize;
+    NewsModel.find().skip(s).limit(pageSize).exec(function(err,news){
         if (err) {
             return callback(err);
         }
-        callback(null,newss);
+        callback(null,news);
     });
 };
 
@@ -44,5 +45,6 @@ News.getLast = function (num, callback) {
         callback(null,newss);
     });
 };
+
 
 module.exports = News;

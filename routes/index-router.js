@@ -34,7 +34,7 @@ router.post('/login', function (req, res) {
     if (!user) {
       return res.jsonp({ result: 'error', message: '用户不存在!' })
     }
-    if (user.password != password) {
+    if (!User.authenticate(user.password, req.body.password)) {
       return res.jsonp({ result: 'error', message: '密码错误!' })
     }
     res.jsonp({ result: 'success', message: '登陆成功!'})
@@ -72,8 +72,16 @@ router.get('/news',function(req,res){
       }
     });
   }
-
 });
 
+router.get('/paging/:page/:pageSize',function(req,res) {
+    News.getAll(req.params.page, req.params.pageSize,function (err, news) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.jsonp(news);
+      }
+    });
+  });
 
 module.exports = router;
