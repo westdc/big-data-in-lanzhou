@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var crypto = require('crypto');
 var News = require('../models/news-models'),
     User = require('../models/user-models');
 
