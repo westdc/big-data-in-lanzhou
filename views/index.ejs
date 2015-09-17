@@ -18,7 +18,7 @@
     <script src="/javascripts/ui-bootstrap.js"></script>
     <script src="/javascripts/ui-bootstrap-tpls.js"></script>
     <script>
-        angular.module("technicalSalon", ["ngRoute", "ngResource", "tm.pagination", "ngAnimate", "ui.bootstrap"])
+        angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
                     $routeProvider.when("/news", {
                         templateUrl: "app/partials/news.html"
@@ -51,13 +51,14 @@
                 })
     </script>
     <script src="/app/controller/common.js"></script>
-    <script src="/app/controller/news.js"></script>
+    <script src="/app/controller/news-ctrl.js"></script>
     <script src="/app/controller/data-plug.js"></script>
     <script src="/app/controller/register.js"></script>
     <script src="/app/controller/publish.js"></script>
     <script src="/app/controller/page.js"></script>
     <script src="/app/directive/paging.js"></script>
     <script src="/app/controller/message.js"></script>
+    <script src="/app/service/news-service.js"></script>
 </head>
 <body ng-controller="indicatorsCtrl">
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="navCtrl">

@@ -11,7 +11,7 @@ router.get('/homepage', function(req, res, next) {
   res.render('homepage', { title: 'Express' });
 });
 
-router.get('/news/last', function(req, res) {
+router.get('/news', function(req, res) {
   News.getLast(null,function(err, news) {
     if (err) {
       console.log('error');
