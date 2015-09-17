@@ -5,9 +5,9 @@ var crypto = require('crypto');
 var mongoose = require('./db');
 
 var userSchema = new mongoose.Schema({
+    email: String,
     name:String,
-    password: String,
-    email: String
+    password: String
 },{
     collection:'users'
 });
@@ -15,9 +15,9 @@ var userSchema = new mongoose.Schema({
 var userModel = mongoose.model('User', userSchema);
 
 function User(user) {
+    this.email = user.email;
     this.name = user.name;
     this.password = user.password;
-    this.email = user.email;
 };
 
 module.exports = User;
@@ -27,9 +27,9 @@ User.prototype.save = function(callback) {
     var md5 = crypto.createHash('md5');
     email_MD5 = md5.update(this.email.toLowerCase()).digest('hex');
     var user = {
+        email: this.email,
         name: this.name,
-        password: this.password,
-        email: this.email
+        password: this.password
     };
     //打开数据库
     var newUser = new userModel(user);
