@@ -14,20 +14,20 @@
     <script src="/javascripts/angular-animate.js"></script>
     <script src="/javascripts/ui-bootstrap.js"></script>
     <script src="/javascripts/ui-bootstrap-tpls.js"></script>
-    <script>
+  <script>
        angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
-                   $routeProvider.when("/users", {
-                       templateUrl: "/app/partials/admin/users-manage.html"
+                   $routeProvider.when("/users-manage", {
+                       templateUrl: "app/partials/admin/users-manage.html"
                    });
                    $routeProvider.when("/news-manage", {
-                       templateUrl: "/app/partials/admin/news-manage.html"
+                       templateUrl: "app/partials/admin/news-manage.html"
                    });
                    $routeProvider.when('/message-manage',{
-                       templateUrl:"/app/partials/admin/message-manage.html"
+                       templateUrl:"app/partials/admin/message-manage.html"
                    });
                    $routeProvider.otherwise({
-                        redirectTo:"/admin"
+                        redirectTo:"/users-manage"
                     })
                 })
     </script>
@@ -37,17 +37,16 @@
 <div ng-include="'/app/partials/template/nav.html'"></div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-2 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">用户</a></li>
-                <li><a href="#">新闻</a></li>
-                <li><a href="#">留言</a></li>
+                <li class="active"><a href="#/users-manage">用户</a></li>
+                <li><a href="#/news-manage">新闻</a></li>
+                <li><a href="#/message-manage">留言</a></li>
             </ul>
         </div>
         </div>
     </div>
-<div ng-include="'/app/partials/admin/users-manage.html'"></div>
-    <ng-view></ng-view>
+<ng-view></ng-view>
 <div class="indicator-container">
     <div id="indicator" class="alert animated" ng-if="indicator" ng-class="getClass()">
         {{message}}
