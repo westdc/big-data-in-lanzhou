@@ -1,0 +1,44 @@
+<div class="col-lg-10 col-md-10 col-sm-10 col-sm-offset-2" id="userCtainer">
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-inline">
+                <div class="form-group ">
+                    <input type="text" name="title" ng-model="selects" class="col-lg-2 form-control" placeholder="关键字"
+                           value="">
+                </div>
+                <!-- ng-repeat="d in poje | filter:selects | orderBy:'country'" ng-controller="deleteCtrl"-->
+                <button type="submit" class="btn btn-success">搜索</button>
+            </div>
+        </div>
+    </div>
+    </p>
+    <table class="table table-bordered table-hover table-condensed table-comparison text-center">
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>标题</td>
+            <td>作者</td>
+            <td>写作时间</td>
+            <td>操作</td>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <!-- <tr>
+             <td>{{d.Id}}</td>
+             <td>{{d.title}}</td>
+             <td>{{d.CreateTime}}</td>
+             <td>{{d.size}}</td>
+             <td>{{d.SpaceRange}}</td>
+             <td>{{d.type}}</td>
+             <td>
+                 <button class="btn btn-default btn-success">{{d.operation}}</button>
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                 <button class="btn btn-default btn-warning">{{d.delete}}</button>
+             </td>
+         </tr>-->
+        </tbody>
+    </table>
+</div>
