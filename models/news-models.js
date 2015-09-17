@@ -19,11 +19,11 @@ function News(news) {
 
 News.getAll = function (page,pageSize,callback) {
     var s = (page-1) * pageSize;
-    NewsModel.find().skip(s).limit(pageSize).exec(function(err,total){
+    NewsModel.find().skip(s).limit(pageSize).exec(function(err,news){
         if (err) {
             return callback(err);
         }
-        callback(null,total);
+        callback(null,news);
     });
 };
 
