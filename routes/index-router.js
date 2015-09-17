@@ -73,7 +73,9 @@ router.get('/news',function(req,res){
       }
     });
   } else {
-    News.getAll(function(err,total,news){
+    var skip = req.query.skip || 0;
+    var pageSize = req.query.pageSize || 10;
+    News.getAll(skip, pageSize, function(err,total,news){
       if(err){
         console.log('error');
       }else{
