@@ -1,7 +1,12 @@
 angular.module('technicalSalon')
     .controller('userCtrl', function ($scope, $location, UserService) {
+
+        $scope.user = {};
+
         $scope.register = function(u) {
-            user.$save(function(user) {
+            console.log(u);
+            var userService = new UserService(u);
+            userService.$save(function(user) {
                 console.log(user);
                 $location.path('/index');
                 $scope.$emit('success','hehe');
