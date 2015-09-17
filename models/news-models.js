@@ -17,7 +17,7 @@ function News(news) {
     this.content = news.content;
 };
 
-News.getAll = function (callback) {
+News.getAll = function (page,pageSize,callback) {
     var s = (page-1) * pageSize;
     NewsModel.find().skip(s).limit(pageSize).exec(function(err,total){
         if (err) {
@@ -45,5 +45,6 @@ News.getLast = function (num, callback) {
         callback(null,newss);
     });
 };
+
 
 module.exports = News;
