@@ -12,11 +12,4 @@ angular.module("technicalSalon")
     .controller("newsDetailCtrl",function($scope, $routeParams, $http, NewsService){
         var id=$routeParams.id;
         $scope.n = NewsService.get({id:id});
-            //$http.get(newsUrl + id)
-            //.success(function(data) {
-            //    $scope.n = data;
-            //})
-            //.error(function(error) {
-            //    $scope.n = error;
-            //});
     });
