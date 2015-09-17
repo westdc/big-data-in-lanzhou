@@ -64,8 +64,6 @@ router.get('/news/:id',function(req,res){
 router.get('/news',function(req,res){
   var last = req.query.last || false;
   var num = req.query.num || 3;
-  console.log(last);
-  console.log(num);
   if(last) {
     News.getLast(num, function(err, news) {
       if(err) {
@@ -75,11 +73,11 @@ router.get('/news',function(req,res){
       }
     });
   } else {
-    News.getAll(function(err,news){
+    News.getAll(function(err,total,news){
       if(err){
         console.log('error');
       }else{
-        res.jsonp(news);
+        res.jsonp({totalItems:total, items:news});
       }
     });
   }
