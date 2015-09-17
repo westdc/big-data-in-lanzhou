@@ -12,7 +12,7 @@ router.get('/homepage', function(req, res, next) {
 });
 
 router.get('/news/last', function(req, res) {
-  News.getFive(null,function(err, news) {
+  News.getLast(null,function(err, news) {
     if (err) {
       console.log('error');
     }
@@ -20,13 +20,23 @@ router.get('/news/last', function(req, res) {
   });
 });
 
-
 router.get('/news/:id',function(req,res){
   News.get(req.params.id,function(err,news){
     if(err){
       console.log(err);
     }
     res.jsonp(news);
+  });
+});
+
+
+router.get('/news',function(req,res){
+  News.getAll(null,function(err,news){
+    if(err){
+      console.log('error');
+    }else{
+      res.jsonp(news);
+    }
   });
 });
 
