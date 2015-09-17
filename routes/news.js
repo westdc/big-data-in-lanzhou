@@ -3,7 +3,7 @@ var router = express.Router();
 var News = require('../models/news')
 
 router.get('/last', function(req, res) {
-  News.getAll(null,function(err, news) {
+  News.getFive(null,function(err, news) {
     if (err) {
       console.log('error');
     }

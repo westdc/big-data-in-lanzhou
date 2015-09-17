@@ -42,3 +42,13 @@ News.get=function(_id,callback){
       callback(null,news);
   });
 };
+
+//查询前五条
+News.getFive = function (name, callback) {
+    newsModel.find('news').limit(5).exec(function(err,newss){
+        if (err) {
+            return callback(err);//失败！返回 err
+        }
+        callback(null,newss);//成功！以数组形式返回查询的结果
+    });
+};
