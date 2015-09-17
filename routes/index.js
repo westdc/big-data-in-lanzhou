@@ -21,12 +21,10 @@ router.post('/register', function (req, res) {
   });
   User.get(newUser.email, function (err, user) {
     if (err) {
-      req.flash('error', err);
-      return res.redirect('/');
+      return res.jsonp({ result: 'error', message: err});
     }
     if (user) {
-      req.flash('error', '邮箱以注册!');
-      return res.redirect('/reg');
+      return res.jsonp({ result: 'error', message: '邮箱以注册!'});
     }
     newUser.save(function (err, user) {
       if (err) {
@@ -34,8 +32,7 @@ router.post('/register', function (req, res) {
         return res.redirect('/register');
       }
       req.session.user = user;
-      req.flash('success', '注册成功!');
-      res.redirect('/');
+      req.jsonp({ result:'success', message:'注册成功!'});
     });
   });
 });
