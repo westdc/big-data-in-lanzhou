@@ -24,8 +24,6 @@ module.exports = User;
 
 //存储用户信息
 User.prototype.save = function(callback) {
-    var md5 = crypto.createHash('md5');
-    email_MD5 = md5.update(this.email.toLowerCase()).digest('hex');
     var user = {
         email: this.email,
         name: this.name,

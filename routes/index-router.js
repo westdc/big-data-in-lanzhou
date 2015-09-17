@@ -28,8 +28,7 @@ router.post('/register', function (req, res) {
     }
     newUser.save(function (err, user) {
       if (err) {
-        req.flash('error', err);
-        return res.redirect('/register');
+        return res.jsonp({ result: 'error', message: err});
       }
       req.session.user = user;
       req.jsonp({ result:'success', message:'注册成功!'});
