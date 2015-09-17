@@ -3,7 +3,7 @@
         <div class="col-sm-9 col-md-10">
             <div ng-repeat="n in news">
                 <h1>
-                    <a href="#"> {{n.title}}</a>
+                    <a href="#/news/{{n._id}}"> {{n.title}}</a>
                 </h1>
                 <p>
                     August 30, 2015
@@ -12,11 +12,9 @@
                     <strong> 会议如期举行，人气足，场地高大上，讲师给力</strong>
                 </p>
                 <br>
-                <button class="btn btn-default btn-lg">
-                    <a href="#">
+                    <a class="btn btn-default btn-lg" href="#/news/{{n._id}}">
                         查看全文
                     </a>
-                </button>
                 <hr>
 
             </div>
