@@ -4,15 +4,17 @@ angular.module('technicalSalon')
         $scope.user = {};
 
         $scope.register = function(u) {
-            console.log(u);
             var userService = new UserService(u);
-            userService.$save(function(user) {
-                console.log(user);
-                $location.path('/index');
-                $scope.$emit('success','hehe');
+            userService.$save(function(data) {
+                if(data.result == 'error') {
+                    $scope.$emit(data.result,data.message);
+                } else {
+                    $scope.$emit(data.result,data.message);
+                    $location.path('/index');
+                }
+
             }, function(err) {
                 console.log(err);
-                $scope.$emit('error',err);
             });
         }
 
