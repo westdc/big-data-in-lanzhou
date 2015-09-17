@@ -22,13 +22,16 @@ News.getAll = function (skip,pageSize,callback) {
         if (err) {
             return callback(err);
         }
-        NewsMode.count().exec(function(err,total) {
-            if(err) {
-                return callback(err);
-            }
-            callback(null,total,news);
-        });
+        callback(null,news);
+    });
+};
 
+News.count = function(callback) {
+    NewsModel.count().exec(function(err,total) {
+       if(err) {
+           return callback(err);
+       }
+        callback(null,total);
     });
 };
 

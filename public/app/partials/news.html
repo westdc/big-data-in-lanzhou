@@ -1,7 +1,7 @@
 <div class="container" ng-controller="newsCtrl">
     <div class="row">
         <div class="col-sm-9 col-md-10">
-            <div ng-repeat="n in news">
+            <div ng-repeat="n in items">
                 <h1>
                     <a href="#/news/{{n._id}}"> {{n.title}}</a>
                 </h1>
@@ -24,27 +24,7 @@
     </div>
 
     <div class="text-center">
-        <pager total-items="totalItems" ng-model="currentPage"></pager>
-    </div>
-
-    <div ng-controller="PaginationDemoCtrl">
-        <h4>Default</h4>
-        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-        <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-        <pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></pagination>
-        <pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></pagination>
-        <pre>The selected page no: {{currentPage}}</pre>
-        <button type="button" class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
-
-        <hr />
-        <h4>Pager</h4>
-        <pager total-items="totalItems" ng-model="currentPage"></pager>
-
-        <hr />
-        <h4>Limit the maximum visible buttons</h4>
-        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>
-        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-        <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+        <pager total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pager>
     </div>
 </div>
 

@@ -75,14 +75,24 @@ router.get('/news',function(req,res){
   } else {
     var skip = req.query.skip || 0;
     var pageSize = req.query.pageSize || 10;
-    News.getAll(skip, pageSize, function(err,total,news){
+    News.getAll(skip, pageSize, function(err,news){
       if(err){
         console.log('error');
       }else{
-        res.jsonp({totalItems:total, items:news});
+        res.jsonp(news);
       }
     });
   }
+});
+
+router.get('/count/news', function(req,res) {
+  News.count(function(err,total) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.jsonp({totalItems:total});
+    }
+  })
 });
 
 router.get('/paging/:page/:pageSize',function(req,res) {
