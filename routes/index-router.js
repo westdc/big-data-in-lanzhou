@@ -9,29 +9,23 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.post('/user', function (req, res) {
-  var email = req.body.email,
-      password = req.body.password;
-
-  var md5 = crypto.createHash('md5'),
-      password = md5.update(req.body.password).digest('hex');
   var newUser = new User({
-    email: email,
+    email: req.body.email,
     name: req.body.name,
-    password: password
+    password: req.body.password
   });
   User.get(newUser.email, function (err, user) {
     if (err) {
       return res.jsonp({ result: 'error', message: err});
     }
     if (user) {
-      return res.jsonp({ result: 'error', message: '邮箱以注册!'});
+      return res.jsonp({ result: 'error', message: '邮箱已注册!'});
     }
     newUser.save(function (err, user) {
       if (err) {
-        return res.jsonp({ result: 'error', message: err});
+        return res.jsonp({ result: "error", message: err});
       }
-      req.session.user = user;
-      req.jsonp({ result:'success', message:'注册成功!'});
+      res.jsonp({ result:'success', message:'注册成功!'});
     });
   });
 });

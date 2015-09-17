@@ -24,10 +24,12 @@ module.exports = User;
 
 //存储用户信息
 User.prototype.save = function(callback) {
+    var md5 = crypto.createHash('md5');
+
     var user = {
         email: this.email,
         name: this.name,
-        password: this.password
+        password: md5.update(this.password).digest('hex')
     };
     //打开数据库
     var newUser = new userModel(user);
