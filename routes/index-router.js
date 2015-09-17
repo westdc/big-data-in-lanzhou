@@ -29,6 +29,18 @@ router.post('/user', function (req, res) {
   });
 });
 
+router.post('/login', function (req, res) {
+  User.get(req.body.email, function (err, user) {
+    if (!user) {
+      return res.jsonp({ result: 'error', message: '用户不存在!' })
+    }
+    if (user.password != password) {
+      return res.jsonp({ result: 'error', message: '密码错误!' })
+    }
+    res.jsonp({ result: 'success', message: '登陆成功!'})
+  });
+});
+
 router.get('/news/:id',function(req,res){
   News.get(req.params.id,function(err,news){
     if(err){

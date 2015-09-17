@@ -6,18 +6,16 @@
                 <input type="email" id="email" ng-model="user.email" name="email" class="form-control"
                        placeholder="请输入您的email" required>
                 <span class="text-danger error" ng-show="registerForm.email.$invalid && registerForm.email.$dirty">
-                <span ng-show="registerForm.email.$error.required">
-                        请输入您的Email
-                 </span>
+                    <span ng-show="registerForm.email.$error.required">请输入您的Email</span>
                     <span ng-show="registerForm.email.$error.email">非法的邮箱地址。</span>
-            </span>
+                </span>
             </p>
             <p>
                 <input type="text" id="name" ng-model="user.name" name="name" class="form-control" placeholder="请输入您的真实姓名"
                        required>
                 <span class="error text-danger" ng-show="registerForm.name.$invalid && registerForm.name.$dirty">
-                <span ng-show="registerForm.name.$error.required">您的真实姓名不能位空</span>
-                    </span>
+                    <span ng-show="registerForm.name.$error.required">您的真实姓名不能位空</span>
+                </span>
             </p>
             <p>
                 <input type="password" name="password" ng-model="user.password"

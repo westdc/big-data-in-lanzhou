@@ -3,35 +3,26 @@
         <form name="signinForm" novalidate ng-controller="loginCtrl">
             <h2 class="form-signin-heading">登录</h2>
             <p class="form-group">
-                <input type="text" id="inputUser" name="username" ng-maxlength="10" ng-minlength="2"
-                       class="form-control" ng-model="user.userName" placeholder="请输入用户名2-10个字符" required>
-            <span class="error text-danger" ng-show="(signinForm.inputUser.$dirty) && signinForm.inputUser.$error.required">
-            用户名不能为空
-            </span>
-            <span class="error text-danger" ng-show="(signinForm.inputUser.$dirty) && signinForm.inputUser.$error.maxlength">
-            长度不能大于10个字符
-            </span>
-             <span class="error text-danger" ng-show="(signinForm.inputUser.$dirty) && signinForm.inputUser.$error.minlength">
-            长度不能小于2个字符
-            </span>
+                <input type="email" name="email"
+                       class="form-control" ng-model="user.email" placeholder="请输入您的email" required>
+                <span class="text-danger error" ng-show="signinForm.email.$invalid && signinForm.email.$dirty">
+                    <span ng-show="signinForm.email.$error.required">请输入您的Email</span>
+                    <span ng-show="signinForm.email.$error.email">非法的邮箱地址。</span>
+                </span>
             </p>
             <p>
                 <input type="password" name="password" ng-model="user.password"
-                       required="" ng-maxlength="20" ng-minlength="6" class="form-control"
+                       required class="form-control"
                        placeholder="请输入密码6-20个字符">
                 <span class="error text-danger"
                       ng-show="(signinForm.user_password.$dirty) && signinForm.user_password.$error.required">密码不能为空！</span>
-                <span class="error text-danger"
-                      ng-show="(signinForm.user_password.$dirty) && signinForm.user_password.$error.maxlength">密码长度不能大于20个字符！</span>
-                <span class="error text-danger"
-                      ng-show="(signinForm.user_password.$dirty) && signinForm.user_password.$error.minlength">密码长度不能小于6个字符！</span>
             </p>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me">记住密码
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="signinForm.$invalid" ng-click="login(user)">登陆</button>
+            <button class="btn btn-lg btn-primary btn-block" ng-disabled="signinForm.$invalid" ng-click="login(user)">登陆</button>
         </form>
     </div>
     </div>
