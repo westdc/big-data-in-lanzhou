@@ -83,8 +83,16 @@ router.get('/news',function(req,res){
       }
     });
   }
-
 });
 
+router.get('/paging/:page/:pageSize',function(req,res) {
+    News.getAll(req.params.page, req.params.pageSize,function (err, news) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.jsonp(news);
+      }
+    });
+  });
 
 module.exports = router;

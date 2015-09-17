@@ -18,29 +18,22 @@
         angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
                     $routeProvider.when("/news", {
-                        templateUrl: "app/partials/news.html"
+                        templateUrl: "/app/partials/news.html"
                     });
                     $routeProvider.when("/news/:id", {
-                        templateUrl: "app/partials/news-details.html"
+                        templateUrl: "/app/partials/news-details.html"
                     });
                     $routeProvider.when("/about-us", {
-                        templateUrl: "app/partials/about-us.html"
+                        templateUrl: "/app/partials/about-us.html"
                     });
                     $routeProvider.when("/login", {
-                        templateUrl: "app/partials/login.html"
+                        templateUrl: "/app/partials/login.html"
                     });
                     $routeProvider.when("/register", {
-                        templateUrl: "app/partials/register.html"
+                        templateUrl: "/app/partials/register.html"
                     });
-                    $routeProvider.when("/users", {
-                        templateUrl: "app/partials/users.html"
-                    });
-                    $routeProvider.when("/picture", {
-                        templateUrl: "app/partials/picture.html"
-                    });
-
                     $routeProvider.when("/index", {
-                        templateUrl: "app/partials/index.html"
+                        templateUrl: "/app/partials/index.html"
                     });
                     $routeProvider.otherwise({
                         redirectTo: "/index"
@@ -52,6 +45,7 @@
     <script src="/app/controller/datepicker-ctrl.js"></script>
     <script src="/app/controller/user-ctrl.js"></script>
     <script src="/app/controller/message-ctrl.js"></script>
+    <script src="/app/controller/paging-ctrl.js"></script>
     <script src="/app/service/news-service.js"></script>
     <script src="/app/service/user-service.js"></script>
     <script src="/app/directive/password-directive.js"></script>
