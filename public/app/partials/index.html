@@ -1,4 +1,3 @@
-
 <div ng-include="'/app/partials/template/jumbotron.html'"></div>
 <div class="container" ng-controller="lastNewsCtrl">
     <div class="row">
@@ -7,18 +6,19 @@
                 <h1>
                     <a href="#/news/{{n._id}}"> {{n.title}}</a>
                 </h1>
+
                 <p>
                     August 30, 2015
                 </p>
+
                 <p>
                     <strong>{{n.content}}</strong>
                 </p>
                 <br>
-                <button class="btn btn-default btn-lg">
-                    <a href="#/news/{{n._id}}">
-                        查看全文
-                    </a>
-                </button>
+                <a class="btn btn-default btn-group-lg" href="#/news/{{n._id}}">
+                    查看全文
+                </a>
+
                 <hr>
             </div>
         </div>
