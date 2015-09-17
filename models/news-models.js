@@ -1,8 +1,7 @@
 /**
  * Created by maxd on 15-9-16.
  */
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://192.168.0.50/big_data_in_lanzhou');
+var mongoose = require('./db');
 
 var newsSchema = new mongoose.Schema({
     name:String,
