@@ -2,7 +2,7 @@
  * Created by nober on 15-8-31.
  */
 //时间
-angular.module('technicalSalon').controller('DatepickerDemoCtrl', function ($scope) {
+angular.module('technicalSalon').controller('DatepickerCtrl', function ($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
     };
