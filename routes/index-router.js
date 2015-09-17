@@ -4,9 +4,20 @@ var News = require('../models/news-models'),
     User = require('../models/user-models');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
+
+router.get('/user',function(req, res){
+  User.getAll(function(err,users) {
+    if (err) {
+      console.log('error');
+    } else {
+      res.jsonp(users);
+    }
+  });
+});
+
 router.post('/user', function (req, res) {
   var newUser = new User({
     email: req.body.email,
@@ -34,7 +45,7 @@ router.post('/login', function (req, res) {
     if (!user) {
       return res.jsonp({ result: 'error', message: '用户不存在!' })
     }
-    if (user.password != password) {
+    if (!User.authenticate(user.password, req.body.password)) {
       return res.jsonp({ result: 'error', message: '密码错误!' })
     }
     res.jsonp({ result: 'success', message: '登陆成功!'})
@@ -53,8 +64,6 @@ router.get('/news/:id',function(req,res){
 router.get('/news',function(req,res){
   var last = req.query.last || false;
   var num = req.query.num || 3;
-  console.log(last);
-  console.log(num);
   if(last) {
     News.getLast(num, function(err, news) {
       if(err) {
@@ -64,16 +73,26 @@ router.get('/news',function(req,res){
       }
     });
   } else {
-    News.getAll(function(err,news){
+    var skip = req.query.skip || 0;
+    var pageSize = req.query.pageSize || 10;
+    News.getAll(skip, pageSize, function(err,total,news){
       if(err){
         console.log('error');
       }else{
-        res.jsonp(news);
+        res.jsonp({totalItems:total, items:news});
       }
     });
   }
-
 });
 
+router.get('/paging/:page/:pageSize',function(req,res) {
+    News.getAll(req.params.page, req.params.pageSize,function (err, news) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.jsonp(news);
+      }
+    });
+  });
 
 module.exports = router;

@@ -17,12 +17,18 @@ function News(news) {
     this.content = news.content;
 };
 
-News.getAll = function (callback) {
-    NewsModel.find().exec(function(err,newss){
+News.getAll = function (skip,pageSize,callback) {
+    NewsModel.find().skip(skip).limit(pageSize).exec(function(err,news){
         if (err) {
             return callback(err);
         }
-        callback(null,newss);
+        NewsMode.count().exec(function(err,total) {
+            if(err) {
+                return callback(err);
+            }
+            callback(null,total,news);
+        });
+
     });
 };
 
@@ -44,5 +50,6 @@ News.getLast = function (num, callback) {
         callback(null,newss);
     });
 };
+
 
 module.exports = News;
