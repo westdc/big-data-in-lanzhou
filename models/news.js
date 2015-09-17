@@ -18,7 +18,7 @@ function News(news) {
     this.content = news.content;
 };
 
-News.getAll = function (name, callback) {
+News.getAll = function (callback) {
     NewsModel.find().exec(function(err,newss){
         if (err) {
             return callback(err);
@@ -37,8 +37,8 @@ News.get=function(_id,callback){
 };
 
 
-News.getLast = function (name, callback) {
-    NewsModel.find().limit(5).sort({name: 1}).exec(function(err,newss){
+News.getLast = function (num, callback) {
+    NewsModel.find().limit(num).sort({name: 1}).exec(function(err,newss){
         if (err) {
             return callback(err);
         }
