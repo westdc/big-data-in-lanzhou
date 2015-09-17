@@ -3,11 +3,10 @@
         <form name="signinForm" novalidate ng-controller="loginCtrl">
             <h2 class="form-signin-heading">登录</h2>
             <p class="form-group">
-                <input type="email" name="email"
+                <input type="text" name="email"
                        class="form-control" ng-model="user.email" placeholder="请输入您的email" required>
-                <span class="text-danger error" ng-show="signinForm.email.$invalid && signinForm.email.$dirty">
-                    <span ng-show="signinForm.email.$error.required">请输入您的Email</span>
-                    <span ng-show="signinForm.email.$error.email">非法的邮箱地址。</span>
+                <span class="text-danger error" ng-show="">
+                    <span ng-show="signinForm.email.$error.required && signinForm.email.$dirty">请输入您的Email</span>
                 </span>
             </p>
             <p>
@@ -15,7 +14,7 @@
                        required class="form-control"
                        placeholder="请输入密码6-20个字符">
                 <span class="error text-danger"
-                      ng-show="(signinForm.user_password.$dirty) && signinForm.user_password.$error.required">密码不能为空！</span>
+                      ng-show="(signinForm.password.$dirty) && signinForm.password.$error.required">密码不能为空！</span>
             </p>
             <div class="checkbox">
                 <label>

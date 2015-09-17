@@ -20,9 +20,10 @@ angular.module('technicalSalon')
         }
 
     })
-    .controller('loginCtrl', function($scope, $location, authUrl) {
+    .controller('loginCtrl', function($scope, $http, $location, authUrl) {
         $scope.user = {};
         $scope.login = function(u) {
+            console.log('do login');
             $http.post(authUrl, u).success(function (data) {
                 if(data.result == 'error') {
                     $scope.$emit(data.result,data.message);
