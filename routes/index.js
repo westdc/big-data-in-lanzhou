@@ -11,14 +11,6 @@ router.get('/homepage', function(req, res, next) {
   res.render('homepage', { title: 'Express' });
 });
 
-router.get('/news', function(req, res) {
-  News.getLast(null,function(err, news) {
-    if (err) {
-      console.log('error');
-    }
-    res.jsonp(news);
-  });
-});
 
 router.get('/news/:id',function(req,res){
   News.get(req.params.id,function(err,news){
@@ -29,15 +21,30 @@ router.get('/news/:id',function(req,res){
   });
 });
 
-
 router.get('/news',function(req,res){
-  News.getAll(null,function(err,news){
-    if(err){
-      console.log('error');
-    }else{
-      res.jsonp(news);
-    }
-  });
+  var last = req.params.last;
+  var num = req.params.num || 3;
+  console.log(last);
+  console.log(num);
+  if(last) {
+    News.getLast(num, function(err, news) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.jsonp(news);
+      }
+    });
+  } else {
+    News.getAll(function(err,news){
+      if(err){
+        console.log('error');
+      }else{
+        res.jsonp(news);
+      }
+    });
+  }
+
 });
+
 
 module.exports = router;
