@@ -1,9 +1,9 @@
 <div class="loginContainar container">
     <div class="col-sm-3 col-md-3 col-md-offset-4 col-sm-offset-4">
-        <form name="signinForm" novalidate>
+        <form name="signinForm" novalidate ng-controller="loginCtrl">
             <h2 class="form-signin-heading">登录</h2>
             <p class="form-group">
-                <input type="text" id="inputUser" name="inputUser" ng-maxlength="10" ng-minlength="2"
+                <input type="text" id="inputUser" name="username" ng-maxlength="10" ng-minlength="2"
                        class="form-control" ng-model="user.userName" placeholder="请输入用户名2-10个字符" required>
             <span class="error text-danger" ng-show="(signinForm.inputUser.$dirty) && signinForm.inputUser.$error.required">
             用户名不能为空
@@ -16,7 +16,7 @@
             </span>
             </p>
             <p>
-                <input type="password" name="user_password" ng-model="vm.user.password"
+                <input type="password" name="password" ng-model="user.password"
                        required="" ng-maxlength="20" ng-minlength="6" class="form-control"
                        placeholder="请输入密码6-20个字符">
                 <span class="error text-danger"
