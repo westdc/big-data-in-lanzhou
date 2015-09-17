@@ -4,7 +4,7 @@
 
 angular.module('technicalSalon')
     .factory('NewsService',function($resource) {
-        return $resource('/news/:id', {}, {
+        return $resource('/news/:id',{}, {
             last: {method:'GET', params:{last: true}, isArray:true}
         });
     });

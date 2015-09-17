@@ -34,4 +34,9 @@ angular.module('technicalSalon')
                 console.log(err)
             });
         }
-    });
+    })
+
+    .controller("userManageCtrl",function($scope,$http,UserService) {
+        $scope.users= UserService.query();
+    })
+

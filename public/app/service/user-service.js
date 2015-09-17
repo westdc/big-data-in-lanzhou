@@ -4,8 +4,8 @@
 
 angular.module('technicalSalon')
     .factory('UserService',function($resource) {
-        return $resource('/user/:id',{}, {
-            register: {method: 'POST'},
-            login: {method: 'POST'}
+        return $resource('/user/',{},{
+            last: {method:'GET', params:{last: true}, isArray:true}
         });
+
     });

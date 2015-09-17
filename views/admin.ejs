@@ -17,7 +17,7 @@
   <script>
        angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
-                   $routeProvider.when("/users-manage", {
+                   $routeProvider.when("/user/:id", {
                        templateUrl: "app/partials/admin/users-manage.html"
                    });
                    $routeProvider.when("/news-manage", {
