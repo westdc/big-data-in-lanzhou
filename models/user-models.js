@@ -83,10 +83,17 @@ User.count = function(callback) {
 };
 
 User.updateStatus = function(user, callback) {
+    console.log(user);
     UserModel.findOneAndUpdate({_id:user._id},{ $set: {status:user.status}}).exec(function (err, user) {
         if (err) {
             return callback(err);
         }
         callback(null,user);
+    });
+};
+
+User.remove = function(user, callback) {
+    UserModel.where({_id:user._id}).findOneAndRemove().exec(function(err, user) {
+
     });
 };
