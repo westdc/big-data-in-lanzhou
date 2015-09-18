@@ -182,7 +182,7 @@ router.get('/count/message', function(req,res) {
 });
 
 router.post('/message/change',function(req, res) {
-    User.updateStatus(req.body._id,function(err) {
+    Message.update(req.body._id,function(err) {
         if (err) {
             return res.jsonp({ result: 'error', message: "修改留言失败"})
         } else {
@@ -192,7 +192,7 @@ router.post('/message/change',function(req, res) {
 });
 
 router.post('/message/remove',function(req, res) {
-    User.remove(req.body._id, function(err) {
+    Message.remove(req.body._id, function(err) {
         if (err) {
             return res.jsonp({ result: 'error' , message: "删除留言失败"});
         } else {
