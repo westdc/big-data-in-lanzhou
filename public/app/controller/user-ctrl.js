@@ -38,6 +38,35 @@ angular.module('technicalSalon')
     })
 
     .controller("userManageCtrl", function ($scope, $http, UserService) {
-        $scope.users = UserService.query();
+
+        $scope.toggle = function (u) {
+            u.status = u.status == 1 ? 0 : 1;
+            $http.post('/user/toggle',{user:u})
+                .success(function(data) {
+                    if (data.result == 'error') {
+                        $scope.$emit(data.result, data.message);
+                    } else {
+                        $scope.$emit(data.result, data.message);
+                    }
+                })
+                .error(function(err) {
+                    console.log(err);
+                });
+        };
+
+        $scope.currentPage = 1;
+        $scope.totalItems = 0;
+        $scope.items = [];
+
+        $http.get('/count/user').success(function (data) {
+            $scope.totalItems = data.totalItems;
+            $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
+        });
+
+        $scope.pageChanged = function (page) {
+            $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
+        };
+
     });
+
 

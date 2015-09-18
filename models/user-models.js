@@ -57,7 +57,6 @@ User.authenticate = function(p,password) {
 User.get = function(email, callback) {
     UserModel.findOne({email:email}, function (err, user)
     {
-        console.log(user);
         if(err){
             return callback(err);
         }
@@ -66,11 +65,11 @@ User.get = function(email, callback) {
 };
 
 User.getAll = function (skip,pageSize,callback) {
-    UserModel.find().skip(skip).limit(pageSize).exec(function(err,news){
+    UserModel.find().skip(skip).limit(pageSize).exec(function(err,users){
         if (err) {
             return callback(err);
         }
-        callback(null,news);
+        callback(null,users);
     });
 };
 
@@ -82,3 +81,12 @@ User.count = function(callback) {
         callback(null,total);
     });
 };
+
+User.updateStatus = function(user, callback) {
+    UserModel.findOneAndUpdate({_id:user._id}).update({ status:user.status }).exec(function (err, user) {
+        if (err) {
+            return callback(err);
+        }
+        callback(null,user);
+    })
+}

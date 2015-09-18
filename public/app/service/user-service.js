@@ -5,7 +5,7 @@
 angular.module('technicalSalon')
     .factory('UserService',function($resource) {
         return $resource('/user/:id',{},{
-            last: {method:'GET', params:{last: true}, isArray:true}
+
         });
 
     });
