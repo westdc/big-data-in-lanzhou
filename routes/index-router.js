@@ -107,25 +107,25 @@ router.get('/count/user',function(req, res) {
   });
 });
 
-router.get('/paging/:page/:pageSize',function(req,res) {
-    News.getAll(req.params.page, req.params.pageSize,function (err, news) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.jsonp(news);
-      }
-    });
-
-  });
-
 router.post('/user/toggle',function(res, req) {
+    console.log(req.body.user);
     User.updateStatus(req.body.user, function(err) {
         if (err) {
             return res.jsonp({ result: 'error', message: "修改失败"})
         } else {
-            res.jsonp({result:'success' , message: "修改成功"})
+            res.jsonp({ result:'success' , message: "修改成功"})
         }
     });
 });
+
+//router.post('',function(res, req) {
+//    User.remove(req.body.user, function(err) {
+//        if (err) {
+//            return res.jsonp({ result: 'error' , message: "注销用户失败"});
+//        } else {
+//            res.jsonp({ result: "success" , message: "此用户已注销"})
+//        }
+//    })
+//})
 
 module.exports = router;
