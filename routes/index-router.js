@@ -125,7 +125,7 @@ router.post('/user/toggle',function(res, req) {
         } else {
             res.jsonp({result:'success' , message: "修改成功"})
         }
-    })
-})
+    });
+});
 
 module.exports = router;
