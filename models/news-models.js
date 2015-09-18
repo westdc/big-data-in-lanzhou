@@ -22,7 +22,7 @@ News.prototype.save=function(callback){
     var news={
         name:this.name,
         title:this.title,
-        content:this.content,
+        content:this.content
     };
     var newNews=new NewsModel(news);
     newNews.save(function(err,news){
