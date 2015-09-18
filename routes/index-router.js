@@ -119,11 +119,11 @@ router.get('/paging/:page/:pageSize',function(req,res) {
   });
 
 router.post('/user/toggle',function(res, req) {
-    User.updateStatus(req.body.user, function(err, users) {
+    User.updateStatus(req.body.user, function(err) {
         if (err) {
-            console.log(err);
+            return res.jsonp({ result: 'error', message: "修改失败"})
         } else {
-            res.jsonp(users);
+            res.jsonp({result:'success' , message: "修改成功"})
         }
     })
 })
