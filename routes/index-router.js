@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var News = require('../models/news-models'),
-    User = require('../models/user-models');
+    User = require('../models/user-models'),
+    Message=require('../models/message-models');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -128,6 +129,59 @@ router.get('/count/news', function(req,res) {
       res.jsonp({totalItems:total});
     }
   })
+});
+
+router.post('/message',function(res,req){
+    var newMessage = new Message({
+        name: req.body.name,
+        content: req.body.content,
+        createAt:req.body.createAt
+    });
+    newMessage.save(function(err,message){
+        if(err){
+            console.log(err);
+        }else{
+            res.jsonp(message);
+        }
+    });
+});
+
+router.post('/news',function(res,req){
+    var newNews = new News({
+        name: req.body.name,
+        createAt:req.body.createAt,
+        title:req.body.title,
+        content: req.body.content,
+    });
+    newNews.save(function(err,news){
+        if(err){
+            console.log(err);
+        }else{
+            res.jsonp(news);
+        }
+    });
+});
+
+router.get('/message',function(req, res){
+    var skip = req.query.skip || 0;
+    var pageSize = req.query.pageSize || 10;
+    Message.getAll(skip, pageSize, function(err,message){
+        if(err){
+            console.log(err);
+        }else{
+            res.jsonp(message);
+        }
+    });
+});
+
+router.get('/count/message', function(req,res) {
+    Message.count(function(err,total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    })
 });
 
 module.exports = router;
