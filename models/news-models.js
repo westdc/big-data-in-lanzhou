@@ -16,7 +16,22 @@ function News(news) {
     this.name = news.name;
     this.title = news.title;
     this.content = news.content;
-    this.createAt=news.createAt;
+};
+
+News.prototype.save=function(callback){
+    var news={
+        name:this.name,
+        title:this.title,
+        content:this.content,
+    };
+    var newNews=new NewsModel(news);
+    newNews.save(function(err,news){
+        if(err){
+            return callback(err);
+        }else{
+            callback(null, news);
+        }
+    });
 };
 
 News.getAll = function (skip,pageSize,callback) {
@@ -37,15 +52,6 @@ News.count = function(callback) {
     });
 };
 
-News.get=function(_id,callback){
-    NewsModel.findOne({_id:_id},function(err,news){
-      if(err){
-          return callback(err);
-      }
-      callback(null,news);
-  });
-};
-
 
 News.getLast = function (num, callback) {
     NewsModel.find().limit(num).sort({name: 1}).exec(function(err,newss){
@@ -56,23 +62,32 @@ News.getLast = function (num, callback) {
     });
 };
 
-News.prototype.save=function(callback){
-    var news={
-        name:this.name,
-        createAt:this.createAt,
-        title:this.title,
-        content:this.content,
-    };
-    var newNews=new NewsModel(news);
-    newNews.save(function(err,news){
-        if(err){
+News.get=function(_id,callback){
+    NewsModel.findOne({_id:_id},function(err,news){
+      if(err){
+          return callback(err);
+      }
+      callback(null,news);
+  });
+};
+
+News.update = function(id,title,content, callback) {
+    console.log(id);
+    NewsModel.findOneAndUpdate({_id:user._id},{ $set: {title:title,content:content}}).exec(function (err, newss) {
+        if (err) {
             return callback(err);
-        }else{
-            callback(null, news);
         }
+        callback(null,newss);
     });
 };
 
+News.remove = function(id, callback) {
+    NewsModel.where({_id:id}).findOneAndRemove().exec(function(err) {
+        if (err){
+            return callback(err);
+        }
+    });
+};
 
 
 module.exports = News;
