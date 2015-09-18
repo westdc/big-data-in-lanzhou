@@ -112,26 +112,7 @@ router.get('/news',function(req,res){
     }
 });
 
-router.get('/news/:id',function(req,res){
-  News.get(req.params.id,function(err,news){
-    if(err){
-      console.log(err);
-    }
-    res.jsonp(news);
-  });
-});
-
-router.get('/count/news', function(req,res) {
-  News.count(function(err,total) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.jsonp({totalItems:total});
-    }
-  })
-});
-
-router.post('/news',function(req,res){
+router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
         title:req.body.title,
@@ -146,7 +127,26 @@ router.post('/news',function(req,res){
     });
 });
 
-router.post('/message',function(req,res){
+router.get('/count/news', function(req,res) {
+    News.count(function(err,total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    })
+});
+
+router.get('/news/:id',function(req,res){
+  News.get(req.params.id,function(err,news){
+    if(err){
+      console.log(err);
+    }
+    res.jsonp(news);
+  });
+});
+
+router.post('/message',function(res,req){
     var newMessage = new Message({
         name: req.body.name,
         content: req.body.content
@@ -180,26 +180,5 @@ router.get('/count/message', function(req,res) {
         }
     })
 });
-
-router.post('/message/change',function(req, res) {
-    User.updateStatus(req.body._id,function(err) {
-        if (err) {
-            return res.jsonp({ result: 'error', message: "修改留言失败"})
-        } else {
-            res.jsonp({ result:'success' , message: "修改留言成功"})
-        }
-    });
-});
-
-router.post('/message/remove',function(req, res) {
-    User.remove(req.body._id, function(err) {
-        if (err) {
-            return res.jsonp({ result: 'error' , message: "删除留言失败"});
-        } else {
-            res.jsonp({ result: "success" , message: "删除留言成功"});
-        }
-    });
-});
-
 
 module.exports = router;

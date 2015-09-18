@@ -11,30 +11,44 @@ angular.module("technicalSalon")
 
         }
     })
-    .controller("submitMessageCtrl", function ($scope, $modalInstance) {
-        $scope.ok = function () {
-            $modalInstance.close();
-        };
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        }
-    })
+    .controller("submitMessageCtrl", function ($scope, $modalInstance, MessageService) {
 
-    .controller('messagesCtrl', function ($scope,MessageService) {
-        $scope.user = {};
+        $scope.message = {};
 
-        $scope.messages = function (u) {
-            var messageService = new MessageService(u);
-                messageService.$save(function (data) {
+        $scope.submit = function (message) {
+
+            var messageService = new MessageService(message);
+            messageService.$save(function (data) {
                 if (data.result == 'error') {
                     $scope.$emit(data.result, data.message);
                 } else {
                     $scope.$emit(data.result, data.message);
+                    $modalInstance.close();
                 }
+
             }, function (err) {
                 console.log(err);
             });
+        };
+        $scope.cancel = function () {
+            $scope.message = {};
+            $modalInstance.dismiss('cancel');
         }
+    })
+    .controller('messageManageCtrl', function ($scope, $http, MessageService) {
+
+        $scope.currentPage = 1;
+        $scope.totalItems = 0;
+        $scope.items = [];
+
+        $http.get('/count/message').success(function (data) {
+            $scope.totalItems = data.totalItems;
+            $scope.items = MessageService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
+        });
+
+        $scope.pageChanged = function (page) {
+            $scope.items = MessageService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
+        };
 
     });
 

@@ -65,15 +65,15 @@ angular.module('technicalSalon')
         $scope.pageChanged = function (page) {
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
-            $scope.items = [];
-            $scope.open = function (modalCtrl, size) {
-                var modalInstance = $modal.open({
-                    templateUrl: 'app/partials/admin/template/alert-delete.html',
-                    controller: modalCtrl,
-                    size: size
-                });
-            }
-        })
+
+        $scope.open = function (modalCtrl, size) {
+            var modalInstance = $modal.open({
+                templateUrl: 'app/partials/admin/template/alert-delete.html',
+                controller: modalCtrl,
+                size: size
+            });
+        }
+    })
 
     .controller("alertDeleteCtrl", function ($scope, $modalInstance) {
         $scope.ok = function () {
