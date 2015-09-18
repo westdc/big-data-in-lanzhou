@@ -37,11 +37,11 @@ angular.module('technicalSalon')
         }
     })
 
-    .controller("userManageCtrl", function ($scope, $http, UserService) {
+    .controller("userManageCtrl", function ($scope, $http, UserService, $modal) {
 
         $scope.toggle = function (u) {
             u.status = u.status == 1 ? 0 : 1;
-            $http.post('/user/toggle',{user:u})
+            $http.post('/user/toggle', u)
                 .success(function(data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
@@ -66,7 +66,23 @@ angular.module('technicalSalon')
         $scope.pageChanged = function (page) {
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
+            $scope.items = [];
+            $scope.open = function (modalCtrl, size) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'app/partials/admin/template/alert-delete.html',
+                    controller: modalCtrl,
+                    size: size
+                });
+            }
+        })
 
+    .controller("alertDeleteCtrl", function ($scope, $modalInstance) {
+        $scope.ok = function () {
+            $modalInstance.close();
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        }
     });
 
 

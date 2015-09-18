@@ -19,7 +19,8 @@
                     <td>
                         <button class="btn btn-sm" ng-hide="u.status == 1" ng-click="toggle(u)"><span class="glyphicon glyphicon-play">启用</span></button>
                         <button class="btn btn-sm" ng-show="u.status == 1" ng-click="toggle(u)"><span class="glyphicon glyphicon-stop">停用</span></button>
-                        <button class="btn btn-sm"><span class="glyphicon glyphicon-remove"></span>删除</button>
+                        <a class="btn btn-sm" href="" ng-click="open('alertDeleteCtrl','sm')"><span class="glyphicon glyphicon-remove"></span>删除</a>
+
                     </td>
                 </tr>
                 </tbody>
