@@ -182,7 +182,7 @@ router.get('/count/message', function(req,res) {
 });
 
 router.post('/message/remove',function(req, res) {
-    Message.remove(req.body._id, function(err) {
+    Message.remove(req.body.id, function(err) {
         if (err) {
             return res.jsonp({ result: 'error' , message: "删除留言失败"});
         } else {

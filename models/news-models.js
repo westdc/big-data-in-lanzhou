@@ -73,7 +73,7 @@ News.get=function(_id,callback){
 
 News.update = function(id,title,content, callback) {
     console.log(id);
-    NewsModel.findOneAndUpdate({_id:user._id},{ $set: {title:title,content:content}}).exec(function (err, newss) {
+    NewsModel.findOneAndUpdate({_id:id},{ $set: {title:title,content:content}}).exec(function (err, newss) {
         if (err) {
             return callback(err);
         }
