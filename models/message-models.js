@@ -1,12 +1,12 @@
 var mongoose=require('./db');
 
-var newsSchema = new mongoose.Schema({
+var messageSchema = new mongoose.Schema({
     name:String,
     content: String,
     createAt:{ type: Date, default: Date.now }
 });
 
-var MessageModel = mongoose.model('Message', newsSchema);
+var MessageModel = mongoose.model('Message', messageSchema);
 
 function Message(message){
     this.name=message.name;
@@ -14,6 +14,7 @@ function Message(message){
     this.createAt=message.createAt
 }
 
+module.exports =Message;
 
 Message.prototype.save=function(callback){
     var message={
@@ -21,7 +22,9 @@ Message.prototype.save=function(callback){
         content:this.content,
         createAt:this.createAt
     };
+
     var newMessage=new MessageModel(message);
+
     newMessage.save(function(err,message){
         if(err){
             return callback(err);
@@ -49,4 +52,3 @@ Message.count = function(callback) {
     });
 };
 
-module.exports =Message;
