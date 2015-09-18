@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var News = require('../models/news-models'),
-    User = require('../models/user-models'),
-    Message=require('../models/message-models');
+    User = require('../models/user-models');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -108,6 +107,17 @@ router.get('/count/user',function(req, res) {
   });
 });
 
+router.get('/paging/:page/:pageSize',function(req,res) {
+    News.getAll(req.params.page, req.params.pageSize,function (err, news) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.jsonp(news);
+      }
+    });
+
+  });
+
 router.post('/user/toggle',function(res, req) {
     User.updateStatus(req.body.user, function(err) {
         if (err) {
@@ -116,49 +126,6 @@ router.post('/user/toggle',function(res, req) {
             res.jsonp({result:'success' , message: "修改成功"})
         }
     });
-});
-
-router.post('/news',function(res,req){
-  var newNews = new News({
-    name: req.body.name,
-    createAt:req.body.createAt,
-    title:req.body.title,
-    content:req.body.content
-  });
-  newNews.save(function(err,news){
-    if(err){
-      console.log(err);
-    }else{
-      res.jsonp(news);
-    }
-  });
-});
-
-router.post('/message',function(res,req){
-  var newMessage = new Message({
-    name: req.body.name,
-    content:req.body.content,
-    createAt:req.body.createAt
-  });
-  newMessage.save(function(err,message){
-    if(err){
-      console.log(err);
-    }else{
-      res.jsonp(message);
-    }
-  });
-});
-
-router.get('/message',function(req, res){
-  var skip = req.query.skip || 0;
-  var pageSize = req.query.pageSize || 10;
-  Message.getAll(skip, pageSize, function(err,message){
-    if(err){
-      console.log(err);
-    }else{
-      res.jsonp(message);
-    }
-  });
 });
 
 module.exports = router;
