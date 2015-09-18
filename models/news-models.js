@@ -63,14 +63,13 @@ News.prototype.save=function(callback){
         title:this.title,
         content:this.content,
     };
-
     var newNews=new NewsModel(news);
-
     newNews.save(function(err,news){
         if(err){
             return callback(err);
+        }else{
+            callback(null, news);
         }
-        callback(null, news);
     });
 };
 
