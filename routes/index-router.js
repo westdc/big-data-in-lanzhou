@@ -115,6 +115,17 @@ router.get('/paging/:page/:pageSize',function(req,res) {
         res.jsonp(news);
       }
     });
+
   });
+
+router.post('/user/toggle',function(res, req) {
+    User.updateStatus(req.body.user, function(err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.jsonp(users);
+        }
+    })
+})
 
 module.exports = router;
