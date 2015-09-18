@@ -16,7 +16,7 @@ router.get('/user',function(req, res){
       console.log('error');
     }else{
       res.jsonp(users);
-    }
+      }
   });
 });
 
