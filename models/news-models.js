@@ -35,7 +35,7 @@ News.prototype.save=function(callback){
 };
 
 News.getAll = function (skip,pageSize,callback) {
-    NewsModel.find().skip(skip).limit(pageSize).exec(function(err,news){
+    NewsModel.find().skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,news){
         if (err) {
             return callback(err);
         }
