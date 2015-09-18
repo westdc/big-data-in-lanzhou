@@ -95,36 +95,14 @@ router.get('/count/news', function(req,res) {
   })
 });
 
-
-router.post('/news',function(req,res){
-  var newNews = new News({
-    name: req.body.name,
-    title: req.body.title,
-    content: req.body.content,
-    createAt:req.body.createAt
-  });
-  newNews.save(function(err,news){
-    if(err){
-      console.log('error');
-    }else{
-      res.jsonp(news);
-    }
-  });
-});
-
-router.post('/message',function(req,res){
-  var newMessage=new Message({
-    name:req.body.name,
-    content:req.body.content,
-    createAt:req.body.createAt
-  });
-    newMessage.save(function(err,message){
-      if(err){
-        console.log('error');
-      }else{
-        res.jsonp(message);
+router.get('/paging/:page/:pageSize',function(req,res) {
+    News.getAll(req.params.page, req.params.pageSize,function (err, news) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.jsonp(news);
       }
     });
-});
+  });
 
 module.exports = router;

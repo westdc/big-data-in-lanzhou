@@ -65,12 +65,20 @@ User.get = function(email, callback) {
     });
 };
 
-User.getAll = function (
-    callback) {
-    UserModel.find().exec(function(err,users){
+User.getAll = function (skip,pageSize,callback) {
+    UserModel.find().skip(skip).limit(pageSize).exec(function(err,news){
         if (err) {
             return callback(err);
         }
-        callback(null,users);
+        callback(null,news);
+    });
+};
+
+User.count = function(callback) {
+    UserModel.count().exec(function(err,total) {
+        if(err) {
+            return callback(err);
+        }
+        callback(null,total);
     });
 };
