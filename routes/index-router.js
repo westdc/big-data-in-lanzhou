@@ -134,9 +134,8 @@ router.get('/count/news', function(req,res) {
 router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
-        createAt:req.body.createAt,
         title:req.body.title,
-        content: req.body.content,
+        content: req.body.content
     });
     newNews.save(function(err,news){
         if(err){
@@ -146,6 +145,27 @@ router.post('/news',function(res,req){
         }
     });
 });
+
+router.post('', function (req, res) {
+    News.update(req.body._id, req.body.title,req.body.content, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error', message: "修改失败"})
+        } else {
+            res.jsonp({ result:'success' , message: "修改成功"})
+        }
+    });
+});
+
+router.post('',function(req, res) {
+    News.remove(req.body._id, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error' , message: "删除用户失败"});
+        } else {
+            res.jsonp({ result: "success" , message: "删除用户成功"});
+        }
+    });
+});
+
 
 router.post('/message',function(res,req){
     var newMessage = new Message({

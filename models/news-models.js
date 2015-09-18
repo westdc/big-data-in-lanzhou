@@ -16,14 +16,11 @@ function News(news) {
     this.name = news.name;
     this.title = news.title;
     this.content = news.content;
-    this.createAt=news.createAt;
-
 };
 
 News.prototype.save=function(callback){
     var news={
         name:this.name,
-        createAt:this.createAt,
         title:this.title,
         content:this.content,
     };
