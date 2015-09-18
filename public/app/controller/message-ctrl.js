@@ -25,7 +25,6 @@ angular.module("technicalSalon")
                     $scope.$emit(data.result, data.message);
                     $modalInstance.close();
                 }
-
             }, function (err) {
                 console.log(err);
             });
@@ -35,7 +34,7 @@ angular.module("technicalSalon")
             $modalInstance.dismiss('cancel');
         }
     })
-    .controller('messageManageCtrl', function ($scope, $http, MessageService) {
+    .controller('messageManageCtrl', function ($scope, $http, $modal, MessageService) {
 
         $scope.currentPage = 1;
         $scope.totalItems = 0;
@@ -50,5 +49,22 @@ angular.module("technicalSalon")
             $scope.items = MessageService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
 
+        $scope.openDeleteDialog = function(id, modalCtrl, size) {
+            var modalInstance = $modal.open({
+                templateUrl: 'app/partials/admin/template/alert-delete.html',
+                controller: modalCtrl,
+                size: size,
+                scope: ''
+            });
+        }
+
+    })
+    .controller('deleteMessageCtrl', function($scope, $modalInstance, MessageService) {
+        $scope.submit = function () {
+            $modalInstance.close();
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        }
     });
 
