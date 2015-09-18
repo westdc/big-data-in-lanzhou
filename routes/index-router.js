@@ -134,7 +134,6 @@ router.get('/count/news', function(req,res) {
 router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
-        createAt:req.body.createAt,
         title:req.body.title,
         content: req.body.content,
     });
@@ -153,11 +152,10 @@ router.post('/message',function(res,req){
         content: req.body.content
     });
     newMessage.save(function(err,message){
-        if(err){
-            return res.jsonp({ result: 'error', message: '添加失败!' })
-        }else{
-            res.jsonp({ result: 'success', message: '添加成功!'})
+        if (err) {
+            return res.jsonp({ result: "error", message: err});
         }
+        res.jsonp({ result:'success', message:'添加成功!'});
     });
 });
 
