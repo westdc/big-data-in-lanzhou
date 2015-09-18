@@ -99,3 +99,22 @@ body {
     border-radius: 50%;
 }
 
+.indicator-container {
+    text-align: center;
+    z-index: 9999;
+    width:100%;
+    top:0;
+    position: absolute;
+
+}
+
+#indicator {
+    position: relative;
+    width: 400px;
+    height: 50px;
+    top:20px;
+    z-index:9999;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+}

@@ -82,9 +82,9 @@ User.count = function(callback) {
     });
 };
 
-User.updateStatus = function(user, callback) {
-    console.log(user);
-    UserModel.findOneAndUpdate({_id:user._id},{ $set: {status:user.status}}).exec(function (err, user) {
+User.updateStatus = function(id,status, callback) {
+    console.log(id);
+    UserModel.findOneAndUpdate({_id:id},{ $set: {status:status}}).exec(function (err, user) {
         if (err) {
             return callback(err);
         }
@@ -92,8 +92,10 @@ User.updateStatus = function(user, callback) {
     });
 };
 
-User.remove = function(user, callback) {
-    UserModel.where({_id:user._id}).findOneAndRemove().exec(function(err, user) {
-
+User.remove = function(id, callback) {
+    UserModel.where({_id:id}).findOneAndRemove().exec(function(err) {
+        if (err){
+            return callback(err);
+        }
     });
 };
