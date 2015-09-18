@@ -102,7 +102,7 @@ router.get('/count/user',function(req, res) {
     if(err) {
       console.log(err);
     } else {
-      res.jsonp({totalItem:total});
+      res.jsonp({totalItems:total});
     }
   });
 });
