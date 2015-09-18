@@ -1,40 +1,30 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="userManageCtrl">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">用户</h1>
-            <div class="sub-header">
-                <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>新增用户</button>
-                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>修改用户</button>
-                <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>删除</button>
-            </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>user-name</th>
-                        <th>registration-time</th>
-                        <th>user-email</th>
-                    </tr>
-                    </thead>
-                    <tbody ng-controller="userManageCtrl">
-                        <tr ng-repeat="u in users">
-                            <td>{{u.name}}</td>
-                            <td></td>
-                            <td>{{u.email}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-                <li><a href="#">8</a></li>
-                <li><a href="">&raquo;</a></li>
-            </ul>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>邮箱</th>
+                    <th>姓名</th>
+                    <th>注册日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="u in items">
+                    <td>{{u.email}}</td>
+                    <td>{{u.name}}</td>
+                    <td>{{u.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>
+                        <button class="btn btn-sm" ng-hide="u.status == 1" ng-click="toggle(u)"><span class="glyphicon glyphicon-play">启用</span></button>
+                        <button class="btn btn-sm" ng-show="u.status == 1" ng-click="toggle(u)"><span class="glyphicon glyphicon-stop">停用</span></button>
+                        <button class="btn btn-sm"><span class="glyphicon glyphicon-remove"></span>删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="pageChanged()"></pagination>
         </div>
 
     </div>
