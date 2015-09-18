@@ -33,16 +33,21 @@
     </script>
     <script src="/app/controller/common-ctrl.js"></script>
     <script src="/app/controller/user-ctrl.js"></script>
+    <script src="/app/controller/news-ctrl.js"></script>
+    <script src="/app/service/message-ctrl.js"></script>
     <script src="/app/service/user-service.js"></script>
+    <script src="/app/service/news-service.js"></script>
+
+
 </head>
 <body>
 <div ng-include="'/app/partials/template/nav.html'"></div>
-    <div class="row">
+    <div class="row" ng-controller="navCtrl">
         <div class="col-sm-2 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#/users-manage">用户</a></li>
-                <li><a href="#/news-manage">新闻</a></li>
-                <li><a href="#/message-manage">留言</a></li>
+                <li ng-class="getClass('/user')"><a href="#/users-manage">用户</a></li>
+                <li ng-class="getClass('/news-manage')"><a href="#/news-manage">新闻</a></li>
+                <li ng-class="getClass('/message-manage')"><a href="#/message-manage">留言</a></li>
             </ul>
         </div>
     </div>
