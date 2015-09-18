@@ -181,16 +181,6 @@ router.get('/count/message', function(req,res) {
     })
 });
 
-router.post('/message/change',function(req, res) {
-    Message.update(req.body._id,function(err) {
-        if (err) {
-            return res.jsonp({ result: 'error', message: "修改留言失败"})
-        } else {
-            res.jsonp({ result:'success' , message: "修改留言成功"})
-        }
-    });
-});
-
 router.post('/message/remove',function(req, res) {
     Message.remove(req.body._id, function(err) {
         if (err) {

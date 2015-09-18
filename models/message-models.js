@@ -52,15 +52,6 @@ Message.count = function(callback) {
     });
 };
 
-Message.update = function(id,title,content, callback) {
-    MessageModel.findOneAndUpdate({_id:user._id},{ $set: {title:title,content:content}}).exec(function (err,messages) {
-        if (err) {
-            return callback(err);
-        }
-        callback(null,messages);
-    });
-};
-
 Message.remove = function(id, callback) {
     MessageModel.where({_id:id}).findOneAndRemove().exec(function(err) {
         if (err){
