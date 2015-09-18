@@ -65,7 +65,7 @@ router.post('/user', function (req, res) {
     if (user) {
       return res.jsonp({ result: 'error', message: '邮箱已注册!'});
     }
-    newUser.save(function (err, user) {
+    newUser.save(function (err) {
       if (err) {
         return res.jsonp({ result: "error", message: err});
       }
@@ -116,7 +116,7 @@ router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
         title:req.body.title,
-        content: req.body.content,
+        content: req.body.content
     });
     newNews.save(function(err,news){
         if(err){
@@ -151,7 +151,7 @@ router.post('/message',function(res,req){
         name: req.body.name,
         content: req.body.content
     });
-    newMessage.save(function(err,message){
+    newMessage.save(function(err){
         if (err) {
             return res.jsonp({ result: "error", message: err});
         }
