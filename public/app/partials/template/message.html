@@ -1,27 +1,29 @@
-<div class="modal-header">
-    <h3 class="modal-title">留言给我们</h3>
-</div>
-
-<form id="data-create" method="post" class="form-horizontal" action="" name="forms" novalidate>
-    <div class="panel-body">
-        <div class="form-group">
-            <label  class="col-sm-2 control-label">姓名</label>
-            <div class="col-sm-10">
-                <input type="text"  name="author" class="form-control input-xxlarge" ng-model="user.author" id="author" ng-minlength="2" ng-maxlength="15" value="" placeholder="" required><br>
-                <span class="error" ng-show="forms.author.$dirty && forms.author.$error.required">作者不能为空</span>
-                <span class="error" ng-show="forms.author.$dirty && forms.author.$error.minlength">不能小于2个字符</span>
-                <span class="error" ng-show="forms.author.$dirty && forms.author.$error.maxlength">不能小于15个字符</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-2 control-label">内容</label>
-            <div class="col-sm-10">
-                <textarea type="text" rows="10" name="contant" class="form-control input-xxlarge" ng-model="user.control" id="contant"></textarea>
-            </div>
-        </div>
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">留言给我们</h3>
     </div>
-</form>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="">提交</button>
-    <button class="btn btn-warning" ng-click="cancel()">退出</button>
+    <form id="data-create" method="post" class="form-horizontal" action="" name="forms" novalidate>
+        <div class="panel-body">
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="author" class="form-control input-xxlarge" ng-model="message.name" id="author" ng-minlength="2" ng-maxlength="15" value="" placeholder="" required><br>
+                    <span class="error text-danger" ng-show="forms.author.$dirty && forms.author.$error.required">作者不能为空</span>
+                    <span class="error text-danger" ng-show="forms.author.$dirty && forms.author.$error.minlength">不能小于2个字符</span>
+                    <span class="error text-danger" ng-show="forms.author.$dirty && forms.author.$error.maxlength">不能小于15个字符</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">内容</label>
+                <div class="col-sm-10">
+                    <textarea type="text" rows="10" name="content" class="form-control input-xxlarge" ng-model="message.content"></textarea>
+                    <span class="error text-danger" ng-show="forms.content.$dirty && content.$error.required">内容不能为空</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">提交</button>
+        <button class="btn btn-warning" ng-click="cancel()">退出</button>
+    </div>
 </div>

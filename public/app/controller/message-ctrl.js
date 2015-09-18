@@ -18,5 +18,23 @@ angular.module("technicalSalon")
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
+    })
+
+    .controller('messagesCtrl', function ($scope,MessageService) {
+        $scope.user = {};
+
+        $scope.messages = function (u) {
+            var messageService = new MessageService(u);
+                messageService.$save(function (data) {
+                if (data.result == 'error') {
+                    $scope.$emit(data.result, data.message);
+                } else {
+                    $scope.$emit(data.result, data.message);
+                }
+            }, function (err) {
+                console.log(err);
+            });
+        }
+
     });
 

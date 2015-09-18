@@ -1,7 +1,6 @@
 angular.module('technicalSalon')
     .constant('authUrl', '/login')
     .controller('registerCtrl', function ($scope, $location, UserService) {
-
         $scope.user = {};
 
         $scope.register = function (u) {
