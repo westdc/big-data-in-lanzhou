@@ -4,7 +4,7 @@
             <h1 class="page-header">留言板</h1>
             <div class="list-group" ng-repeat="m in items">
                 <h4 class="list-group-item-heading">{{m.name}}
-                    <button class="btn btn-default btn-sm" ng-click="openDeleteDialog(m._id,'deleteMessageCtrl','sm')"><span class="glyphicon glyphicon-remove"></span>删除</button>
+                    <button class="btn btn-default btn-sm" ng-click="openDeleteDialog(m,'deleteMessageCtrl','sm')"><span class="glyphicon glyphicon-remove"></span>删除</button>
                 </h4>
                 <p class="list-group-item-text">{{m.content}}</p>
                 <hr>
