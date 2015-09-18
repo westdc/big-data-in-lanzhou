@@ -115,6 +115,17 @@ router.get('/paging/:page/:pageSize',function(req,res) {
         res.jsonp(news);
       }
     });
+
   });
+
+router.post('/user/toggle',function(res, req) {
+    User.updateStatus(req.body.user, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error', message: "修改失败"})
+        } else {
+            res.jsonp({result:'success' , message: "修改成功"})
+        }
+    })
+})
 
 module.exports = router;
