@@ -53,10 +53,11 @@ Message.count = function(callback) {
 };
 
 Message.remove = function(id, callback) {
-    MessageModel.where({_id:id}).findOneAndRemove().exec(function(err) {
+    MessageModel.where({_id:id}).findOneAndRemove().exec(function(err, messages) {
         if (err){
             return callback(err);
         }
+        callback(messages);
     });
 };
 

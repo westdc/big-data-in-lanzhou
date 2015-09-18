@@ -93,9 +93,10 @@ User.updateStatus = function(id,status, callback) {
 };
 
 User.remove = function(id, callback) {
-    UserModel.where({_id:id}).findOneAndRemove().exec(function(err) {
+    UserModel.where({_id:id}).findOneAndRemove().exec(function(err, users) {
         if (err){
             return callback(err);
         }
+        callback(users);
     });
 };

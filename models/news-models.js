@@ -82,10 +82,11 @@ News.update = function(id,title,content, callback) {
 };
 
 News.remove = function(id, callback) {
-    NewsModel.where({_id:id}).findOneAndRemove().exec(function(err) {
+    NewsModel.where({_id:id}).findOneAndRemove().exec(function(err, newss) {
         if (err){
             return callback(err);
         }
+        callback(newss);
     });
 };
 
