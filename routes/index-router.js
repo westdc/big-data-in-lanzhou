@@ -107,9 +107,8 @@ router.get('/count/user',function(req, res) {
   });
 });
 
-router.post('/user/toggle',function(res, req) {
-    console.log(req.body.user);
-    User.updateStatus(req.body.user, function(err) {
+router.post('/user/toggle',function(req, res) {
+    User.updateStatus(req.body._id, req.body.status, function(err) {
         if (err) {
             return res.jsonp({ result: 'error', message: "修改失败"})
         } else {
@@ -118,14 +117,14 @@ router.post('/user/toggle',function(res, req) {
     });
 });
 
-//router.post('',function(res, req) {
-//    User.remove(req.body.user, function(err) {
-//        if (err) {
-//            return res.jsonp({ result: 'error' , message: "注销用户失败"});
-//        } else {
-//            res.jsonp({ result: "success" , message: "此用户已注销"})
-//        }
-//    })
-//})
+router.post('/user/remove',function(res, req) {
+    User.remove(req.body.user, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error' , message: "注销用户失败"});
+        } else {
+            res.jsonp({ result: "success" , message: "此用户已注销"})
+        }
+    })
+})
 
 module.exports = router;
