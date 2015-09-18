@@ -112,25 +112,6 @@ router.get('/news',function(req,res){
     }
 });
 
-router.get('/news/:id',function(req,res){
-  News.get(req.params.id,function(err,news){
-    if(err){
-      console.log(err);
-    }
-    res.jsonp(news);
-  });
-});
-
-router.get('/count/news', function(req,res) {
-  News.count(function(err,total) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.jsonp({totalItems:total});
-    }
-  })
-});
-
 router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
@@ -144,6 +125,25 @@ router.post('/news',function(res,req){
             res.jsonp(news);
         }
     });
+});
+
+router.get('/count/news', function(req,res) {
+    News.count(function(err,total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    })
+});
+
+router.get('/news/:id',function(req,res){
+  News.get(req.params.id,function(err,news){
+    if(err){
+      console.log(err);
+    }
+    res.jsonp(news);
+  });
 });
 
 router.post('/message',function(res,req){
