@@ -88,5 +88,5 @@ User.updateStatus = function(user, callback) {
             return callback(err);
         }
         callback(null,user);
-    })
-}
+    });
+};
