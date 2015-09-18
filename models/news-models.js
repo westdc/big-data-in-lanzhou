@@ -86,7 +86,7 @@ News.remove = function(id, callback) {
         if (err){
             return callback(err);
         }
-        callback(newss);
+        callback(null, newss);
     });
 };
 

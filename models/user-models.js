@@ -97,6 +97,6 @@ User.remove = function(id, callback) {
         if (err){
             return callback(err);
         }
-        callback(users);
+        callback(null, users);
     });
 };

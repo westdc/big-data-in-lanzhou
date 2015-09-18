@@ -57,7 +57,7 @@ Message.remove = function(id, callback) {
         if (err){
             return callback(err);
         }
-        callback(messages);
+        callback(null, messages);
     });
 };
 
