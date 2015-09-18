@@ -6,7 +6,8 @@ var mongoose = require('./db');
 var newsSchema = new mongoose.Schema({
     name:String,
     title: String,
-    content: String
+    content: String,
+    createAt:{ type: Date, default: Date.now },
 });
 
 var NewsModel = mongoose.model('News', newsSchema);
@@ -15,6 +16,7 @@ function News(news) {
     this.name = news.name;
     this.title = news.title;
     this.content = news.content;
+    this.createAt=news.createAt;
 };
 
 News.getAll = function (skip,pageSize,callback) {
@@ -53,6 +55,25 @@ News.getLast = function (num, callback) {
         callback(null,newss);
     });
 };
+
+News.prototype.save=function(callback){
+    var news={
+        name:this.name,
+        createAt:this.createAt,
+        title:this.title,
+        content:this.content,
+    };
+
+    var newNews=new NewsModel(news);
+
+    newNews.save(function(err,news){
+        if(err){
+            return callback(err);
+        }
+        callback(null, news);
+    });
+};
+
 
 
 module.exports = News;
