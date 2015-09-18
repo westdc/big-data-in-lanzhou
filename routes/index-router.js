@@ -131,7 +131,7 @@ router.get('/count/news', function(req,res) {
   })
 });
 
-router.post('/news',function(res,req){
+router.post('/news',function(req,res){
     var newNews = new News({
         name: req.body.name,
         title:req.body.title,
@@ -146,7 +146,7 @@ router.post('/news',function(res,req){
     });
 });
 
-router.post('/message',function(res,req){
+router.post('/message',function(req,res){
     var newMessage = new Message({
         name: req.body.name,
         content: req.body.content
