@@ -112,6 +112,25 @@ router.get('/news',function(req,res){
     }
 });
 
+router.get('/count/news', function(req,res) {
+    News.count(function(err,total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    })
+});
+
+router.get('/news/:id',function(req,res){
+    News.get(req.params.id,function(err,news){
+        if(err){
+            console.log(err);
+        }
+        res.jsonp(news);
+    });
+});
+
 router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
@@ -127,23 +146,24 @@ router.post('/news',function(res,req){
     });
 });
 
-router.get('/count/news', function(req,res) {
-    News.count(function(err,total) {
-        if(err) {
-            console.log(err);
+router.post('',function(req,res) {
+    News.update(req.body._id, req.body.title, req.body.content, function (err) {
+        if (err) {
+            return res.jsonp({result: 'error', message: "修改失败"});
         } else {
-            res.jsonp({totalItems:total});
+            res.jsonp({result: 'success', message: "修改成功"});
         }
-    })
+    });
 });
 
-router.get('/news/:id',function(req,res){
-  News.get(req.params.id,function(err,news){
-    if(err){
-      console.log(err);
-    }
-    res.jsonp(news);
-  });
+router.post('', function(req,res) {
+    News.remove(req.body._id, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error' , message: "删除新闻失败"});
+        } else {
+            res.jsonp({ result: "success" , message: "删除新闻成功"});
+        }
+    });
 });
 
 router.post('/message',function(res,req){
