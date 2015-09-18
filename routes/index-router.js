@@ -146,6 +146,26 @@ router.get('/news/:id',function(req,res){
   });
 });
 
+router.post('/news/update',function(req,res) {
+    News.update(req.body.id, req.body.title, req.body.content, function (err) {
+        if (err) {
+            return res.jsonp({result: 'error', message: "修改失败"});
+        } else {
+            res.jsonp({result: 'success', message: "修改成功"});
+        }
+    });
+});
+
+router.post('/news/remove', function(req,res) {
+    News.remove(req.body.id, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error' , message: "删除新闻失败"});
+        } else {
+            res.jsonp({ result: "success" , message: "删除新闻成功"});
+        }
+    });
+});
+
 router.post('/message',function(res,req){
     var newMessage = new Message({
         name: req.body.name,
