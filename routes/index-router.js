@@ -9,10 +9,12 @@ router.get('/', function(req, res) {
 });
 
 router.get('/user',function(req, res){
-  User.getAll(function(err,users) {
-    if (err) {
+  var skip = req.query.skip || 0;
+  var pageSize = req.query.pageSize || 10;
+  User.getAll(skip, pageSize, function(err,users){
+    if(err){
       console.log('error');
-    } else {
+    }else{
       res.jsonp(users);
     }
   });
@@ -93,6 +95,16 @@ router.get('/count/news', function(req,res) {
       res.jsonp({totalItems:total});
     }
   })
+});
+
+router.get('/count/user',function(req, res) {
+  User.count(function(err, total) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.jsonp({totalItem:total});
+    }
+  });
 });
 
 router.get('/paging/:page/:pageSize',function(req,res) {
