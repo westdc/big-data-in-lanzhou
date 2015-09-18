@@ -31,6 +31,40 @@ router.get('/count/user',function(req, res) {
     });
 });
 
+router.post('/user', function (req, res) {
+    var newUser = new User({
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password
+    });
+    User.get(newUser.email, function (err, user) {
+        if (err) {
+            return res.jsonp({ result: 'error', message: err});
+        }
+        if (user) {
+            return res.jsonp({ result: 'error', message: '邮箱已注册!'});
+        }
+        newUser.save(function (err, user) {
+            if (err) {
+                return res.jsonp({ result: "error", message: err});
+            }
+            res.jsonp({ result:'success', message:'注册成功!'});
+        });
+    });
+});
+
+router.post('/login', function (req, res) {
+    User.get(req.body.email, function (err, user) {
+        if (!user) {
+            return res.jsonp({ result: 'error', message: '用户不存在!' })
+        }
+        if (!User.authenticate(user.password, req.body.password)) {
+            return res.jsonp({ result: 'error', message: '密码错误!' })
+        }
+        res.jsonp({ result: 'success', message: '登陆成功!'})
+    });
+});
+
 router.post('/user/toggle',function(req, res) {
     User.updateStatus(req.body._id, req.body.status, function(err) {
         console.log(req.body.status);
@@ -50,40 +84,6 @@ router.post('/user/remove',function(req, res) {
             res.jsonp({ result: "success" , message: "删除用户成功"});
         }
     });
-});
-
-router.post('/user', function (req, res) {
-  var newUser = new User({
-    email: req.body.email,
-    name: req.body.name,
-    password: req.body.password
-  });
-  User.get(newUser.email, function (err, user) {
-    if (err) {
-      return res.jsonp({ result: 'error', message: err});
-    }
-    if (user) {
-      return res.jsonp({ result: 'error', message: '邮箱已注册!'});
-    }
-    newUser.save(function (err, user) {
-      if (err) {
-        return res.jsonp({ result: "error", message: err});
-      }
-      res.jsonp({ result:'success', message:'注册成功!'});
-    });
-  });
-});
-
-router.post('/login', function (req, res) {
-  User.get(req.body.email, function (err, user) {
-    if (!user) {
-      return res.jsonp({ result: 'error', message: '用户不存在!' })
-    }
-    if (!User.authenticate(user.password, req.body.password)) {
-      return res.jsonp({ result: 'error', message: '密码错误!' })
-    }
-    res.jsonp({ result: 'success', message: '登陆成功!'})
-  });
 });
 
 
