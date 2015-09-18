@@ -8,18 +8,6 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/user',function(req, res){
-  var skip = req.query.skip || 0;
-  var pageSize = req.query.pageSize || 10;
-  User.getAll(skip, pageSize, function(err,users){
-    if(err){
-      console.log('error');
-    }else{
-      res.jsonp(users);
-      }
-  });
-});
-
 router.post('/user', function (req, res) {
   var newUser = new User({
     email: req.body.email,
@@ -33,7 +21,7 @@ router.post('/user', function (req, res) {
     if (user) {
       return res.jsonp({ result: 'error', message: '邮箱已注册!'});
     }
-    newUser.save(function (err, user) {
+    newUser.save(function (err) {
       if (err) {
         return res.jsonp({ result: "error", message: err});
       }
@@ -54,14 +42,61 @@ router.post('/login', function (req, res) {
   });
 });
 
-router.get('/news/:id',function(req,res){
-  News.get(req.params.id,function(err,news){
-    if(err){
-      console.log(err);
-    }
-    res.jsonp(news);
-  });
+router.get('/user',function(req, res){
+    var skip = req.query.skip || 0;
+    var pageSize = req.query.pageSize || 10;
+    User.getAll(skip, pageSize, function(err,users){
+        if(err){
+            console.log('error');
+        }else{
+            res.jsonp(users);
+        }
+    });
 });
+
+router.get('/count/user',function(req, res) {
+    User.count(function(err, total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    });
+});
+
+router.post('/user/toggle',function(req, res) {
+    User.updateStatus(req.body._id, req.body.status, function(err) {
+        console.log(req.body.status);
+        if (err) {
+            return res.jsonp({ result: 'error', message: "修改失败"})
+        } else {
+            res.jsonp({ result:'success' , message: "修改成功"})
+        }
+    });
+});
+
+router.post('/user/remove',function(req, res) {
+    User.remove(req.body._id, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error' , message: "删除用户失败"});
+        } else {
+            res.jsonp({ result: "success" , message: "删除用户成功"});
+        }
+    });
+});
+
+router.get('/count/news', function(req,res) {
+    News.count(function(err,total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    })
+});
+
+
+
 
 router.get('/news',function(req,res){
   var last = req.query.last || false;
@@ -87,44 +122,12 @@ router.get('/news',function(req,res){
   }
 });
 
-router.get('/count/news', function(req,res) {
-  News.count(function(err,total) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.jsonp({totalItems:total});
-    }
-  })
-});
-
-router.get('/count/user',function(req, res) {
-  User.count(function(err, total) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.jsonp({totalItems:total});
-    }
-  });
-});
-
-router.post('/user/toggle',function(req, res) {
-    User.updateStatus(req.body._id, req.body.status, function(err) {
-        console.log(req.body.status);
-        if (err) {
-            return res.jsonp({ result: 'error', message: "修改失败"})
-        } else {
-            res.jsonp({ result:'success' , message: "修改成功"})
+router.get('/news/:id',function(req,res){
+    News.get(req.params.id,function(err,news){
+        if(err){
+            console.log(err);
         }
-    });
-});
-
-router.post('/user/remove',function(req, res) {
-    User.remove(req.body._id, function(err) {
-        if (err) {
-            return res.jsonp({ result: 'error' , message: "删除用户失败"});
-        } else {
-            res.jsonp({ result: "success" , message: "删除用户成功"});
-        }
+        res.jsonp(news);
     });
 });
 
