@@ -131,21 +131,6 @@ router.get('/count/news', function(req,res) {
   })
 });
 
-router.post('/message',function(res,req){
-    var newMessage = new Message({
-        name: req.body.name,
-        content: req.body.content,
-        createAt:req.body.createAt
-    });
-    newMessage.save(function(err,message){
-        if(err){
-            console.log(err);
-        }else{
-            res.jsonp(message);
-        }
-    });
-});
-
 router.post('/news',function(res,req){
     var newNews = new News({
         name: req.body.name,
@@ -158,6 +143,21 @@ router.post('/news',function(res,req){
             console.log(err);
         }else{
             res.jsonp(news);
+        }
+    });
+});
+
+router.post('/message',function(res,req){
+    var newMessage = new Message({
+        name: req.body.name,
+        content: req.body.content,
+        createAt:req.body.createAt
+    });
+    newMessage.save(function(err,message){
+        if(err){
+            console.log(err);
+        }else{
+            res.jsonp(message);
         }
     });
 });
