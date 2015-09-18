@@ -150,14 +150,13 @@ router.post('/news',function(res,req){
 router.post('/message',function(res,req){
     var newMessage = new Message({
         name: req.body.name,
-        content: req.body.content,
-        createAt:req.body.createAt
+        content: req.body.content
     });
     newMessage.save(function(err,message){
         if(err){
-            console.log(err);
+            return res.jsonp({ result: 'error', message: '添加失败!' })
         }else{
-            res.jsonp(message);
+            res.jsonp({ result: 'success', message: '添加成功!'})
         }
     });
 });
