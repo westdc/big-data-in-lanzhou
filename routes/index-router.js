@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var News = require('../models/news-models'),
-    User = require('../models/user-models'),
-    Message=require('../models/message-models');
+    User = require('../models/user-models');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -19,6 +18,37 @@ router.get('/user',function(req, res){
       res.jsonp(users);
       }
   });
+});
+
+router.get('/count/user',function(req, res) {
+    User.count(function(err, total) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.jsonp({totalItems:total});
+        }
+    });
+});
+
+router.post('/user/toggle',function(req, res) {
+    User.updateStatus(req.body._id, req.body.status, function(err) {
+        console.log(req.body.status);
+        if (err) {
+            return res.jsonp({ result: 'error', message: "修改失败"})
+        } else {
+            res.jsonp({ result:'success' , message: "修改成功"})
+        }
+    });
+});
+
+router.post('/user/remove',function(req, res) {
+    User.remove(req.body._id, function(err) {
+        if (err) {
+            return res.jsonp({ result: 'error' , message: "删除用户失败"});
+        } else {
+            res.jsonp({ result: "success" , message: "删除用户成功"});
+        }
+    });
 });
 
 router.post('/user', function (req, res) {
@@ -55,6 +85,32 @@ router.post('/login', function (req, res) {
   });
 });
 
+
+
+router.get('/news',function(req,res){
+    var last = req.query.last || false;
+    var num = req.query.num || 3;
+    if(last) {
+        News.getLast(num, function(err, news) {
+            if(err) {
+                console.log(err);
+            } else {
+                res.jsonp(news);
+            }
+        });
+    } else {
+        var skip = req.query.skip || 0;
+        var pageSize = req.query.pageSize || 10;
+        News.getAll(skip, pageSize, function(err,news){
+            if(err){
+                console.log('error');
+            }else{
+                res.jsonp(news);
+            }
+        });
+    }
+});
+
 router.get('/news/:id',function(req,res){
   News.get(req.params.id,function(err,news){
     if(err){
@@ -62,30 +118,6 @@ router.get('/news/:id',function(req,res){
     }
     res.jsonp(news);
   });
-});
-
-router.get('/news',function(req,res){
-  var last = req.query.last || false;
-  var num = req.query.num || 3;
-  if(last) {
-    News.getLast(num, function(err, news) {
-      if(err) {
-        console.log(err);
-      } else {
-        res.jsonp(news);
-      }
-    });
-  } else {
-    var skip = req.query.skip || 0;
-    var pageSize = req.query.pageSize || 10;
-    News.getAll(skip, pageSize, function(err,news){
-      if(err){
-        console.log('error');
-      }else{
-        res.jsonp(news);
-      }
-    });
-  }
 });
 
 router.get('/count/news', function(req,res) {
@@ -96,70 +128,6 @@ router.get('/count/news', function(req,res) {
       res.jsonp({totalItems:total});
     }
   })
-});
-
-router.get('/count/user',function(req, res) {
-  User.count(function(err, total) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.jsonp({totalItems:total});
-    }
-  });
-});
-
-router.post('/user/toggle',function(res, req) {
-    User.updateStatus(req.body.user, function(err) {
-        if (err) {
-            return res.jsonp({ result: 'error', message: "修改失败"})
-        } else {
-            res.jsonp({result:'success' , message: "修改成功"})
-        }
-    });
-});
-
-router.post('/news',function(req,res){
-  var newNews = new News({
-    name: req.body.name,
-    createAt:req.body.createAt,
-    title:req.body.title,
-    content: req.body.content,
-  });
-  newNews.save(function(err,news){
-    if(err){
-      console.log(err);
-    }else{
-      res.jsonp(news);
-    }
-  });
-});
-
-
-router.post('/message',function(req,res){
-  var newMessage = new Message({
-    name: req.body.name,
-    content: req.body.content,
-    createAt:req.body.createAt
-  });
-  newMessage.save(function(err,message){
-    if(err){
-      console.log(err);
-    }else{
-      res.jsonp(message);
-    }
-  });
-});
-
-router.get('/message',function(req, res){
-  var skip = req.query.skip || 0;
-  var pageSize = req.query.pageSize || 10;
-  Message.getAll(skip, pageSize, function(err,message){
-    if(err){
-      console.log('error');
-    }else{
-      res.jsonp(message);
-    }
-  });
 });
 
 module.exports = router;

@@ -11,7 +11,7 @@ var MessageModel = mongoose.model('Message', messageSchema);
 function Message(message){
     this.name=message.name;
     this.content=message.content;
-    this.createAt=message.createAt
+    this.createAt=message.createAt;
 }
 
 module.exports =Message;
@@ -35,11 +35,11 @@ Message.prototype.save=function(callback){
 };
 
 Message.getAll = function (skip,pageSize,callback) {
-    MessageModel.find().skip(skip).limit(pageSize).exec(function(err,message){
+    MessageModel.find().exec(function(err,messages){
         if (err) {
             return callback(err);
         }
-        callback(null,message);
+        callback(null,messages);
     });
 };
 
