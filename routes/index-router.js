@@ -149,9 +149,9 @@ router.get('/news/:id',function(req,res){
 router.post('/news/update',function(req,res) {
     News.update(req.body.id, req.body.title, req.body.content, function (err) {
         if (err) {
-            return res.jsonp({result: 'error', message: "修改失败"});
+            return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
-            res.jsonp({result: 'success', message: "修改成功"});
+            res.jsonp({result: 'success', message: "修改新闻成功"});
         }
     });
 });
