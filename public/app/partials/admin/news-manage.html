@@ -6,7 +6,7 @@
             <div class="list-group" ng-repeat="n in items">
                 <h4 class="list-group-item-heading">{{n.title}} <small>{{n.name}}</small>
                     <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
-                    <button class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-remove"></span>删除</button>
+                    <button class="btn btn-default btn-sm" ng-click="openDeleteNews(n,'deleteNewsCtrl','sm')" ><span class="glyphicon glyphicon-remove"></span>删除</button>
                 </h4>
                 <p class="list-group-item-text">{{n.content}}</p>
                 <hr>

@@ -36,7 +36,7 @@ angular.module('technicalSalon')
         }
     })
 
-    .controller("userManageCtrl", function ($scope, $http, UserService, $modal) {
+    .controller("userManageCtrl", function ($scope, $http,$modal, UserService) {
 
         $scope.toggle = function (u) {
             u.status = u.status == 1 ? 0 : 1;
@@ -66,22 +66,41 @@ angular.module('technicalSalon')
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
 
-        $scope.open = function (modalCtrl, size) {
+        $scope.openDeleteUser = function(message, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
                 controller: modalCtrl,
-                size: size
+                size: size,
+                resolve:{
+                    id:function() {
+                        return message._id
+                    }
+                }
             });
-        }
-    })
 
-    .controller("alertDeleteCtrl", function ($scope, $modalInstance) {
-        $scope.ok = function () {
-            $modalInstance.close();
+            modalInstance.result.then(function(id) {
+                $http.post('/user/remove',{id:id}).success(function(data) {
+                    if (data.result == 'error') {
+                        $scope.$emit(data.result, data.message);
+                    } else {
+                        $scope.$emit(data.result, data.message);
+                        $scope.items.splice($scope.items.indexOf(message), 1);
+                    }
+                }).error(function(err) {
+                    console.log(err);
+                });
+            }, function() {
+
+            })
+        }
+
+    })
+    .controller('deleteUserCtrl', function($scope, $modalInstance, id) {
+        $scope.submit = function () {
+            $modalInstance.close(id);
         };
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
     });
-
 
