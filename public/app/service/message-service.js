@@ -3,5 +3,5 @@
  */
 angular.module('technicalSalon')
     .factory('MessageService',function($resource) {
-        return $resource('/message/:id');
-    });
+    return $resource('/message/:id');
+});

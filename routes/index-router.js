@@ -119,10 +119,10 @@ router.post('/news',function(req,res){
         content: req.body.content
     });
     newNews.save(function(err,news){
-        if(err){
-            console.log(err);
-        }else{
-            res.jsonp(news);
+        if (err) {
+            return res.jsonp({result: 'error', message: "xiz新闻失败"});
+        } else {
+            res.jsonp({result: 'success', message: "修改新闻成功"});
         }
     });
 });
@@ -147,7 +147,7 @@ router.get('/news/:id',function(req,res){
 });
 
 router.post('/news/update',function(req,res) {
-    News.update(req.body.id, req.body.title, req.body.content, function (err) {
+    News.update(req.body.id, req.body.title, req.body.name, req.body.content, function (err) {
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {

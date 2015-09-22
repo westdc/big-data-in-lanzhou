@@ -7,4 +7,4 @@ angular.module('technicalSalon')
         return $resource('/news/:id',{}, {
             last: {method:'GET', params:{last: true}, isArray:true}
         });
-    });
+    })

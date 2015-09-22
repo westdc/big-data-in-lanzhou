@@ -71,9 +71,9 @@ News.get=function(_id,callback){
   });
 };
 
-News.update = function(id,title,content, callback) {
+News.update = function(id,title,name,content, callback) {
     console.log(id);
-    NewsModel.findOneAndUpdate({_id:id},{ $set: {title:title,content:content}}).exec(function (err, newss) {
+    NewsModel.findOneAndUpdate({_id:id},{ $set: {title:title,name:name,content:content}}).exec(function (err, newss) {
         if (err) {
             return callback(err);
         }
