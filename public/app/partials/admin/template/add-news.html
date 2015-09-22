@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form name="increaseForm" novalidate>
+            <h2 class="orm-signin-heading">添加新闻</h2>
+            <p>
+                <input type="text" id="title" ng-model="news.title" name="title" class="form-control" placeholder="请输入新闻标题"
+                       required>
+                <span class="error text-danger"
+                      ng-show="(increaseForm.title.$dirty) && increaseForm.title.$error.required">标题不能为空！
+                </span>
+            </p>
+            <p>
+                <input type="text" name="name" ng-model="news.name"
+                       required class="form-control"
+                       placeholder="请输作者">
+                <span class="error text-danger"
+                      ng-show="(increaseForm.name.$dirty) && increaseForm.name.$error.required">作者不能为空！
+                </span>
+            </p>
+            <p>
+                <textarea type="text" name="content" ng-model="news.content"
+                       required class="form-control"
+                       placeholder="请输入内容">
+                </textarea>
+                <span class="error text-danger"
+                      ng-show="(increaseForm.content.$dirty) && increaseForm.content.$error.required">内容不能为空！</span>
+
+            </p>
+            <footer>
+            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit" ng-disabled="registerForm.$invalid" ng-click="submit(news)">添加</button>
+            <button class="btn btn-warning btn-default col-sm-offset-6"  ng-click="cancel()">关闭</button>
+            <footer>
+
+        </form>
+        </div>
+  </div>

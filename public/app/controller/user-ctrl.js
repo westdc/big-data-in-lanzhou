@@ -5,7 +5,7 @@ angular.module('technicalSalon')
 
         $scope.register = function (u) {
             var userService = new UserService(u);
-            userService.$save(function (data) {
+                userService.$save(function (data) {
                 if (data.result == 'error') {
                     $scope.$emit(data.result, data.message);
                 } else {
@@ -36,7 +36,7 @@ angular.module('technicalSalon')
         }
     })
 
-    .controller("userManageCtrl", function ($scope, $http,$modal, UserService) {
+    .controller("userManageCtrl", function ($scope, $http, $modal, UserService) {
 
         $scope.toggle = function (u) {
             u.status = u.status == 1 ? 0 : 1;
@@ -76,6 +76,7 @@ angular.module('technicalSalon')
                         return message._id
                     }
                 }
+
             });
 
             modalInstance.result.then(function(id) {

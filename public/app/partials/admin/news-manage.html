@@ -1,11 +1,11 @@
-<div class="container-fluid" ng-controller="newsCtrl">
+<div class="container-fluid" ng-controller="newsManagerCtrl">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">新闻 <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>新增</button></h1>
+            <h1 class="page-header">新闻 <button class="btn btn-default" ng-click="openAddDialog('submitNewsCtrl')"><span class="glyphicon glyphicon-ok"></span>新增</button></h1>
 
             <div class="list-group" ng-repeat="n in items">
                 <h4 class="list-group-item-heading">{{n.title}} <small>{{n.name}}</small>
-                    <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
+                    <button ng-click="openUpdateDialog(n,'updateNewsCtrl')" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
                     <button class="btn btn-default btn-sm" ng-click="openDeleteNews(n,'deleteNewsCtrl','sm')" ><span class="glyphicon glyphicon-remove"></span>删除</button>
                 </h4>
                 <p class="list-group-item-text">{{n.content}}</p>

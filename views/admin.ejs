@@ -26,6 +26,9 @@
                    $routeProvider.when('/message-manage',{
                        templateUrl:"/app/partials/admin/message-manage.html"
                    });
+                   $routeProvider.when("/news/:id", {
+                       templateUrl: "app/partials/admin/template/update-news.html"
+                   });
                    $routeProvider.otherwise({
                         redirectTo:"/users-manage"
                     })
