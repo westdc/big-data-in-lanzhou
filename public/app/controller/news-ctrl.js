@@ -91,11 +91,16 @@ angular.module("technicalSalon")
         };
 
 
-        $scope.openUpdateDialog = function (modalCtrl, size) {
+        $scope.openUpdateDialog = function (news,modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/update-news.html',
                 controller: modalCtrl,
-                size: size
+                size: size,
+                resolve: {
+                    news:function() {
+                        return news;
+                    }
+                }
             });
             modalInstance.result.then(function (news) {
                 var newsService = new NewsService(news);
@@ -125,9 +130,10 @@ angular.module("technicalSalon")
             $modalInstance.dismiss('cancel');
         }
     })
-    .controller("updateNewsCtrl", function ($scope, $modalInstance) {
+    .controller("updateNewsCtrl", function ($scope, $modalInstance,news) {
 
-        $scope.news = {};
+        console.log(news);
+        $scope.news = news;
 
         $scope.submit = function (news) {
             $modalInstance.close(news);
