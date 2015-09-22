@@ -2,6 +2,7 @@ angular.module("technicalSalon")
     .controller("indicatorsCtrl", function ($scope) {
         $scope.indicator = false;
         $scope.style = "";
+        $scope.user = null;
 
         $scope.$on('success', function (event, message) {
             $scope.indicator = true;
@@ -35,7 +36,16 @@ angular.module("technicalSalon")
 
         $scope.getClass = function () {
             return $scope.style + " bounceInDown bounceOutDown";
-        }
+        };
+
+        $scope.$on('login',function(event, user) {
+            $scope.user = user;
+        });
+
+        $scope.$on('logout', function(event) {
+           $scope.user = null;
+        });
+
     })
     .controller("navCtrl", function ($scope, $location) {
         $scope.getClass = function (path) {

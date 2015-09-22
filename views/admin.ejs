@@ -18,13 +18,13 @@
        angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap"])
                 .config(function ($routeProvider) {
                    $routeProvider.when("/users-manage", {
-                       templateUrl: "app/partials/admin/users-manage.html"
+                       templateUrl: "/app/partials/admin/users-manage.html"
                    });
                    $routeProvider.when("/news-manage", {
-                       templateUrl: "app/partials/admin/news-manage.html"
+                       templateUrl: "/app/partials/admin/news-manage.html"
                    });
                    $routeProvider.when('/message-manage',{
-                       templateUrl:"app/partials/admin/message-manage.html"
+                       templateUrl:"/app/partials/admin/message-manage.html"
                    });
                    $routeProvider.otherwise({
                         redirectTo:"/users-manage"
