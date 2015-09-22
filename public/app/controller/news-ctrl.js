@@ -1,4 +1,7 @@
 /**
+ * Created by nober on 15-9-22.
+ */
+/**
  * Created by paul on 15-8-12.
  */
 
@@ -26,7 +29,6 @@ angular.module("technicalSalon")
 
     })
     .controller("newsManagerCtrl", function ($scope, $http, $modal, NewsService) {
-
         $scope.news = [];
         $scope.currentPage = 1;
         $scope.totalItems = 0;
@@ -36,6 +38,7 @@ angular.module("technicalSalon")
             $scope.totalItems = data.totalItems;
             $scope.items = NewsService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         });
+
         $scope.pageChanged = function (page) {
             $scope.items = NewsService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
@@ -58,38 +61,34 @@ angular.module("technicalSalon")
                     console.log(err);
                 });
             }, function () {
-
             });
         };
-
-
-        $scope.openDeleteNews = function(message, modalCtrl, size) {
+        $scope.openDeleteNews = function(news, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
                 controller: modalCtrl,
                 size: size,
                 resolve:{
                     id:function() {
-                        return message._id
+                        return news._id
                     }
                 }
             });
             modalInstance.result.then(function(id) {
-                    $http.post('/news/remove',{id:id}).success(function(data) {
-                        if (data.result == 'error') {
-                            $scope.$emit(data.result, data.message);
-                        } else {
-                            $scope.$emit(data.result, data.message);
-                            $scope.items.splice($scope.items.indexOf(message), 1);
-                        }
-                    }).error(function(err) {
-                        console.log(err);
-                    });
-                }, function() {
+                $http.post('/news/remove',{id:id}).success(function(data) {
+                    if (data.result == 'error') {
+                        $scope.$emit(data.result, data.message);
+                    } else {
+                        $scope.$emit(data.result, data.message);
+                        $scope.items.splice($scope.items.indexOf(news), 1);
+                    }
+                }).error(function(err) {
+                    console.log(err);
+                });
+            }, function() {
 
-                }
-            );
-        };
+            })
+        }
 
 
         $scope.openUpdateDialog = function (news,modalCtrl, size) {

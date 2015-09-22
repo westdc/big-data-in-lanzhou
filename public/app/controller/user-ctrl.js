@@ -66,26 +66,25 @@ angular.module('technicalSalon')
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
 
-        $scope.openDeleteUser = function(message, modalCtrl, size) {
+        $scope.openDeleteUser = function(user, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
                 controller: modalCtrl,
                 size: size,
                 resolve:{
                     id:function() {
-                        return message._id
+                        return user._id
                     }
                 }
 
             });
-
             modalInstance.result.then(function(id) {
                 $http.post('/user/remove',{id:id}).success(function(data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
                         $scope.$emit(data.result, data.message);
-                        $scope.items.splice($scope.items.indexOf(message), 1);
+                        $scope.items.splice($scope.items.indexOf(user), 1);
                     }
                 }).error(function(err) {
                     console.log(err);
