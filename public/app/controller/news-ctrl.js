@@ -63,7 +63,7 @@ angular.module("technicalSalon")
             }, function () {
             });
         };
-        $scope.openDeleteNews = function(news, modalCtrl, size) {
+        $scope.openDeleteDialog = function(news, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
                 controller: modalCtrl,
@@ -88,7 +88,7 @@ angular.module("technicalSalon")
             }, function() {
 
             })
-        }
+        };
 
 
         $scope.openUpdateDialog = function (news,modalCtrl, size) {
@@ -97,25 +97,26 @@ angular.module("technicalSalon")
                 controller: modalCtrl,
                 size: size,
                 resolve: {
-                    news:function() {
-                        return news;
+                    news:function(){
+                    return news
+
                     }
                 }
             });
-            modalInstance.result.then(function (news) {
-                var newsService = new NewsService(news);
-                newsService.$save(function (data) {
+            modalInstance.result.then(function(news) {
+                $http.post('/news/update',{news:news}).success(function(data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
                         $scope.$emit(data.result, data.message);
+                        $scope.items.splice($scope.items.indexOf(news), 1);
                     }
-                }, function (err) {
+                }).error(function(err) {
                     console.log(err);
                 });
-            }, function () {
+            }, function() {
 
-            });
+            })
         };
     })
     .controller("submitNewsCtrl", function ($scope, $modalInstance) {
@@ -130,16 +131,21 @@ angular.module("technicalSalon")
             $modalInstance.dismiss('cancel');
         }
     })
-    .controller("updateNewsCtrl", function ($scope, $modalInstance,news) {
-
-        console.log(news);
-        $scope.news = news;
-
-        $scope.submit = function (news) {
-            $modalInstance.close(news);
+    .controller('deleteNewsCtrl',function($scope,$modalInstance,id){
+        $scope.submit = function () {
+            $modalInstance.close(id);
         };
         $scope.cancel = function () {
-            $scope.news = {};
+            $modalInstance.dismiss('cancel');
+        }
+    })
+    .controller("updateNewsCtrl",function ($scope, $modalInstance,news) {
+
+        $scope.news=news;
+        $scope.submit = function () {
+            $modalInstance.close($scope.news);
+        };
+        $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
     });

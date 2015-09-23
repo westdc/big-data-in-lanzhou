@@ -43,11 +43,14 @@ router.post('/user/toggle',function(req, res) {
 });
 
 router.post('/user/remove',function(req, res) {
-    User.remove(req.body._id, function(err) {
+    User.remove(req.body.id, function(err,data) {
+        console.log(data);
         if (err) {
             return res.jsonp({ result: 'error' , message: "删除用户失败"});
-        } else {
+        } else if(data){
             res.jsonp({ result: "success" , message: "删除用户成功"});
+        } else {
+            res.jsonp({ result: "error" , message: "id is not found"});
         }
     });
 });
