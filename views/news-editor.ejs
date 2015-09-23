@@ -1,0 +1,41 @@
+<!Doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8"/>
+    <title>a make down editor</title>
+
+    <link type="text/css" rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/codemirror.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/highlight/xcode.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/amd.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/markdown.css"/>
+
+    <script src="/javascripts/codemirror/lib/codemirror.js"></script>
+    <script src="/javascripts/codemirror/mode/markdown/markdown.js"></script>
+    <script src="/javascripts/hogan-3.0.1.min.js"></script>
+    <script src="/javascripts/marked-0.3.2.min.js"></script>
+    <script src="/javascripts/highlight-8.1.0.min.js"></script>
+    <script src="/javascripts/pie/pie.js"></script>
+    <script src="/javascripts/pie/unit.js"></script>
+    <script src="/javascripts/pie/amarkdown.js"></script>
+
+</head>
+<body>
+
+<div id="amd-editor"></div>
+
+<script>
+    (function (PIE) {
+        window.addEventListener('load', function () {
+            PIE.makeAMarkdown(document.getElementById('amd-editor'), {
+                imgAction: '/image',
+                pubAction: '/',
+                titleName: 'title',
+                textName: 'text'
+            });
+        });
+    }(PIE));
+</script>
+</body>
+</html>
