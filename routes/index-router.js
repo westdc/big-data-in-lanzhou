@@ -120,7 +120,7 @@ router.post('/news',function(req,res){
     });
     newNews.save(function(err,news){
         if (err) {
-            return res.jsonp({result: 'error', message: "xiz新闻失败"});
+            return res.jsonp({result: 'error', message: "下载新闻失败"});
         } else {
             res.jsonp({result: 'success', message: "修改新闻成功"});
         }
