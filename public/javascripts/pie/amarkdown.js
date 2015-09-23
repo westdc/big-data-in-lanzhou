@@ -774,7 +774,7 @@
             urlInput.disabled = true;
             // 加载动画
             viewContent.style.backgroundSize = '100px 100px';
-            viewContent.style.backgroundImage = 'url(/img/loading.gif)';
+            viewContent.style.backgroundImage = 'url(/images/loading.gif)';
             PIE.post(new XMLHttpRequest(), action, new FormData(uploadForm), function (data) {
                 // 如果用户中止，则不设置图片
                 if (beChange) {

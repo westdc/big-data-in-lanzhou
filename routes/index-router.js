@@ -211,4 +211,8 @@ router.post('/message/remove',function(req, res) {
     });
 });
 
+router.get('/news-editor', function(req,res) {
+    res.render('news-editor', { title: 'Express' });
+})
+
 module.exports = router;
