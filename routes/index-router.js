@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var News = require('../models/news-models'),
     User = require('../models/user-models'),
+    formidable = require('formidable'),
+    fs = require('fs'),
+    images = '/avatar/',
     Message=require('../models/message-models');
 
 /* GET home page. */
@@ -213,6 +216,18 @@ router.post('/message/remove',function(req, res) {
 
 router.get('/news-editor', function(req,res) {
     res.render('news-editor', { title: 'Express' });
-})
+});
+
+router.post('/upload',function(req,res){
+    var newUpload=new Upload({
+        picture:req.body.picture
+    });
+    newUpload.save(function(err){
+        if (err) {
+            return res.jsonp({ result: "error", message: err});
+        }
+        res.jsonp({ result:'success', message:'添加成功!'});
+    });
+});
 
 module.exports = router;
