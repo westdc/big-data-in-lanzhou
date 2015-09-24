@@ -13,7 +13,6 @@ angular.module("technicalSalon")
         $scope.currentPage = 1;
         $scope.totalItems = 0;
         $scope.items = [];
-
         $http.get('/count/news').success(function (data) {
             $scope.totalItems = data.totalItems;
             $scope.items = NewsService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
@@ -26,7 +25,6 @@ angular.module("technicalSalon")
     .controller("newsDetailCtrl", function ($scope, $routeParams, $http, NewsService) {
         var id = $routeParams.id;
         $scope.n = NewsService.get({id: id});
-
     })
     .controller("newsManagerCtrl", function ($scope, $http, $modal, NewsService) {
         $scope.news = [];
@@ -91,7 +89,7 @@ angular.module("technicalSalon")
         };
 
 
-        $scope.openUpdateDialog = function (news, modalCtrl, size, NewsService) {
+        $scope.openUpdateDialog = function (news, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/update-news.html',
                 controller: modalCtrl,
@@ -99,12 +97,11 @@ angular.module("technicalSalon")
                 resolve: {
                     news: function () {
                         return news
-
                     }
                 }
             });
             modalInstance.result.then(function (news) {
-                $http.post("news/update", {news: news}).success(function (data) {
+                $http.post("news/update",{news: news}).success(function (data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
@@ -114,7 +111,6 @@ angular.module("technicalSalon")
                     console.log(err)
                 })
             },function(){
-
             })
         }
     })
@@ -138,7 +134,7 @@ angular.module("technicalSalon")
     })
     .controller("updateNewsCtrl", function ($scope, $modalInstance, news) {
 
-        $scope.news = news;
+        $scope.news =news;
         $scope.submit = function () {
             $modalInstance.close($scope.news);
         };
