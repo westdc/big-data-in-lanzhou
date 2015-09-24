@@ -8,7 +8,7 @@ var News = require('../models/news-models'),
 var passport=require('passport');
 
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: '../public/images' });
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -130,7 +130,7 @@ router.get('/news/:id',function(req,res){
 });
 
 router.post('/news/update',function(req,res) {
-    News.update(req.body.id, req.body.title, req.body.name, req.body.content, function (err) {
+    News.update(req.body.news, function (err) {
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
