@@ -8,7 +8,7 @@ var News = require('../models/news-models'),
 var passport=require('passport');
 
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: '../public/images' });
 
 /* GET home page. */
 router.get('/', function(req, res) {
