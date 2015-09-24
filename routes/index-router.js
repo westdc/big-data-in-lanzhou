@@ -129,6 +129,7 @@ router.get('/news/:id',function(req,res){
   });
 });
 
+
 router.post('/news/update',function(req,res) {
     News.update(req.body.news, function (err) {
         if (err) {
