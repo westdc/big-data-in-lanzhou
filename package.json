@@ -16,6 +16,7 @@
     "mongoose": "latest",
     "passport":"latest",
     "passport-local":"latest",
-    "passport-local-mongoose":"latest"
+    "passport-local-mongoose":"latest",
+    "multer": "1.0.5"
   }
 }
