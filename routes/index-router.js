@@ -13,11 +13,23 @@ var storage = multer.diskStorage({
         cb(null, '../public/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
+        cb(null, Date.now() + '-' + file.originalname)
     }
 });
 
-var upload = multer({ storage: storage });
+var upload = multer({
+    storage: storage,
+    fileFilter: function(req, file, cb) {
+        console.log("fileFilter:"+ file.originalname);
+        var name = file.originalname;
+        var ext = ".jpg";
+        if(name.indexOf(ext, name.length - ext.length) !== -1) {
+            cb(null,true);
+        } else {
+            cb(null,false);
+        }
+    }
+});
 
 
 /* GET home page. */
@@ -209,7 +221,26 @@ router.get('/news-editor', function(req,res) {
 });
 
 router.post('/upload', upload.single('upload'),function(req,res){
-    console.log(req.file);
+    res.format({
+        'text/plain': function(){
+            res.send('UPLOAD_TYPE_ERROR');
+        },
+
+        'text/html': function(){
+            res.send('<p>hey</p>');
+        },
+
+        'application/json': function(){
+            res.send({ message: 'hey' });
+        },
+
+        'default': function() {
+            // log the request and respond with 406
+            res.status(406).send('Not Acceptable');
+        }
+    });
+
+    return "";
 });
 
 module.exports = router;
