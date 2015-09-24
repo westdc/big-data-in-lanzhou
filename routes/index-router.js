@@ -44,14 +44,11 @@ router.post('/user/toggle',function(req, res) {
 });
 
 router.post('/user/remove',function(req, res) {
-    User.remove(req.body.id, function(err,data) {
-        console.log(data);
+    User.remove(req.body._id, function(err) {
         if (err) {
             return res.jsonp({ result: 'error' , message: "删除用户失败"});
-        } else if(data){
-            res.jsonp({ result: "success" , message: "删除用户成功"});
         } else {
-            res.jsonp({ result: "error" , message: "id is not found"});
+            res.jsonp({ result: "success" , message: "删除用户成功"});
         }
     });
 });
@@ -106,7 +103,7 @@ router.get('/news',function(req,res){
     } else {
         var skip = req.query.skip || 0;
         var pageSize = req.query.pageSize || 10;
-        News.getAll(skip,pageSize, function(err,news){
+        News.getAll(skip, pageSize, function(err,news){
             if(err){
                 console.log('error');
             }else{
@@ -124,7 +121,7 @@ router.post('/news',function(req,res){
     });
     newNews.save(function(err,news){
         if (err) {
-            return res.jsonp({result: 'error', message: "修改新闻失败"});
+            return res.jsonp({result: 'error', message: "xiz新闻失败"});
         } else {
             res.jsonp({result: 'success', message: "修改新闻成功"});
         }
