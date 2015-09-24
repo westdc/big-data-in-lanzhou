@@ -7,6 +7,9 @@ var News = require('../models/news-models'),
     //Account=require('../models/account');
 var passport=require('passport');
 
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
@@ -193,6 +196,19 @@ router.post('/message/remove',function(req, res) {
 
 router.get('/news-editor', function(req,res) {
     res.render('news-editor', { title: 'Express' });
-})
+});
 
+router.post('/upload', upload.single('avatar'),function(req,res){
+
+    var newUpload=new Upload({
+        picture:req.body.picture
+    });
+
+    newUpload.save(function(err){
+        if (err) {
+            return res.jsonp({ result: "error", message:"上传图片失败"});
+        }
+        res.jsonp({ result:'success', message:'上传图片成功!'});
+    });
+});
 module.exports = router;
