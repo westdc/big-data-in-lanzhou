@@ -10,6 +10,15 @@ var admin = require('./routes/admin-router');
 
 var app = express();
 
+var multer  = require('multer');
+
+app.use(multer({
+  dest: './public/images',
+  rename: function (fieldname, filename) {
+    return filename;
+  }
+}));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
