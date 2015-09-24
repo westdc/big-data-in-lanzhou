@@ -25,14 +25,10 @@
                 <span class="error text-danger"
                       ng-show="(increaseNewsForm.content.$dirty) && increaseNewsForm.content.$error.required">内容不能为空！</span>
             </p>
-            <marked>
-                # Markdown directive
-                *It works!*
-            </marked>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit" ng-disabled="registerForm.$invalid" ng-click="submit(news)">添加</button>
-            <button class="btn btn-warning btn-default col-sm-offset-6"  ng-click="cancel()">关闭</button>
+            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit" ng-disabled="increaseNewsForm.$invalid" ng-click="submit(news)">添加</button>
+            <button class="btn btn-warning btn-default col-sm-offset-6" ng-click="cancel()">关闭</button>
         </div>
     </form>
 </div>

@@ -6,14 +6,13 @@
  */
 
 angular.module("technicalSalon")
-    .controller("lastNewsCtrl", function ($scope, $http,$modal, NewsService) {
+    .controller("lastNewsCtrl", function ($scope, $http, $modal, NewsService) {
         $scope.news = NewsService.last({num: 5});
     })
-    .controller("newsCtrl", function ($scope, $http,$modal,NewsService) {
+    .controller("newsCtrl", function ($scope, $http, $modal, NewsService) {
         $scope.currentPage = 1;
         $scope.totalItems = 0;
         $scope.items = [];
-
         $http.get('/count/news').success(function (data) {
             $scope.totalItems = data.totalItems;
             $scope.items = NewsService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
@@ -26,7 +25,6 @@ angular.module("technicalSalon")
     .controller("newsDetailCtrl", function ($scope, $routeParams, $http, NewsService) {
         var id = $routeParams.id;
         $scope.n = NewsService.get({id: id});
-
     })
     .controller("newsManagerCtrl", function ($scope, $http, $modal, NewsService) {
         $scope.news = [];
@@ -63,88 +61,86 @@ angular.module("technicalSalon")
             }, function () {
             });
         };
-        $scope.openDeleteNews = function(news, modalCtrl, size) {
+        $scope.openDeleteDialog = function (news, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
                 controller: modalCtrl,
                 size: size,
-                resolve:{
-                    id:function() {
+                resolve: {
+                    id: function () {
                         return news._id
                     }
                 }
             });
-            modalInstance.result.then(function(id) {
-                $http.post('/news/remove',{id:id}).success(function(data) {
+            modalInstance.result.then(function (id) {
+                $http.post('/news/remove', {id: id}).success(function (data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
                         $scope.$emit(data.result, data.message);
                         $scope.items.splice($scope.items.indexOf(news), 1);
                     }
-                }).error(function(err) {
+                }).error(function (err) {
                     console.log(err);
                 });
-            }, function() {
+            }, function () {
 
             })
-        }
+        };
 
 
-        $scope.openUpdateDialog = function (news,modalCtrl, size) {
+        $scope.openUpdateDialog = function (news, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/update-news.html',
                 controller: modalCtrl,
                 size: size,
                 resolve: {
-                    news:function() {
-                        return news;
+                    news: function () {
+                        return news
                     }
                 }
             });
             modalInstance.result.then(function (news) {
-                var newsService = new NewsService(news);
-                newsService.$save(function (data) {
+                $http.post("news/update",{news: news}).success(function (data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
                         $scope.$emit(data.result, data.message);
                     }
-                }, function (err) {
-                    console.log(err);
-                });
-            }, function () {
-
-            });
-        };
+                }).error(function (err) {
+                    console.log(err)
+                })
+            },function(){
+            })
+        }
     })
     .controller("submitNewsCtrl", function ($scope, $modalInstance) {
 
         $scope.news = {};
-
         $scope.submit = function (news) {
             $modalInstance.close(news);
         };
         $scope.cancel = function () {
-            $scope.news = {};
             $modalInstance.dismiss('cancel');
         }
     })
-    .controller("updateNewsCtrl", function ($scope, $modalInstance,news) {
-
-        console.log(news);
-        $scope.news = news;
-
-        $scope.submit = function (news) {
-            $modalInstance.close(news);
+    .controller('deleteNewsCtrl', function ($scope, $modalInstance, id) {
+        $scope.submit = function () {
+            $modalInstance.close(id);
         };
         $scope.cancel = function () {
-            $scope.news = {};
+            $modalInstance.dismiss('cancel');
+        }
+    })
+    .controller("updateNewsCtrl", function ($scope, $modalInstance, news) {
+
+        $scope.news =news;
+        $scope.submit = function () {
+            $modalInstance.close($scope.news);
+        };
+        $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
     });
-
-
-
 
 

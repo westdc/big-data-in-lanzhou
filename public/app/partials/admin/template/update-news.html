@@ -28,7 +28,7 @@
             </p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit"  ng-click="submit()">修改</button>
+            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit"  ng-disabled="updateNewsForm.$invalid" ng-click="submit()">修改</button>
             <button class="btn btn-warning btn-default col-sm-offset-6" ng-click="cancel()">关闭</button>
         </div>
     </form>

@@ -52,7 +52,6 @@ angular.module('technicalSalon')
                     console.log(err);
                 });
         };
-
         $scope.currentPage = 1;
         $scope.totalItems = 0;
         $scope.items = [];
@@ -62,11 +61,10 @@ angular.module('technicalSalon')
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         });
 
-        $scope.pageChanged = function (page) {
+        $scope.pageChaWnged = function (page) {
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
-
-        $scope.openDeleteUser = function(user, modalCtrl, size) {
+        $scope.openDeleteDialog = function(user, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
                 controller: modalCtrl,
@@ -76,10 +74,10 @@ angular.module('technicalSalon')
                         return user._id
                     }
                 }
-
             });
             modalInstance.result.then(function(id) {
                 $http.post('/user/remove',{id:id}).success(function(data) {
+                    console.log(data);
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
@@ -93,14 +91,13 @@ angular.module('technicalSalon')
 
             })
         }
-
     })
-    .controller('deleteUserCtrl', function($scope, $modalInstance, id) {
+    .controller('deleteUserCtrl',function($scope,$modalInstance,id){
         $scope.submit = function () {
             $modalInstance.close(id);
+            console.log(id)
         };
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
     });
-
