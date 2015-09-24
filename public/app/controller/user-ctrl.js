@@ -52,7 +52,6 @@ angular.module('technicalSalon')
                     console.log(err);
                 });
         };
-
         $scope.currentPage = 1;
         $scope.totalItems = 0;
         $scope.items = [];
@@ -65,7 +64,6 @@ angular.module('technicalSalon')
         $scope.pageChaWnged = function (page) {
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
-
         $scope.openDeleteDialog = function(user, modalCtrl, size) {
             var modalInstance = $modal.open({
                 templateUrl: 'app/partials/admin/template/alert-delete.html',
@@ -79,7 +77,7 @@ angular.module('technicalSalon')
             });
             modalInstance.result.then(function(id) {
                 $http.post('/user/remove',{id:id}).success(function(data) {
-                    console.log(data)
+                    console.log(data);
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
@@ -102,4 +100,4 @@ angular.module('technicalSalon')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
-    })
+    });
