@@ -30,13 +30,6 @@ app.use('/admin', admin);
 app.use(passport.initialize());
 app.use(passport.session());
 
-//passport.use(new LocalStrategy({
-//  usernameField:'email',
-//  passwordField:'password'
-//}, function() {
-//  User.get(email,)
-//}));
-
 var User = require('./models/user-models').UserModel;
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
