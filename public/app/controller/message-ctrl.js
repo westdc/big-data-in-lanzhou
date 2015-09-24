@@ -1,6 +1,5 @@
 angular.module("technicalSalon")
     .controller("messageCtrl", function ($scope, $http, $modal, MessageService) {
-
         $scope.items = [];
         $scope.open = function (modalCtrl, size) {
             var modalInstance = $modal.open({
@@ -8,7 +7,6 @@ angular.module("technicalSalon")
                 controller: modalCtrl,
                 size: size
             });
-
             modalInstance.result.then(function (message) {
                 var messageService = new MessageService(message);
                 messageService.$save(function (data) {

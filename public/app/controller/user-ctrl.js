@@ -100,4 +100,15 @@ angular.module('technicalSalon')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
+    })
+    .controller('searchUserCtrl',function($scope,UserService){
+        $scope.user=[];
+        $scope.search=function(){
+       $scope.searchUser="search";
+            if(search){
+                $scope.searchUser="search";
+            }else{
+                $scope.searchUser="false";
+            }
+        }
     });
