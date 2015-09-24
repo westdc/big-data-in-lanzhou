@@ -7,7 +7,7 @@ var newsSchema = new mongoose.Schema({
     name:String,
     title: String,
     content: String,
-    createAt:{ type: Date, default: Date.now },
+    createAt:{ type: Date, default: Date.now }
 });
 
 var NewsModel = mongoose.model('News', newsSchema);
@@ -71,13 +71,12 @@ News.get=function(_id,callback){
   });
 };
 
-News.update = function(id,title,name,content, callback) {
-    console.log(id);
-    NewsModel.findOneAndUpdate({_id:id},{ $set: {title:title,name:name,content:content}}).exec(function (err, newss) {
+News.update = function(news, callback) {
+    NewsModel.findOneAndUpdate({_id:news._id},{ $set: {title:news.title,name:news.name,content:news.content}}).exec(function (err, n) {
         if (err) {
             return callback(err);
         }
-        callback(null,newss);
+        callback(null,n);
     });
 };
 
