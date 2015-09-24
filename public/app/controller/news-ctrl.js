@@ -104,7 +104,7 @@ angular.module("technicalSalon")
                 }
             });
             modalInstance.result.then(function (news) {
-                $http.post("news/update", {news: news}).success(function (data) {
+                $http.post("news/update",{news: news}).success(function (data) {
                     if (data.result == 'error') {
                         $scope.$emit(data.result, data.message);
                     } else {
@@ -138,7 +138,7 @@ angular.module("technicalSalon")
     })
     .controller("updateNewsCtrl", function ($scope, $modalInstance, news) {
 
-        $scope.news = news;
+        $scope.news =news;
         $scope.submit = function () {
             $modalInstance.close($scope.news);
         };
