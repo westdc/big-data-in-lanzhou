@@ -7,6 +7,9 @@ var News = require('../models/news-models'),
     //Account=require('../models/account');
 var passport=require('passport');
 
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
