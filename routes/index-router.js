@@ -227,7 +227,7 @@ router.get('/news-editor', function(req,res) {
     res.render('news-editor', { title: 'Express' });
 });
 
-router.post('/upload', upload.single('avatar'),function(req,res){
+router.post('/upload',function(req,res){
 
     var newUpload=new Upload({
         picture:req.body.picture
