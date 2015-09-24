@@ -70,9 +70,9 @@
                 <li ng-class="getClass('/about-us')"><a href="#/about-us">关于我们</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-hide="user == null"><a href="#/index">{{user.email}}</a></li>
-                <li ng-show="user == null"><a href="#/login">登录</a></li>
-                <li><a href="#/register">注册</a></li>
+                <li ng-class="getClass('/index')" ng-hide="user == null"><a href="#/index">{{user.email}}</a></li>
+                <li ng-class="getClass('/login')" ng-show="user == null"><a href="#/login">登录</a></li>
+                <li ng-class="getClass('/register')"><a href="#/register">注册</a></li>
                 <li ng-controller="messageCtrl"><a href="" ng-click="open('submitMessageCtrl','md')" >给我们留言</a></li>
             </ul>
         </div>
