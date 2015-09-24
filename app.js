@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index-router');
 var admin = require('./routes/admin-router');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -24,6 +26,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/admin', admin);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//passport.use(new LocalStrategy({
+//  usernameField:'email',
+//  passwordField:'password'
+//}, function() {
+//  User.get(email,)
+//}));
+
+var User = require('./models/user-models').UserModel;
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
