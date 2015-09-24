@@ -15,9 +15,9 @@ var storage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now())
     }
-})
+});
 
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage });
 
 
 /* GET home page. */
@@ -211,4 +211,5 @@ router.get('/news-editor', function(req,res) {
 router.post('/upload', upload.single('upload'),function(req,res){
     console.log(req.file);
 });
+
 module.exports = router;
