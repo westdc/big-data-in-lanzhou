@@ -4,7 +4,7 @@
             <h1 class="page-header">新闻 <button class="btn btn-default" ng-click="openAddDialog('submitNewsCtrl','md')"><span class="glyphicon glyphicon-ok"></span>新增</button></h1>
             <div class="list-group" ng-repeat="n in items">
                 <h4 class="list-group-item-heading">{{n.title}} <small>{{n.name}}</small>
-                    <small><strong class="text-info">{{n.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</strong></small>
+                    <small class="text-info">{{n.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</small>
                     <button ng-click="openUpdateDialog(n,'updateNewsCtrl')" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
                     <button class="btn btn-default btn-sm" ng-click="openDeleteDialog(n,'deleteNewsCtrl','sm')" ><span class="glyphicon glyphicon-remove"></span>删除</button>
                 </h4>
