@@ -63,7 +63,6 @@ angular.module("technicalSalon")
                     }
                 }
             });
-
             modalInstance.result.then(function(id) {
                 $http.post('/message/remove',{id:id}).success(function(data) {
                     if (data.result == 'error') {
