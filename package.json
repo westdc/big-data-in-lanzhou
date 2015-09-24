@@ -14,8 +14,8 @@
     "express": "~4.13.1",
     "morgan": "~1.6.1",
     "mongoose": "~*",
-    "passport":"Lastest",
-    "passport-local":"*",
-    "passport-local-mongoose":"*"
+    "passport":"latest",
+    "passport-local":"latest",
+    "passport-local-mongoose":"latest"
   }
 }
