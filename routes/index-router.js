@@ -148,7 +148,8 @@ router.get('/news/:id',function(req,res){
 });
 
 router.post('/news/update',function(req,res) {
-    News.update(req.body.id, req.body.title, req.body.name, req.body.content, function (err) {
+    console.log(req.body.news);
+    News.update(req.body.news, function (err) {
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
