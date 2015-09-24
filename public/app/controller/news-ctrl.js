@@ -109,7 +109,6 @@ angular.module("technicalSalon")
                         $scope.$emit(data.result, data.message);
                     } else {
                         $scope.$emit(data.result, data.message);
-                        $scope.items.splice(0, 0, news);
                     }
                 }).error(function (err) {
                     console.log(err)
