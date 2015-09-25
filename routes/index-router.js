@@ -8,7 +8,29 @@ var News = require('../models/news-models'),
 var passport=require('passport');
 
 var multer  = require('multer');
-var upload = multer({ dest: '../public/images' });
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../public/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
+
+var upload = multer({
+    storage: storage,
+    fileFilter: function(req, file, cb) {
+        console.log("fileFilter:"+ file.originalname);
+        var name = file.originalname;
+        var ext = ".jpg";
+        if(name.indexOf(ext, name.length - ext.length) !== -1) {
+            cb(null,true);
+        } else {
+            cb(null,false);
+        }
+    }
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -129,8 +151,9 @@ router.get('/news/:id',function(req,res){
   });
 });
 
+
 router.post('/news/update',function(req,res) {
-    News.update(req.body.id, req.body.title, req.body.name, req.body.content, function (err) {
+    News.update(req.body.news, function (err) {
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
@@ -198,17 +221,27 @@ router.get('/news-editor', function(req,res) {
     res.render('news-editor', { title: 'Express' });
 });
 
-router.post('/upload', upload.single('avatar'),function(req,res){
+router.post('/upload', upload.single('upload'),function(req,res){
+    res.format({
+        'text/plain': function(){
+            res.send('UPLOAD_TYPE_ERROR');
+        },
 
-    var newUpload=new Upload({
-        picture:req.body.picture
-    });
+        'text/html': function(){
+            res.send('<p>hey</p>');
+        },
 
-    newUpload.save(function(err){
-        if (err) {
-            return res.jsonp({ result: "error", message:"上传图片失败"});
+        'application/json': function(){
+            res.send({ message: 'hey' });
+        },
+
+        'default': function() {
+            // log the request and respond with 406
+            res.status(406).send('Not Acceptable');
         }
-        res.jsonp({ result:'success', message:'上传图片成功!'});
     });
+
+    return "";
 });
+
 module.exports = router;

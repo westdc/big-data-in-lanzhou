@@ -12,7 +12,6 @@ var UserSchema = new Schema({
 });
 
 UserSchema.plugin(passportLocalMongoose);
-console.log(UserSchema.email);
 
 var UserModel = mongoose.model('User', UserSchema);
 module.exports.UserModel = UserModel;
@@ -53,7 +52,6 @@ User.count = function(callback) {
 };
 
 User.updateStatus = function(id,status, callback) {
-    console.log(id);
     UserModel.findOneAndUpdate({_id:id},{ $set: {status:status}}).exec(function (err, user) {
         if (err) {
             return callback(err);
