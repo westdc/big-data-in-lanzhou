@@ -68,11 +68,11 @@ angular.module('technicalSalon')
                     $http.get('/count/user').success(function(data) {
                         $scope.totalItems = data.totalItems;
                         $scope.items = UserService.query({keyword: inputData, skip: ($scope.currentPage - 1), pageSize:size})
-                                });
-                            console.log('输入的是:'+inputData)
-                        }, 350);
-                    }
-                });
+                    });
+                    console.log('输入的是:'+inputData)
+                }, 350);
+            }
+        });
 
 
         $scope.pageChanged = function (page) {
