@@ -54,7 +54,7 @@ News.count = function(callback) {
 
 
 News.getLast = function (num, callback) {
-    NewsModel.find().limit(num).sort({name: 1}).exec(function(err,newss){
+    NewsModel.find().limit(num).sort({createAt: -1}).exec(function(err,newss){
         if (err) {
             return callback(err);
         }
