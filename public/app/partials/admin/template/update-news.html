@@ -1,14 +1,17 @@
 <div class="modal-header">
     <form name="updateNewsForm" novalidate>
         <h2 class="modal-title">修改新闻</h2>
+
         <div class="modal-body">
             <p>
-                <input type="text" id="title" ng-model="news.title" name="title" class="form-control" placeholder="请输入新闻标题"
+                <input type="text" id="title" ng-model="news.title" name="title" class="form-control"
+                       placeholder="请输入新闻标题"
                        required>
                 <span class="error text-danger"
                       ng-show="(updateNewsForm.title.$dirty) && updateNewsForm.title.$error.required">标题不能为空！
                 </span>
             </p>
+
             <p>
                 <input type="text" name="name" ng-model="news.name"
                        required class="form-control"
@@ -17,6 +20,7 @@
                       ng-show="(updateNewsForm.name.$dirty) && updateNewsForm.name.$error.required">作者不能为空！
                 </span>
             </p>
+
             <p>
                 <textarea type="text" name="content" ng-model="news.content"
                           required class="form-control"
@@ -28,7 +32,9 @@
             </p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit"  ng-disabled="updateNewsForm.$invalid" ng-click="submit()">修改</button>
+            <button class="btn btn-primary btn-default btn-primary col-sm-offset-1" type="submit"
+                    ng-disabled="updateNewsForm.$invalid" ng-click="submit()">修改
+            </button>
             <button class="btn btn-warning btn-default col-sm-offset-6" ng-click="cancel()">关闭</button>
         </div>
     </form>

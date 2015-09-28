@@ -1,8 +1,13 @@
 <div class="container-fluid" ng-controller="newsManagerCtrl">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">新闻 <a class="btn btn-default" href="/admin/news-editor"><span class="glyphicon glyphicon-ok"></span>新增</a></h1>
-            <div class="list-group" ng-repeat="n in items">
+            <h1 class="page-header">新闻 <a class="btn btn-default" href="/admin/news-editor"><span class="glyphicon glyphicon-ok"></span>新增</a></h1><br>
+            <div class="input-group col-sm-4">
+                <input type="text" class="form-control" ng-model="search" placeholder="请输入关键字" aria-describedby="basic-addon2">
+                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2">搜索</span>
+            </div>
+            <hr>
+            <div class="list-group" ng-repeat="n in items | filter:search | orderBy:'currency'">
                 <h4 class="list-group-item-heading">{{n.title}} <small>{{n.name}}</small>
                     <small>{{n.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</small>
                     <button ng-click="openUpdateDialog(n,'updateNewsCtrl')" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
