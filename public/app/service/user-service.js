@@ -4,6 +4,7 @@
 
 angular.module('technicalSalon')
     .factory('UserService',function($resource) {
-        return $resource('/user/:id');
+        return $resource('/user/:id')
+    })
 
-    });
+

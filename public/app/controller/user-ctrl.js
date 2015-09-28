@@ -100,4 +100,4 @@ angular.module('technicalSalon')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
-    });
+    })
