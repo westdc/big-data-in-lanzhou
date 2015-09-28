@@ -5,6 +5,7 @@
             <div ng-repeat="n in items">
                 <h1>
                     <a href="#/news/{{n._id}}"> {{n.title}}</a>
+                    <small>{{n.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</small>
                 </h1>
                 <p>
                     <label>作者：</label>{{n.name}}
