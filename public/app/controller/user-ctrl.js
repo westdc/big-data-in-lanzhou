@@ -36,7 +36,7 @@ angular.module('technicalSalon')
         }
     })
 
-    .controller("userManageCtrl", function ($scope, $http, $modal, UserService) {
+    .controller("userManageCtrl", function ($scope, $http, $modal,$timeout, UserService) {
 
         $scope.toggle = function (u) {
             u.status = u.status == 1 ? 0 : 1;
@@ -56,10 +56,24 @@ angular.module('technicalSalon')
         $scope.totalItems = 0;
         $scope.items = [];
 
-        $http.get('/count/user').success(function (data) {
+       $http.get('/count/user').success(function (data) {
             $scope.totalItems = data.totalItems;
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         });
+        var timeout;
+        var size=100;
+        $scope.$watch('search',function(inputData) {
+            if (inputData){
+                timeout = $timeout(function() {
+                    $http.get('/count/user').success(function(data) {
+                        $scope.totalItems = data.totalItems;
+                        $scope.items = UserService.query({keyword: inputData, skip: ($scope.currentPage - 1), pageSize:size})
+                                });
+                            console.log('输入的是:'+inputData)
+                        }, 350);
+                    }
+                });
+
 
         $scope.pageChanged = function (page) {
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
@@ -100,4 +114,4 @@ angular.module('technicalSalon')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
-    })
+    });

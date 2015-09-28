@@ -17,6 +17,8 @@ router.get('/user',function(req, res){
   var skip = req.query.skip || 0;
   var pageSize = req.query.pageSize || 10;
     var keyword=req.query.keyword || '';
+
+    console.log(keyword);
   User.getAll(skip, pageSize,keyword, function(err,users){
     if(err){
       console.log('error');
