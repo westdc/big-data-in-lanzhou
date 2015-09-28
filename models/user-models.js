@@ -42,8 +42,9 @@ User.getAll = function (skip,pageSize,keyword,callback) {
     });
 };
 
-User.count = function(callback) {
-    UserModel.count().exec(function(err,total) {
+User.count = function(keyword,callback) {
+    var pattern = new RegExp(keyword+'.*', "i");
+    UserModel.count({ name : pattern }).exec(function(err,total) {
         if(err) {
             return callback(err);
         }

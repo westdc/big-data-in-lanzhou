@@ -27,10 +27,8 @@ router.get('/user',function(req, res){
 });
 
 router.get('/count/user',function(req, res) {
-    var keyword = req.query.keyword;
-
-    console.log("====="+keyword);
-    User.count(function(err, total) {
+    var keyword=req.query.keyword || '';
+    User.count(keyword,function(err, total) {
         if(err) {
             console.log(err);
         } else {
@@ -117,7 +115,8 @@ router.post('/news',function(req,res){
 });
 
 router.get('/count/news', function(req,res) {
-    News.count(function(err,total) {
+    var keyword=req.query.keyword || '';
+    News.count(keyword,function(err,total) {
         if(err) {
             console.log(err);
         } else {

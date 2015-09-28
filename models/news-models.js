@@ -44,8 +44,9 @@ News.getAll = function (skip,pageSize,keyword,callback) {
     });
 };
 
-News.count = function(callback) {
-    NewsModel.count().exec(function(err,total) {
+News.count = function(keyword,callback) {
+    var pattern = new RegExp(keyword+'.*', "i");
+    NewsModel.count({ name : pattern }).exec(function(err,total) {
        if(err) {
            return callback(err);
        }
