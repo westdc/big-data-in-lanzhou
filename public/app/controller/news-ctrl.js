@@ -26,7 +26,7 @@ angular.module("technicalSalon")
         var id = $routeParams.id;
         $scope.n = NewsService.get({id: id});
     })
-    .controller("newsManagerCtrl", function ($scope, $http, $modal, NewsService) {
+    .controller("newsManagerCtrl", function ($scope, $http, $modal,$timeout, NewsService) {
         $scope.news = [];
         $scope.currentPage = 1;
         $scope.totalItems = 0;
@@ -35,6 +35,19 @@ angular.module("technicalSalon")
         $http.get('/count/news').success(function (data) {
             $scope.totalItems = data.totalItems;
             $scope.items = NewsService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
+
+            var timeout;
+            $scope.$watch('search',function(keyword) {
+                if(timeout){
+                    $timeout.cancel(timeout);
+                }
+                timeout = $timeout(function() {
+                    $http.get('/count/news?keyword='+keyword).success(function(data) {
+                        $scope.totalItems = data.totalItems;
+                        $scope.items = NewsService.query({keyword: keyword, skip: ($scope.currentPage - 1) * 10, pageSize: 10})
+                    });
+                }, 350);
+            });
         });
 
         $scope.pageChanged = function (page) {

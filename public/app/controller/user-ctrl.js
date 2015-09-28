@@ -61,6 +61,9 @@ angular.module('technicalSalon')
         });
         var timeout;
         $scope.$watch('search',function(keyword) {
+            if(timeout){
+                $timeout.cancel(timeout);
+            }
             timeout = $timeout(function() {
                 $http.get('/count/user?keyword='+keyword).success(function(data) {
                     $scope.totalItems = data.totalItems;

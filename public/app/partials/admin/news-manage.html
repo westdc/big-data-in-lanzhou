@@ -7,7 +7,7 @@
                 <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2">搜索</span>
             </div>
             <hr>
-            <div class="list-group" ng-repeat="n in items | filter:search | orderBy:'currency'">
+            <div class="list-group" ng-repeat="n in items">
                 <h4 class="list-group-item-heading">{{n.title}} <small>{{n.name}}</small>
                     <small>{{n.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</small>
                     <button ng-click="openUpdateDialog(n,'updateNewsCtrl')" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
