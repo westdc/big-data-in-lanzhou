@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index-router');
 var admin = require('./routes/admin-router');
@@ -22,6 +23,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret:"big-data-in-lanzhou",
+  resave:false,
+  saveUninitialized:true,
+  cookies:{ maxAge:360000 }}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
