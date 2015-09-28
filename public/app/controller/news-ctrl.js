@@ -141,6 +141,10 @@ angular.module("technicalSalon")
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         }
-    });
+    })
+    .controller('searchCtrl',function($scope,$http){
+       $http({
 
+       })
+    });
 
