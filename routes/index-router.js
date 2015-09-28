@@ -4,33 +4,6 @@ var News = require('../models/news-models'),
     User = require('../models/user-models').User,
     UserModel = require('../models/user-models').UserModel,
     Message=require('../models/message-models');
-    //Account=require('../models/account');
-var passport=require('passport');
-
-var multer  = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, '../public/uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-});
-
-var upload = multer({
-    storage: storage,
-    fileFilter: function(req, file, cb) {
-        console.log("fileFilter:"+ file.originalname);
-        var name = file.originalname;
-        var ext = ".jpg";
-        if(name.indexOf(ext, name.length - ext.length) !== -1) {
-            cb(null,true);
-        } else {
-            cb(null,false);
-        }
-    }
-});
-
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -119,9 +92,8 @@ router.get('/news',function(req,res){
 
 router.post('/news',function(req,res){
     var newNews = new News({
-        name: req.body.name,
         title:req.body.title,
-        content: req.body.content
+        content: req.body.text
     });
     newNews.save(function(err,news){
         if (err) {
@@ -221,27 +193,42 @@ router.get('/news-editor', function(req,res) {
     res.render('news-editor', { title: 'Express' });
 });
 
-router.post('/upload', upload.single('upload'),function(req,res){
-    res.format({
-        'text/plain': function(){
-            res.send('UPLOAD_TYPE_ERROR');
-        },
+var multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../public/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
 
-        'text/html': function(){
-            res.send('<p>hey</p>');
-        },
-
-        'application/json': function(){
-            res.send({ message: 'hey' });
-        },
-
-        'default': function() {
-            // log the request and respond with 406
-            res.status(406).send('Not Acceptable');
+var upload = multer({
+    storage: storage,
+    fileFilter: function(req, file, cb) {
+        console.log("fileFilter:"+ file.originalname);
+        var name = file.originalname;
+        var exts = ['.jpg','.png','.gif'];
+        for(var ext in exts) {
+            if(name.indexOf(ext, name.length - ext.length) === -1) {
+                cb(null,false);
+                break;
+            }
         }
-    });
+        cb(null,true);
+    }
+});
 
-    return "";
+router.post('/upload', upload.single('upload'),function(req,res){
+
+    res.set('Content-Type', 'text/plain');
+    if(req.file) {
+        res.send('/uploads/'+req.file.filename);
+    } else {
+        res.send('UPLOAD_TYPE_ERROR');
+    }
+
+    console.log(req.file);
 });
 
 module.exports = router;
