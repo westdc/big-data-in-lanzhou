@@ -223,8 +223,6 @@ router.post('/upload', upload.single('upload'),function(req,res){
     } else {
         res.send('UPLOAD_TYPE_ERROR');
     }
-
-    console.log(req.file);
 });
 
 module.exports = router;

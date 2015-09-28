@@ -12,10 +12,11 @@
     <script src="/javascripts/angular-route.js"></script>
     <script src="/javascripts/angular-resource.js"></script>
     <script src="/javascripts/angular-animate.js"></script>
+    <script src="/javascripts/angular-sanitize.js"></script>
     <script src="/javascripts/ui-bootstrap.js"></script>
     <script src="/javascripts/ui-bootstrap-tpls.js"></script>
     <script>
-        angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap"])
+        angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ngSanitize", "ui.bootstrap"])
                 .config(function ($routeProvider) {
                     $routeProvider.when("/news", {
                         templateUrl: "/app/partials/news.html"

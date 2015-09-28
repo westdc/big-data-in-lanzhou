@@ -13,12 +13,13 @@
     <script src="/javascripts/angular-route.js"></script>
     <script src="/javascripts/angular-resource.js"></script>
     <script src="/javascripts/angular-animate.js"></script>
+    <script src="/javascripts/angular-sanitize.js"></script>
     <script src="/javascripts/ui-bootstrap.js"></script>
     <script src="/javascripts/ui-bootstrap-tpls.js"></script>
     <script src="/javascripts/marked.js"></script>
     <script src="/javascripts/angular-marked.js"></script>
   <script>
-       angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ui.bootstrap", "hc.marked"])
+       angular.module("technicalSalon", ["ngRoute", "ngResource", "ngAnimate", "ngSanitize", "ui.bootstrap", "hc.marked"])
                 .config(function ($routeProvider) {
                    $routeProvider.when("/users-manage", {
                        templateUrl: "/app/partials/admin/users-manage.html"

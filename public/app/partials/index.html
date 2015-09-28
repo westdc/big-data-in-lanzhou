@@ -9,9 +9,7 @@
                 <p>
                    <label>作者：</label>{{n.name}}
                 </p>
-                <p>
-                    <strong>{{n.content}}</strong>
-                </p>
+                <p ng-bind-html="n.content"></p>
                 <br>
                 <a class="btn btn-default btn-lg" href="#/news/{{n._id}}">
                     查看全文
