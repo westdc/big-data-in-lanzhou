@@ -64,7 +64,7 @@ angular.module('technicalSalon')
         $scope.$watch('search',function(keyword) {
             if (keyword){
                 timeout = $timeout(function() {
-                    $http.get('/count/user').success(function(data) {
+                    $http.get('/count/user',{ 'keyword' : keyword }).success(function(data) {
                         $scope.totalItems = data.totalItems;
                         $scope.items = UserService.query({keyword: keyword, skip: ($scope.currentPage - 1) * 10, pageSize: 10})
                     });
