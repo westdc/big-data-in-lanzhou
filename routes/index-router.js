@@ -69,6 +69,7 @@ router.post('/login', function(req, res) {
 router.get('/news',function(req,res){
     var last = req.query.last || false;
     var num = req.query.num || 3;
+
     if(last) {
         News.getLast(num, function(err, news) {
             if(err) {
