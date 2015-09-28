@@ -14,8 +14,8 @@ router.get('/', function(req, res) {
 router.get('/user',function(req, res){
   var skip = req.query.skip || 0;
   var pageSize = req.query.pageSize || 10;
-    var fuzzy=req.query.keyword || false;
-  User.getAll(skip, pageSize,fuzzy, function(err,users){
+    var keyword=req.query.keyword || '';
+  User.getAll(skip, pageSize,keyword, function(err,users){
     if(err){
       console.log('error');
     }else{
@@ -83,7 +83,8 @@ router.get('/news',function(req,res){
     } else {
         var skip = req.query.skip || 0;
         var pageSize = req.query.pageSize || 10;
-        News.getAll(skip, pageSize, function(err,news){
+        var keyword = req.query.keyword || '';
+        News.getAll(skip, pageSize, keyword, function(err,news){
             if(err){
                 console.log('error');
             }else{
