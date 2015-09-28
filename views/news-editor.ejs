@@ -30,11 +30,11 @@
         window.addEventListener('load', function () {
             PIE.makeAMarkdown(document.getElementById('amd-editor'), {
                 amdUploadImgAction: '/upload',
-                amdPubAction: '/news',
+                amdPubAction: '<%= n.title?'/news':'/news/update'%>/news',
                 titleName: 'title',
                 textName: 'text',
-                amdInitText:'111111',
-                amdInitTitle:'22222'
+                amdInitText:'<%= n.title?n.title:''%>',
+                amdInitTitle:'<%= n.content?n.content:''%>'
             });
         });
     }(PIE));

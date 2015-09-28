@@ -1,14 +1,14 @@
 ; (function (mod) {
     if (typeof exports === 'object' && typeof module === 'object') { // CommonJS
-        mod(require('./pie.js'),
+        mod(require('./pie.js'), 
             require('../codemirror/lib/codemirror.js'),
-            require('../highlight-8.1.0.min.js'),
+            require('../highlight-8.1.0.min.js'), 
             require('../marked-0.3.2.min.js'));
     } else if (typeof define === "function" && define.amd) { // AMD
-        define(['./pie.js',
-            '../codemirror/lib/codemirror.js',
-            '../highlight-8.1.0.min.js',
-            '../marked-0.3.2.min.js'], mod);
+        define(['./pie.js', 
+                '../codemirror/lib/codemirror.js', 
+                '../highlight-8.1.0.min.js', 
+                '../marked-0.3.2.min.js'], mod);
     } else { // Plain browser env
         mod(PIE, CodeMirror, HLJS, MARKED);
     }
@@ -29,36 +29,36 @@
     }
 
     validate.link = [
-        {
-            message: '需要输入一个超级链接',
-            handler: notEmpty
-        }];
+    {
+        message: '需要输入一个超级链接',
+        handler: notEmpty
+    }];
 
     validate.des = [
-        {
-            message: '需要输入描述',
-            handler: notEmpty
-        }];
+    {
+        message: '需要输入描述',
+        handler: notEmpty
+    }];
 
     validate.url = [
-        {
-            message: '需要输入url',
-            handler: notEmpty
-        }];
+    {
+        message: '需要输入url',
+        handler: notEmpty
+    }];
 
     validate.number = [
-        {
-            message: '输入值必须是数字',
-            handler: function (val) {
-                return /^\d{1,}$/.test(val);
-            }
-        }];
+    {
+        message: '输入值必须是数字',
+        handler: function (val) {
+            return /^\d{1,}$/.test(val);
+        }
+    }];
 
     validate.notEmpty = [
-        {
-            message: '需要输入值',
-            handler: notEmpty
-        }];
+    {
+        message: '需要输入值',
+        handler: notEmpty
+    }];
 
     // strs name must string
     // strs name count be pattern
@@ -178,7 +178,7 @@
             if (typeof ca.nextLineText === 'string' && !white.test(ca.nextLineText)) {
                 ca.nLineNums++;
                 ca.text = ca.text + '\n';
-            }
+        }
         } else {
             ca.nLineNums += 2;
             ca.text = ca.text + '\n\n';
@@ -301,7 +301,7 @@
                 // 选区内容是：空白 | 空值
                 // 转为单行
                 formatWhite(ca);
-            }
+            } 
             ca.text = '```\n' + ca.text + '\n```';
             ca.rpos.start.ch = ca.defaultAt;
             ca.rpos.end.ch = ca.defaultFill.length;
@@ -358,14 +358,14 @@
 
             if (white.test(ca.text)) {
                 ca.text = ca.defaultFill;
-                ca.rpos.start.ch = ca.defaultAt;
+                ca.rpos.start.ch = ca.defaultAt; 
                 ca.rpos.end.ch = ca.text.length;
             } else {
                 var mark = markf(ca.text);
                 ca.text = mark.text;
                 ca.rpos.start.ch = mark.at;
                 ca.rpos.end.ch = ca.text.length;
-            }
+            } 
         }
 
         var doc = cm.getDoc();
@@ -444,12 +444,12 @@
         insertInblock(cm, ITEM, 2, replace);
     }
 
-    function insertLine(cm) {
+    function insertLine(cm) { 
         function formatLine (ca) {
             ca.text = ca.defaultFill;
             ca.nLineNums -= ca.lineNums - 1;
             ca.rpos.end.line = ca.rpos.start.line;
-            ca.rpos.start.ch = ca.text.length;
+            ca.rpos.start.ch = ca.text.length; 
             ca.rpos.end.ch = ca.text.length;
         }
 
@@ -520,7 +520,7 @@
                 ca.spos.start.ch -= markLen;
                 ca.spos.end.ch += markLen;
                 cm.addSelection(ca.spos.start, ca.spos.end);
-            }
+            } 
         }
 
         insert(cm, function (pos, allLineNums) {
@@ -672,7 +672,7 @@
             align = aligns['1'];
 
         function activeAlign (pos) {
-            alignInputLinks.forEach(function (item, i) {
+            alignInputLinks.forEach(function (item, i) { 
                 PIE.removeClass(item, 'amd-active');
             });
             PIE.addClass(alignInputLinks[pos], 'amd-active');
@@ -696,7 +696,7 @@
         }
 
         alignInput.addEventListener('click', function (e) {
-            var target = e.target;
+            var target = e.target; 
             for (var i = 0, len = alignInputLinks.length; i < len; i ++) {
                 if (alignInputLinks[i].contains(target)) {
                     activeAlign(i);
@@ -727,11 +727,11 @@
             }
 
 
-            f(src,
-                alt === '' ? 'screenshot' : alt,
-                (!isNaN(width) && width > 0) ? width : '',
-                (!isNaN(height) && height >= 0) ? height : '',
-                align);
+            f(src, 
+              alt === '' ? 'screenshot' : alt, 
+              (!isNaN(width) && width > 0) ? width : '', 
+              (!isNaN(height) && height >= 0) ? height : '', 
+              align);
 
             clear();
         }, false);
@@ -810,7 +810,7 @@
             title = elems.title,
             codeMirror = elems.codeMirror,
             data = encode(options.titleName, options.titleValue) + '&' +
-                encode(options.textName, options.textValue),
+                   encode(options.textName, options.textValue),
             saving = false;
 
         saveButton.addEventListener('click', function () {
@@ -853,7 +853,7 @@
     //     titleName
     //     textName
     // }
-    PIE.makeAMarkdown = function (parent, options) {
+    PIE.makeAMarkdown = function (parent, options) { 
         parent.innerHTML = PIE.unit["amd"].render({
             amdBack            : options.admBack || '/',
             amdPubMethod       : options.amdPubMethod || 'post',
@@ -862,7 +862,7 @@
             amdUploadImgAction : options.amdUploadImgAction || '/',
             amdInitText        : options.amdInitText || '',
             amdInitTitle       : options.amdInitTitle || ''
-        });
+        }); 
         // '.amd'
         var AMarkDown = parent.querySelector('.amd'),
             pubForm = AMarkDown.querySelector('.amd-pub'),
@@ -893,7 +893,7 @@
             addImgURLInput = AMarkDown.querySelector('.amd-panel-img .amd-input-url input[type=text]'),
             addImgAltInput = AMarkDown.querySelector('.amd-panel-img .amd-input-alt input[type=text]'),
             addImgWidthInput = AMarkDown.querySelector('.amd-panel-img .amd-input-width input[type=text]'),
-            addImgHeightInput = AMarkDown.querySelector('.amd-panel-img .amd-input-height input[type=text]'),
+            addImgHeightInput = AMarkDown.querySelector('.amd-panel-img .amd-input-height input[type=text]'),            
             addImgAlignInput = AMarkDown.querySelector('.amd-panel-img .amd-input-align .amd-input-align-body'),
             addImgURLMsgSpan = AMarkDown.querySelector('.amd-panel-img .amd-input-url .amd-input-msg'),
             addImgCloseButton = AMarkDown.querySelector('.amd-panel-img .amd-btn-close'),

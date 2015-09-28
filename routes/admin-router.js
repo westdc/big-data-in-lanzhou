@@ -7,7 +7,18 @@ router.get('/', function(req, res) {
 });
 
 router.get('/news-editor', function(req,res) {
-  res.render('news-editor', { title: 'Express' });
+  var id = req.query.id;
+  var n = {};
+  if(id) {
+    News.get(req.query.id, function(err,news) {
+      if(err){
+        console.log(err);
+      }
+      n = news
+    })
+  }
+
+  res.render('news-editor', { n: n });
 });
 
 

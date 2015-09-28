@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+
+var md = require("node-markdown").Markdown;
+
 var News = require('../models/news-models'),
     User = require('../models/user-models').User,
     UserModel = require('../models/user-models').UserModel,
@@ -94,14 +97,14 @@ router.get('/news',function(req,res){
 router.post('/news',function(req,res){
     var newNews = new News({
         title:req.body.title,
-        content: req.body.text
+        content: md(req.body.text)
     });
     newNews.save(function(err,news){
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
-            //res.redirect('/admin#/news-manage');
-            res.jsonp({result: 'success', message: "修改新闻成功"});
+            res.redirect('/admin#/news-manage');
+            //res.jsonp({result: 'success', message: "修改新闻成功"});
         }
     });
 });
