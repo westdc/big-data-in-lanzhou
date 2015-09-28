@@ -32,11 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/admin', admin);
 
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 var User = require('./models/user-models').UserModel;
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy());
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

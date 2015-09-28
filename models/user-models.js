@@ -24,8 +24,7 @@ function User(user) {
 module.exports.User = User;
 
 User.get = function(email, callback) {
-    UserModel.findOne({email:email}, function (err, user)
-    {
+    UserModel.findOne({email:email}, function (err, user) {
         if(err){
             return callback(err);
         }
