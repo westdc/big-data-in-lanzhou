@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="u in items | filter:search | orderBy:'currency'">
+                <tr ng-repeat="u in items">
                     <td>{{u.username}}</td>
                     <td>{{u.name}}</td>
                     <td>{{u.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
