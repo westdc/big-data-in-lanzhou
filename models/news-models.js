@@ -34,8 +34,9 @@ News.prototype.save=function(callback){
     });
 };
 
-News.getAll = function (skip,pageSize,callback) {
-    NewsModel.find().skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,news){
+News.getAll = function (skip,pageSize,keyword,callback) {
+    var pattern = new RegExp(keyword, "i");
+    NewsModel.find({name:pattern}).skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,news){
         if (err) {
             return callback(err);
         }
