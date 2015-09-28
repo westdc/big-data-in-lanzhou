@@ -36,8 +36,9 @@ app.use('/admin', admin);
 //app.use(passport.session());
 
 var User = require('./models/user-models').UserModel;
-passport.use(User.createStrategy());
+passport.use(new LocalStrategy(User.authenticate()));
 
+// use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
