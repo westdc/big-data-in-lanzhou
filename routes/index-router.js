@@ -1,36 +1,12 @@
 var express = require('express');
 var router = express.Router();
+
+var md = require("node-markdown").Markdown;
+
 var News = require('../models/news-models'),
     User = require('../models/user-models').User,
     UserModel = require('../models/user-models').UserModel,
     Message=require('../models/message-models');
-    //Account=require('../models/account');
-var passport=require('passport');
-
-var multer  = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, '../public/uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-});
-
-var upload = multer({
-    storage: storage,
-    fileFilter: function(req, file, cb) {
-        console.log("fileFilter:"+ file.originalname);
-        var name = file.originalname;
-        var ext = ".jpg";
-        if(name.indexOf(ext, name.length - ext.length) !== -1) {
-            cb(null,true);
-        } else {
-            cb(null,false);
-        }
-    }
-});
-
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -97,6 +73,7 @@ router.post('/login', function(req, res) {
 router.get('/news',function(req,res){
     var last = req.query.last || false;
     var num = req.query.num || 3;
+
     if(last) {
         News.getLast(num, function(err, news) {
             if(err) {
@@ -108,8 +85,7 @@ router.get('/news',function(req,res){
     } else {
         var skip = req.query.skip || 0;
         var pageSize = req.query.pageSize || 10;
-        var fuzzy=req.query.keyword || false;
-        News.getAll(skip, pageSize,fuzzy, function(err,news){
+        News.getAll(skip, pageSize, function(err,news){
             if(err){
                 console.log('error');
             }else{
@@ -121,15 +97,15 @@ router.get('/news',function(req,res){
 
 router.post('/news',function(req,res){
     var newNews = new News({
-        name: req.body.name,
         title:req.body.title,
-        content: req.body.content
+        content: md(req.body.text)
     });
     newNews.save(function(err,news){
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
-            res.jsonp({result: 'success', message: "修改新闻成功"});
+            res.redirect('/admin#/news-manage');
+            //res.jsonp({result: 'success', message: "修改新闻成功"});
         }
     });
 });
@@ -219,31 +195,40 @@ router.post('/message/remove',function(req, res) {
     });
 });
 
-router.get('/news-editor', function(req,res) {
-    res.render('news-editor', { title: 'Express' });
+var multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../public/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
+
+var upload = multer({
+    storage: storage,
+    fileFilter: function(req, file, cb) {
+        console.log("fileFilter:"+ file.originalname);
+        var name = file.originalname;
+        var exts = ['.jpg','.png','.gif'];
+        for(var ext in exts) {
+            if(name.indexOf(ext, name.length - ext.length) === -1) {
+                cb(null,false);
+                break;
+            }
+        }
+        cb(null,true);
+    }
 });
 
 router.post('/upload', upload.single('upload'),function(req,res){
-    res.format({
-        'text/plain': function(){
-            res.send('UPLOAD_TYPE_ERROR');
-        },
 
-        'text/html': function(){
-            res.send('<p>hey</p>');
-        },
-
-        'application/json': function(){
-            res.send({ message: 'hey' });
-        },
-
-        'default': function() {
-            // log the request and respond with 406
-            res.status(406).send('Not Acceptable');
-        }
-    });
-
-    return "";
+    res.set('Content-Type', 'text/plain');
+    if(req.file) {
+        res.send('/uploads/'+req.file.filename);
+    } else {
+        res.send('UPLOAD_TYPE_ERROR');
+    }
 });
 
 module.exports = router;
