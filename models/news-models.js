@@ -34,8 +34,9 @@ News.prototype.save=function(callback){
     });
 };
 
-News.getAll = function (skip,pageSize,callback) {
-    NewsModel.find().skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,news){
+News.getAll = function (skip,pageSize,keyword,callback) {
+    var pattern = new RegExp(keyword, "i");
+    NewsModel.find({name:pattern}).skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,news){
         if (err) {
             return callback(err);
         }
@@ -62,6 +63,8 @@ News.getLast = function (num, callback) {
     });
 };
 
+
+
 News.get=function(_id,callback){
     NewsModel.findOne({_id:_id},function(err,news){
       if(err){
@@ -86,16 +89,6 @@ News.remove = function(id, callback) {
             return callback(err);
         }
         callback(null, newss);
-    });
-};
-
-News.search=function(keyword,callback){
-    var pattern = new RegExp(keyword, "i");
-    NewsModel.find({title:pattern}).exec(function(err,news){
-        if (err){
-            return callback(err);
-        }
-        callback(null, news);
     });
 };
 

@@ -33,8 +33,9 @@ User.get = function(email, callback) {
     });
 };
 
-User.getAll = function (skip,pageSize,callback) {
-    UserModel.find().skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,users){
+User.getAll = function (skip,pageSize,keyword,callback) {
+    var pattern = new RegExp(keyword, "i");
+    UserModel.find({name:pattern}).skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,users){
         if (err) {
             return callback(err);
         }
