@@ -61,16 +61,15 @@ angular.module('technicalSalon')
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         });
         var timeout;
-        var size=100;
         $scope.$watch('search',function(inputData) {
             if (inputData){
                 timeout = $timeout(function() {
                     $http.get('/count/user').success(function(data) {
                         $scope.totalItems = data.totalItems;
-                        $scope.items = UserService.query({keyword: inputData, skip: ($scope.currentPage - 1), pageSize:size})
+                        $scope.items = UserService.query({keyword: inputData, skip: ($scope.currentPage - 1) * 10, pageSize: 10})
                     });
-                    console.log('输入的是:'+inputData)
                 }, 350);
+                console.log('输入的是:'+inputData)
             }
         });
 
