@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-var md = require("node-markdown").Markdown;
-
+var passport = require('passport');
 var News = require('../models/news-models'),
     User = require('../models/user-models').User,
     UserModel = require('../models/user-models').UserModel,
@@ -62,13 +60,13 @@ router.post('/user/remove',function(req, res) {
 router.post('/user', function (req, res) {
     UserModel.register(new UserModel({ username : req.body.email, name: req.body.name }), req.body.password, function(err) {
         if (err) {
-            return res.jsonp({ result: "error", message: err});
+            return res.jsonp({ result: "error", message: "注册失败!"});
         }
         res.jsonp({ result:'success', message:'注册成功!'});
     });
 });
 
-router.post('/login', function(req, res) {
+router.post('/login',passport.authenticate('local'), function(req, res) {
     res.jsonp({ result: 'success', message: '登陆成功!'});
 });
 
@@ -101,7 +99,7 @@ router.get('/news',function(req,res){
 router.post('/news',function(req,res){
     var newNews = new News({
         title:req.body.title,
-        content: md(req.body.text)
+        content: req.body.text
     });
     newNews.save(function(err,news){
         if (err) {
