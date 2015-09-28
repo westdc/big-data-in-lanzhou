@@ -61,7 +61,7 @@ angular.module('technicalSalon')
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         });
 
-        $scope.pageChaWnged = function (page) {
+        $scope.pageChanged = function (page) {
             $scope.items = UserService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
         $scope.openDeleteDialog = function(user, modalCtrl, size) {
