@@ -22,7 +22,6 @@ angular.module('technicalSalon')
     .controller('loginCtrl', function ($scope, $http, $location, authUrl) {
         $scope.user = {};
         $scope.login = function (u) {
-            console.log('do login');
             $http.post(authUrl, u).success(function (data) {
                 if (data.result == 'error') {
                     $scope.$emit(data.result, data.message);
@@ -64,7 +63,7 @@ angular.module('technicalSalon')
         $scope.$watch('search',function(keyword) {
             if (keyword){
                 timeout = $timeout(function() {
-                    $http.get('/count/user',{ 'keyword' : keyword }).success(function(data) {
+                    $http.get('/count/user?keyword='+keyword).success(function(data) {
                         $scope.totalItems = data.totalItems;
                         $scope.items = UserService.query({keyword: keyword, skip: ($scope.currentPage - 1) * 10, pageSize: 10})
                     });

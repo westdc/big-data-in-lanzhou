@@ -29,10 +29,6 @@ router.get('/user',function(req, res){
 router.get('/count/user',function(req, res) {
     var keyword = req.query.keyword;
 
-    console.log(req.query);
-    console.log(req.params);
-    console.log(req.body);
-
     console.log("====="+keyword);
     User.count(function(err, total) {
         if(err) {
