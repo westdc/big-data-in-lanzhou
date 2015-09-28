@@ -64,7 +64,7 @@ router.post('/user', function (req, res) {
     });
 });
 
-router.post('/login',passport.authenticate('local'), function(req, res) {
+router.post('/login', function(req, res) {
     res.jsonp({ result: 'success', message: '登陆成功!'});
 });
 
@@ -103,8 +103,8 @@ router.post('/news',function(req,res){
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
-            //res.redirect('/admin#/news-manage');
-            res.jsonp({result: 'success', message: "修改新闻成功"});
+            res.redirect('/admin#/news-manage');
+            //res.jsonp({result: 'success', message: "修改新闻成功"});
         }
     });
 });
