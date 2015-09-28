@@ -64,7 +64,7 @@ router.post('/user', function (req, res) {
     });
 });
 
-router.post('/login', function(req, res) {
+router.post('/login',passport.authenticate('local'), function(req, res) {
     res.jsonp({ result: 'success', message: '登陆成功!'});
 });
 
