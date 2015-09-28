@@ -28,7 +28,6 @@
                 <span class="error text-danger"
                       ng-show="(registerForm.password.$dirty) && registerForm.password.$error.minlength">密码长度不能小于6个字符！</span>
             </p>
-
             <p>
                 <input type="password" name="confirm_password" ng-model="user.password_verify" password-verify="user.password"
                        required ng-maxlength="20" ng-minlength="6" repeat="user_password" class="form-control"
