@@ -99,8 +99,8 @@ router.post('/news',function(req,res){
         if (err) {
             return res.jsonp({result: 'error', message: "修改新闻失败"});
         } else {
-            res.redirect('/admin#/news-manage');
-            //res.jsonp({result: 'success', message: "修改新闻成功"});
+            //res.redirect('/admin#/news-manage');
+            res.jsonp({result: 'success', message: "修改新闻成功"});
         }
     });
 });
