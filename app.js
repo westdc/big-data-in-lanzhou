@@ -27,13 +27,13 @@ app.use(session({secret:"big-data-in-lanzhou",
   resave:false,
   saveUninitialized:true,
   cookies:{ maxAge:360000 }}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', routes);
-app.use('/admin', admin);
 
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use('/admin', admin);
 
 var User = require('./models/user-models').UserModel;
 passport.use(new LocalStrategy(User.authenticate()));
