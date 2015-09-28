@@ -89,5 +89,15 @@ News.remove = function(id, callback) {
     });
 };
 
+News.search=function(keyword,callback){
+    var pattern = new RegExp(keyword, "i");
+    NewsModel.find({title:pattern}).exec(function(err,news){
+        if (err){
+            return callback(err);
+        }
+        callback(null, news);
+    });
+};
+
 
 module.exports = News;

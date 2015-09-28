@@ -150,6 +150,16 @@ router.post('/news/remove', function(req,res) {
     });
 });
 
+router.get('/news/search',function(req,res){
+    News.search(req.query.keyword,function(err,news){
+        if(err){
+            console.log(err);
+        }
+        res.jsonp(news);
+    });
+});
+
+
 router.post('/message',function(req,res){
     var newMessage = new Message({
         name: req.body.name,
