@@ -19,7 +19,6 @@ angular.module("technicalSalon")
                     console.log(err);
                 });
             }, function () {
-
             });
         }
     })
@@ -40,12 +39,10 @@ angular.module("technicalSalon")
         $scope.currentPage = 1;
         $scope.totalItems = 0;
         $scope.items = [];
-
         $http.get('/count/message').success(function (data) {
             $scope.totalItems = data.totalItems;
             $scope.items = MessageService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         });
-
         $scope.pageChanged = function (page) {
             $scope.items = MessageService.query({skip: ($scope.currentPage - 1) * 10, pageSize: 10});
         };
@@ -76,7 +73,6 @@ angular.module("technicalSalon")
 
             })
         }
-
     })
     .controller('deleteMessageCtrl', function($scope, $modalInstance, id) {
         $scope.submit = function () {
