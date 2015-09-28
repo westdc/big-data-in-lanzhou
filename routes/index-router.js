@@ -107,7 +107,8 @@ router.get('/news',function(req,res){
     } else {
         var skip = req.query.skip || 0;
         var pageSize = req.query.pageSize || 10;
-        News.getAll(skip, pageSize, function(err,news){
+        var search=req.query.keyword || false;
+        News.getAll(skip, pageSize,search, function(err,news){
             if(err){
                 console.log('error');
             }else{
