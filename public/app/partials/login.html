@@ -3,10 +3,10 @@
         <form name="signinForm" novalidate ng-controller="loginCtrl">
             <h2 class="form-signin-heading">登录</h2>
             <p class="form-group">
-                <input type="text" name="email"
-                       class="form-control" ng-model="user.email" placeholder="请输入您的email" required>
+                <input type="text" name="username"
+                       class="form-control" ng-model="user.username" placeholder="请输入您的email" required>
                 <span class="text-danger error" ng-show="">
-                    <span ng-show="signinForm.email.$error.required && signinForm.email.$dirty">请输入您的Email</span>
+                    <span ng-show="signinForm.username.$error.required && signinForm.username.$dirty">请输入您的Email</span>
                 </span>
             </p>
             <p>

@@ -67,9 +67,10 @@ router.post('/user', function (req, res) {
     });
 });
 
-router.post('/login',passport.authenticate('local'), function(req, res) {
-    console.log(req);
-    console.log(res);
+router.post('/login',passport.authenticate('local',{successRedirect:'/admin',
+    failureRedirect:'/'}),function(req, res) {
+    //console.log(req);
+    //console.log(res);
     res.jsonp({ result: 'success', message: '登陆成功!'});
 });
 
