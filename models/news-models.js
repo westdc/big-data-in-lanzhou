@@ -35,7 +35,7 @@ News.prototype.save=function(callback){
 };
 
 News.getAll = function (skip,pageSize,keyword,callback) {
-    var pattern = new RegExp(keyword, "i");
+    var pattern = new RegExp(keyword+'.*', "i");
     NewsModel.find({title:pattern}).skip(skip).limit(pageSize).sort({createAt: -1}).exec(function(err,news){
         if (err) {
             return callback(err);
