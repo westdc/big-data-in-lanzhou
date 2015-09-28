@@ -189,10 +189,6 @@ router.post('/message/remove',function(req, res) {
     });
 });
 
-router.get('/news-editor', function(req,res) {
-    res.render('news-editor', { title: 'Express' });
-});
-
 var multer  = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

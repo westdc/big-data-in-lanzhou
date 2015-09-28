@@ -8,7 +8,7 @@
                     <button ng-click="openUpdateDialog(n,'updateNewsCtrl')" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>修改</button>
                     <button class="btn btn-default btn-sm" ng-click="openDeleteDialog(n,'deleteNewsCtrl','sm')" ><span class="glyphicon glyphicon-remove"></span>删除</button>
                 </h4>
-                <div class="list-group-item-text" ng-bind-html="n.content"></div>
+                <div class="list-group-item-text" ng-bind-html-unsafe="n.content"></div>
                 <hr>
             </div>
             <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="pageChanged()"></pagination>
