@@ -7,7 +7,7 @@ var newsSchema = new mongoose.Schema({
     name:String,
     title: String,
     content: String,
-    createAt:{ type: Date, default: Date.now }
+    createAt:{ type: Date, default: Date.now },
 });
 
 var NewsModel = mongoose.model('News', newsSchema);
@@ -86,6 +86,16 @@ News.remove = function(id, callback) {
             return callback(err);
         }
         callback(null, newss);
+    });
+};
+
+News.search=function(keyword,callback){
+    var pattern = new RegExp(keyword, "i");
+    NewsModel.find({title:pattern}).exec(function(err,news){
+        if (err){
+            return callback(err);
+        }
+        callback(null, news);
     });
 };
 
