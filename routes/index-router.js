@@ -14,7 +14,8 @@ router.get('/', function(req, res) {
 router.get('/user',function(req, res){
   var skip = req.query.skip || 0;
   var pageSize = req.query.pageSize || 10;
-  User.getAll(skip, pageSize, function(err,users){
+    var fuzzy=req.query.keyword || false;
+  User.getAll(skip, pageSize,fuzzy, function(err,users){
     if(err){
       console.log('error');
     }else{
